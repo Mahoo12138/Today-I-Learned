@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 实现轮播效果</title>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      margin: 300px;
+      display: flex;
+    }
+
+    :root {
+      /*  轮播的个数 */
+      --s: 6;
+      /*  单个 li 容器的高度 */
+      --h: 36;
+      /*  单次动画的时长 */
+      --speed: 1.5s;
+    }
+
+    .g-container {
+      width: 300px;
+      height: calc(var(--h) * 1px);
+      line-height: calc(var(--h) * 1px);
+      background-color: aqua;
+      padding: 0 20px;
+      margin: auto;
+      /* overflow: hidden; */
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      background-color: greenyellow;
+      animation: move calc(var(--speed) * var(--s)) steps(var(--s)) infinite;
+    }
+
+    ul li {
+      width: 100%;
+      list-style: none;
+      animation: liMove calc(var(--speed)) infinite;
+    }
+
+    @keyframes move {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      100% {
+        transform: translate(0, calc(var(--s) * var(--h) * -1px));
+      }
+    }
+
+    @keyframes liMove {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      80%,
+      100% {
+        transform: translate(0, calc(var(--h) * -1px));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="g-container">
+    <ul>
+      <li>Lorem ipsum 1111111</li>
+      <li>Lorem ipsum 2222222</li>
+      <li>Lorem ipsum 3333333</li>
+      <li>Lorem ipsum 4444444</li>
+      <li>Lorem ipsum 5555555</li>
+      <li>Lorem ipsum 6666666</li>
+      <!-- 末尾补一个首条数据 -->
+      <li>Lorem ipsum 1111111</li>
+    </ul>
+  </div>
+</body>
+
+</html>

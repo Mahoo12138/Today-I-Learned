@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complex Selector</title>
+</head>
+<style>
+  a:not(main *:not(:is(h2, h3) > *)) {
+    color: red;
+}
+</style>
+<body>
+  <main>
+    <a href="">1. main>a</a>
+    <h1><a href="">2. main>h1>a</a></h1>
+    <h2><a href="">3. main>h2>a</a></h2>
+    <h2><p><a href="">4. main>h2>p>a</a></p></h2>
+    <h3><a href="">5. main>h3>a</a></h3>
+</main>
+<h1><a href="">6. h1>a</a></h1>
+<h2><a href="">7. h2>a</a></h2>
+<h3><a href="">8. h3>a</a></h3>
+<a href="">9. a</a>
+  
+</body>
+</html>

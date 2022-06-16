@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pseudo-Class Selector</title>
+</head>
+<style>
+  :target {
+    font-size: 60px;
+  }
+  h1:target{
+    color: red;
+  }
+</style>
+
+<body>
+  <h1 id="one">First</h1>
+  <h2 id="two">Second</h2>
+  <h3 id="three">Third</h3>
+  <h4 id="four">Fourth</h4>
+  <h5 id="five">Fifth</h5>
+
+  <a href="#one">First</a>
+  <a href="#two">Second</a>
+  <a href="#three">Third</a>
+  <a href="#four">Fourth</a>
+  <a href="#five">Fifth</a>
+</body>
+
+</html>

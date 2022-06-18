@@ -53,7 +53,7 @@ boolean contains (E element)	// 是否包含某元素
 
 通过接口可以看出，对于目前这个二叉树来说，元素是**没有索引的概念**的；
 
-## 代码逻辑
+## 结构设计
 
 首先，新建的二叉搜索树 `BinarySearchTree` 类，在其中需要有几个基础的属性：
 
@@ -186,6 +186,7 @@ void add(E element) {
         }else if(cmp < 0) {
             node = node.left;
         }else {
+            node.element = element;
             return;		// 相等
         }
     }
@@ -196,6 +197,158 @@ void add(E element) {
         parent.left = newNode;
     }
     size++;
+}
+```
+
+ ## 遍历逻辑
+
+根据节点的访问顺序的不同，可分为四种：
+
++ 前序遍历 (Preorder Traversal)：根节点，前序左子树，再前序右子树；
++  中序遍历 (Inorder Traversal)：中序左子树，根节点，中序右子树，可选为升序或降序；
++ 后序遍历 (Postorder Traversal)：后序左子树，后序右子树，根节点；
++ 层序遍历 (Level Order Traversal)：从上往下，从左往右，以此访问每一个节点；
+
+### 前序遍历
+
+递归方法：
+
+```java
+private void preorderTraversal(Node<E> node) {
+    if(node == null) return;
+    System.out.println(node.element);
+    preorderTraversal(node.left);
+    preorderTraversal(node.right);
+}
+```
+
+
+
+### 中序遍历
+
+递归方法：
+
+```java
+private void inorderTraversal(Node<E> node) {
+    if(node == null) return;
+    inorderTraversal(node.left);
+    System.out.println(node.element);
+    inorderTraversal(node.right);
+}
+```
+
+
+
+### 后序遍历
+
+递归方法：
+
+```java
+private void postorderTraversal(Node<E> node) {
+    if(node == null) return;
+    postorderTraversal(node.left);
+    postorderTraversal(node.right);
+    System.out.println(node.element);
+}
+```
+
+
+
+### 层序遍历
+
+实现思路：使用队列
+
+1. 将根节点入队
+2. 循环执行以下操作，直到队列为空
+   + 将队头节点出队，进行访问
+   + 将头节点的左子节点入队；
+   + 将头节点的右子节点入队；
+
+```java
+public void levelOrderTraversal() {
+    if(root == null) return;
+
+    Queue<Node<E>> queue = new LinkedList<>();
+
+    queue.offer(root);
+
+    while(!queue.isEmpty()) {
+        Node<E> node = queue.poll();
+        System.out.println(node.element);
+
+        if(node.left != null) {
+            queue.offer(node.left);
+        }
+
+        if(node.right != null) {
+            queue.offer(node.right);
+        }
+    }
+}
+```
+
+## 遍历接口设计
+
+使用一个 `Visitor` 抽象类，将用户对二叉搜索树遍历时的访问逻辑包裹传入；为什么不使用接口呢，因为需要一个 flag 进行存储是否继续遍历：
+
+```java
+public static abstract class Visitor<E> {
+    boolean stop;
+    abstract boolean visit(E element);
+}
+```
+
+在层序遍历中，我们可以很简单地实现自定义遍历过程：
+
+```java
+public void levelOrder(Visitor<E> visitor) {
+    if(root == null) return;
+    Queue<Node<E>> queue = new LinkedList<>();
+    queue.offer(root);
+    while(!queue.isEmpty()) {
+        Node<E> node = queue.poll();
+        boolean stop = visitor.visit(node.element);
+        // 在完成一个元素操作后，根据返回值判断是否继续
+        if(stop) return ;
+        if(node.left != null) {
+            queue.offer(node.left);
+        }
+        if(node.right != null) {
+            queue.offer(node.right);
+        }
+    }
+}
+```
+
+而在其他几种遍历中，需要借助于抽象类存储的 flag，需要注意的是进行判断的位置：
+
+```java
+private void preorder(Node<E> node, Visitor<E> visitor) {
+    if(node == null || visitor.stop) return;
+
+    visitor.stop = visitor.visit(node.element);
+
+    preorder(node.left, visitor);
+    preorder(node.right, visitor);
+}
+
+private void postorder(Node<E> node, Visitor<E> visitor) {
+    if(node == null || visitor.stop) return;
+
+    preorder(node.left, visitor);
+    preorder(node.right, visitor);
+    
+    if(visitor.stop) return;
+    visitor.stop = visitor.visit(node.element);
+}
+
+private void inorder(Node<E> node, Visitor<E> visitor) {
+    if(node == null || visitor.stop) return;
+
+    preorder(node.left, visitor);
+    if(visitor.stop) return;
+    visitor.stop = visitor.visit(node.element);
+    preorder(node.right, visitor);
 }
 ```
 

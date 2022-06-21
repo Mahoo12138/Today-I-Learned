@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goods Pic Desc</title>
+</head>
+<style>
+  body {
+    padding: 20px;
+  }
+
+  .g-wrap {
+    position: absolute;
+    cursor: pointer;
+  }
+
+  [desc1]::before,
+  [desc2]::after {
+    position: absolute;
+    padding: 4px 10px 4px 20px;
+    font-size: 12px;
+    color: #333;
+    z-index: 10;
+    opacity: 0;
+    transition: all .5s;
+  }
+
+  [desc1]::before {
+    content: attr(desc1);
+    right: 2%;
+    top: 10%;
+    background:
+      /* radial-gradient(10px at 12% 50%, #333 0%, #333 2.5px, transparent 2.5px), */
+      /* linear-gradient(135deg, transparent 7px, #fff 7px, #fff 100%) top left, */
+      linear-gradient(45deg, transparent 7px, #fff 7px, #fff 100%) bottom left;
+    background-size: 100% 100%, 100% 50%, 100% 50%;
+    background-position: 0 0, 0 0, 0 100%;
+    background-repeat: no-repeat;
+    transform: translate(30px, 0);
+  }
+
+  [desc2]::after {
+    content: attr(desc2);
+    left: 8%;
+    bottom: 20%;
+    padding: 4px 20px 4px 10px;
+    background:
+      radial-gradient(10px at 88% 50%, #333 0%, #333 2.5px, transparent 2.5px),
+      linear-gradient(-135deg, transparent 7px, #fff 7px, #fff 100%) top left,
+      linear-gradient(-45deg, transparent 7px, #fff 7px, #fff 100%) bottom left;
+    background-size: 100% 100%, 100% 50%, 100% 50%;
+    background-position: 0 0, 0 0, 0 100%;
+    background-repeat: no-repeat;
+    transition-delay: .2s;
+    transform: translate(-30px, 0);
+  }
+
+  [desc1]:hover::before,
+  [desc2]:hover::after {
+    opacity: 1;
+    transform: translate(0px, 0);
+  }
+
+
+  /* img {
+    position: relative;
+    width: 300px;
+  }
+
+  div [href] {
+    color: blue;
+  } */
+</style>
+
+<body>
+  <div class="g-wrap" desc1="商品描述AAA" desc2="商品描述BBB">
+    <img src="https://user-images.githubusercontent.com/8554143/59601359-47595400-90f3-11e9-9315-03ca14c817b9.png"
+      alt="">
+  </div>
+
+  <!-- <div href="test">div href</div>
+  <div>
+    <a href="#">a href</a>
+    <a>a nohref</a>
+    <div href="#">div href</div>
+    <div>
+      <div href="#">further div href</div>
+    </div> -->
+  </div>
+</body>
+
+</html>

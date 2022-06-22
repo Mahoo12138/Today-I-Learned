@@ -1,6 +1,8 @@
 package com.mahoo;
 
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import com.mahoo.printer.BinaryTreeInfo;
 
@@ -49,6 +51,7 @@ public class BinarySearchTree<E> implements BinaryTreeInfo{
 			}else if(cmp < 0) {
 				node = node.left;
 			}else {
+				node.element = element;
 				return;		// 相等
 			}
 		}
@@ -62,8 +65,8 @@ public class BinarySearchTree<E> implements BinaryTreeInfo{
 		size++;
 	}
 	
-	// 删除元素
-	void remove (E element) {}
+	
+
 	
 	// 是否包含某元素
 	boolean contains (E element) {
@@ -84,6 +87,263 @@ public class BinarySearchTree<E> implements BinaryTreeInfo{
 		}
 	}
 	
+	// 删除元素
+	public void remove(E element) {
+		remove(node(element));
+	}
+	
+	private void remove(Node<E> node) {
+		if(node == null) return ;
+		
+		if(node.isTwoChildren()) {	// 度为 2 的节点
+			Node<E> s = successor(node);
+			node.element = s.element;	// 覆盖值
+			node = s;	// 把后继节点赋给待删除节点，做统一处理
+		}
+		
+		Node<E> replace = node.left == null ? node.right : node.left;
+		
+		if(replace != null) {	// 度为 1
+			replace.parent = node.parent;	// 统一处理
+			if(node.parent == null) {	// 根节点
+				root = replace;
+			} else if(node == node.parent.left) {
+				node.parent.left = replace;
+			} else {
+				node.parent.right = replace;
+			}
+		} else if (node.parent == null){	// 根节点
+			root = null;
+		} else {	// 度为0，叶子节点
+			if(node == node.parent.left) {
+				node.parent.left = null;
+			}else {
+				node.parent.right = null;
+			}
+		}
+	}
+	
+	private Node<E> node(E element){
+		Node<E> node = root;
+		while(node != null) {
+			int cmp = compare(element, node.element);
+			if(cmp == 0) return node;
+			if(cmp > 0) {
+				node = node.right;
+			}else {
+				node = node.left;
+			}
+		}
+		return null;
+	}
+	
+	private Node<E> predecessor(Node<E> node){
+		if(node == null) return null;
+		Node<E> p = node.left;
+		if(p != null) {
+			while(p.right != null) {
+				p = p.right;
+			}
+			return p;
+		}
+		while(node.parent != null && node == node.parent.left) {
+			node = node.parent;
+		}
+		return node.parent;
+	}
+	
+	private Node<E> successor(Node<E> node){
+		if(node == null) return null;
+		Node<E> p = node.right;
+		if(p != null) {
+			while(p.left != null) {
+				p = p.left;
+			}
+			return p;
+		}
+		while(node.parent != null && node == node.parent.right) {
+			node = node.parent;
+		}
+		return node.parent;
+	}
+
+	public int height1() {
+		return height(root);
+	}
+	
+	public int height2() {
+		if(root == null) return 0;
+
+		Queue<Node<E>> queue = new LinkedList<>();
+		
+		int height = 0;
+		
+		queue.offer(root);
+		
+		int levelSize = 1;
+		
+		while(!queue.isEmpty()) {
+			Node<E> node = queue.poll();
+			
+			levelSize--;
+			
+			if(node.left != null) {
+				queue.offer(node.left);
+			}
+			
+			if(node.right != null) {
+				queue.offer(node.right);
+			}
+			if(levelSize == 0) {
+				levelSize = queue.size();
+				height++;
+			}
+		}
+		return height;
+	}
+	
+	private int height(Node<E> node) {
+		if(node == null) return 0;
+		return 1 + Math.max(height(node.left),height(node.right));
+	}
+	
+	public boolean isComplete() {
+		if(root == null) return false;
+		Queue<Node<E>> queue = new LinkedList<>();
+		boolean leaf = false;
+		queue.offer(root);
+		
+		while(!queue.isEmpty()) {
+			Node<E> node = queue.poll();
+			
+			if(leaf && !node.isLeaf()) return false;
+			
+//			if(node.left != null && node.right != null) {
+//				queue.offer(node.left);
+//				queue.offer(node.right);
+//			}else if(node.left == null && node.right != null) {
+//				return false;
+//			}else {
+//				leaf = true;
+//				if(node.left != null) {
+//					queue.offer(node.left);
+//				}
+//			}
+//		}
+//		return true;
+			if(node.left != null) {
+				queue.offer(node.left);
+			}else if (node.right != null){
+				return false;
+			}
+			
+			if(node.right != null) {
+				queue.offer(node.right);
+			}else {	// node.right == null
+				leaf = true;
+			}
+		}
+		return true;
+		
+	}
+	
+	public void preorder(Visitor<E> visitor) {
+		if(root == null || visitor == null) return;
+		preorder(root, visitor);
+
+	}
+	
+	private void preorder(Node<E> node, Visitor<E> visitor) {
+		if(node == null || visitor.stop) return;
+
+		visitor.stop = visitor.visit(node.element);
+
+		preorder(node.left, visitor);
+		preorder(node.right, visitor);
+	}
+	
+	public void preorderTraversal() {
+		this.preorderTraversal(root);
+	}
+	
+	private void preorderTraversal(Node<E> node) {
+		if(node == null) return;
+		System.out.print(node.element + " ");
+		preorderTraversal(node.left);
+		preorderTraversal(node.right);
+	}
+	
+	public void inorderTraversal() {
+		this.inorderTraversal(root);
+	}
+	
+	private void inorderTraversal(Node<E> node) {
+		if(node == null) return;
+		inorderTraversal(node.left);
+		System.out.println(node.element);
+		inorderTraversal(node.right);
+	}
+	
+	public void postorderTraversal() {
+		this.postorderTraversal(root);
+	}
+	
+	private void postorderTraversal(Node<E> node) {
+		if(node == null) return;
+		postorderTraversal(node.left);
+		postorderTraversal(node.right);
+		System.out.println(node.element);
+	}
+	
+	public void levelOrderTraversal() {
+		if(root == null) return;
+
+		Queue<Node<E>> queue = new LinkedList<>();
+		
+		queue.offer(root);
+		
+		while(!queue.isEmpty()) {
+			Node<E> node = queue.poll();
+			System.out.print(node.element + " ");
+			
+			if(node.left != null) {
+				queue.offer(node.left);
+			}
+			
+			if(node.right != null) {
+				queue.offer(node.right);
+			}
+		}
+	}
+	
+	public void levelOrder(Visitor<E> visitor) {
+		if(root == null) return;
+
+		Queue<Node<E>> queue = new LinkedList<>();
+		
+		queue.offer(root);
+		
+		while(!queue.isEmpty()) {
+			Node<E> node = queue.poll();
+			boolean stop = visitor.visit(node.element);
+			
+			if(stop) return ;
+			
+			if(node.left != null) {
+				queue.offer(node.left);
+			}
+			
+			if(node.right != null) {
+				queue.offer(node.right);
+			}
+		}
+	}
+
+	public static abstract class Visitor<E> {
+		boolean stop;
+		abstract boolean visit(E element);
+	}
+	
 	private static class Node<E>{
 		E element;
 		Node<E> left;
@@ -93,6 +353,14 @@ public class BinarySearchTree<E> implements BinaryTreeInfo{
 		public Node(E e, Node<E> n) {
 			this.element = e;
 			this.parent = n;
+		}
+		
+		public boolean isLeaf() {
+			return left == null && right == null;
+		}
+		
+		public boolean isTwoChildren() {
+			return left != null && right != null;
 		}
 	}
 
@@ -111,11 +379,11 @@ public class BinarySearchTree<E> implements BinaryTreeInfo{
 		return ((Node<E>) node).right;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Object string(Object node) {
-		return ((Node<E>) node).element; 
+		Node<E> item = ((Node<E>) node);
+		return item.element.toString() +"_" + (item.parent != null ? item.parent.element : "root"); 
 	}
-	
-	
 	
 }

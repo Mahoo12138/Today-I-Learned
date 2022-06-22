@@ -74,7 +74,7 @@ private void elementNotNullCheck(E e) {
 
 ### 节点设计
 
-在 `BinarySearchTree` 类中，需要创建一个内部类进行节点的维护，内部包括左右节点和父节点，以及存储的元素，在构造时只需传入元素值和父节点即可：
+在 `BinarySearchTree` 类中，需要创建一个内部类进行节点的维护，内部包括左右节点和父节点，以及存储的元素，以及后序所需要的两个方法，在构造时只需传入元素值和父节点即可：
 
 ```java
 private static class Node<E>{
@@ -86,6 +86,13 @@ private static class Node<E>{
     public Node(E e, Node<E> n) {
         this.element = e;
         this.parent = n;
+    }
+    public boolean isLeaf() {
+        return left == null && right == null;
+    }
+
+    public boolean isTwoChildren() {
+        return left != null && right != null;
     }
 }
 ```
@@ -351,4 +358,265 @@ private void inorder(Node<E> node, Visitor<E> visitor) {
     preorder(node.right, visitor);
 }
 ```
+
+### 遍历的应用
+
++ 前序遍历：树状结构展示(注意左右子树的顺序)
++ 中序遍历：二叉搜索树的中序遍历按升序或者降序处理节点
++ 后序遍历：适用于一些先子后父的操作
++ 层序遍历：计算二叉树的高度；判断是否一个完全二叉树
+
+## 练习
+
+  ### 计算二叉树的层数
+
+递归方法：
+
+每一次函数调用，返回该节点左右子节点层数中最大值加一，递归停止条件为，传入的子节点为`null` 时，说明已经是叶子节点，层数返回 0；
+
+```java
+private int height(Node<E> node) {
+    if(node == null) return 0;
+    return 1 + Math.max(height(node.left),height(node.right));
+}
+```
+
+迭代方法（层序遍历）：
+
+使用 `height` 存储层数， `levelSize` 存储每一层元素个数，初始值为 1，当出队一次减一，每次迭代节点入队时检测是否为零，为零则说明该层已经迭代完毕，可将下一层元素数量赋值给 `levelSize`，层数 `height` 加一，层序遍历完毕后，返回层数；
+
+```java
+public int height() {
+		if(root == null) return 0;
+
+		Queue<Node<E>> queue = new LinkedList<>();
+		int height = 0;
+		queue.offer(root);
+		int levelSize = 1;
+
+		while(!queue.isEmpty()) {
+			Node<E> node = queue.poll();
+			
+			levelSize--;
+			
+			if(node.left != null) {
+				queue.offer(node.left);
+			}
+			if(node.right != null) {
+				queue.offer(node.right);
+			}
+			if(levelSize == 0) {
+				levelSize = queue.size();
+				height++;
+			}
+		}
+		return height;
+	}
+```
+
+### 完全二叉树的判断
+
+根据完全二叉树的特点（从上到下，从左到右，依次排列），我们可以很自然地可以想到，利用层序遍历对其判断，遍历节点时，共有四种情况，分别是：
+
++ 树为空，返回 false
+
++ `node.left != null && node.right != null`，将 node.left，node.right 按顺序入队
++ `node.left == null && node.right != null`，返回 false
++ `node.left != null && node.right == null` 或者 `node.left == null && node.right == null`
+
+最后一种情况较为特殊，这种情况下，说明该节点是一个分水岭节点，之前的节点都是度为 2 的节点，之后的节点都必须是度为 1，即叶子节点，才满足完全二叉树的条件；
+
+此时需要设置一个 flag 对之后遍历的节点进行判断，是否为叶子节点；
+
+```java
+public boolean isComplete() {
+    if(root == null) return false;
+    Queue<Node<E>> queue = new LinkedList<>();
+    boolean leaf = false;
+    queue.offer(root);
+
+    while(!queue.isEmpty()) {
+        Node<E> node = queue.poll();
+
+        if(leaf && !node.isLeaf()) return false;
+
+        if(node.left != null && node.right != null) {
+            queue.offer(node.left);
+            queue.offer(node.right);
+        }else if(node.left == null && node.right != null) {
+            return false;
+        }else {
+            leaf = true;
+            if(node.left != null) {
+                queue.offer(node.left);
+            }
+        }
+    }
+    return true;
+}
+```
+
+ 这样其实是偏离了层序遍历的内在逻辑的，可以重构一下，减少代码量和重复判断 ：
+
++ 如果树为空，返回 false ；
++ 如果 node.left != null，将 node.left 入队
++ 如果 node.left == null && node.right!=null，返回 false
++ 如果 node.right != null，将 node.right 入队
++ 如果 node.right == null，分界点，设置 flag
+
+```java
+if(node.left != null) {
+    queue.offer(node.left);
+}else if (node.right != null){
+    return false;
+}
+
+if(node.right != null) {
+    queue.offer(node.right);
+}else {	// node.right == null
+    leaf = true;
+}
+```
+
+### 二叉树的翻转
+
+问题核心在于，二叉树的遍历，只要在二叉树的每一个节点上，对左右子树进行交换即可：
+
+```java
+TreeNode temp = node.left;
+node.left = node.right;
+node.right = temp;
+```
+
+而对于中序遍历来说，交换当前节点发生于左右子树递归之间，左右子树的引用已发生更换，两次需要递归同一个变量；
+
+## 其他概念
+
+### 前驱节点
+
+中序遍历中的前一个节点； 
+
+如果是二叉搜索树，前驱节点则是前一个比它小的节点，而且是左子树中的最大节点；
+
+ 通过观察，可发现，针对任意的二叉树， 任意节点的前驱节点可分为四种情况：
+
++ 左子节点不为空，前驱节点为其左子树的最右侧的节点；
++ 左子节点为空且父节点不为空，前驱节点为其父节点上溯到父节点的右子树位置，即该父节点；
++ 在第二种情况基础上，上溯父节点直到为空，则无前驱节点；
++ 左子节点为空，且父节点也为空，无前驱节点；
+
+```java
+private Node<E> predecessor(Node<E> node){
+    if(node == null) return null;
+    Node<E> p = node.left;
+    if(p != null) {
+        while(p.right != null) {
+            p = p.right;
+        }
+        return p;
+    }
+    while(node.parent != null && node == node.parent.left) {
+        node = node.parent;
+    }
+    return node.parent;
+}
+```
+
+### 后继节点
+
+后继节点：中序遍历时的后一个节点；
+
+如果是二叉搜索树，后继节点就是后一个比它大的节点，且是右子树中最小的节点； 
+
+其中，后继节点于前驱节点基本相反，实现类似，只需更改方向：
+
+```java
+private Node<E> successor(Node<E> node){
+    if(node == null) return null;
+    Node<E> p = node.right;
+    if(p != null) {
+        while(p.left != null) {
+            p = p.left;
+        }
+        return p;
+    }
+    while(node.parent != null && node == node.parent.right) {
+        node = node.parent;
+    }
+    return node.parent;
+}
+```
+
+## 删除逻辑
+
+### 度为 0 节点
+
+叶子节点，直接删除；具体直接将父节点的左/右子节点设置为 null ；
+
+### 度为 1 节点
+
+用子节点替代待删除节点的位置：具体操作将待删除节点的父节点的左/右子节点直线待删除节点的左/右子节点；
+
+如果待删除节点是根节点，即直接将 root 变量指向根节点的左/右子节点；
+
+### 度为 2 节点
+
+常见的做法是，使用待删除节点和前驱节点或后继节点，覆盖待删除的结点，再删除相应的前驱/后继节点；
+
+因为若一个节点的度为 2，那么它的前驱或者后继节点的度只能是 0 或 1；原因在于，前驱和后继节点的查找特点；
+
+### 具体实现
+
+```java
+private void remove(Node<E> node) {
+    if(node == null) return ;
+    if(node.isTwoChildren()) {	// 度为 2 的节点
+        Node<E> s = successor(node);
+        node.element = s.element;	// 覆盖值
+        node = s;	// 把后继节点赋给待删除节点，做统一处理
+    }
+    Node<E> replace = node.left == null ? node.right : node.left;
+
+    if(replace != null) {	// 度为 1
+        replace.parent = node.parent;	// 统一处理
+        if(node.parent == null) {	// 根节点
+            root = replace;
+        } else if(node == node.parent.left) {
+            node.parent.left = replace;
+        } else {
+            node.parent.right = replace;
+        }
+    } else if (node.parent == null){	// 根节点
+        root = null;
+    } else {	// 度为0，叶子节点
+        if(node == node.parent.left) {
+            node.parent.left = null;
+        }else {
+            node.parent.right = null;
+        }
+    }
+}
+```
+
+其中包含一个查找元素的方法：
+
+```java
+private Node<E> node(E element){
+    Node<E> node = root;
+    while(node != null) {
+        int cmp = compare(element, node.element);
+        if(cmp == 0) return node;
+        if(cmp > 0) {
+            node = node.right;
+        }else {
+            node = node.left;
+        }
+    }
+    return null;
+}
+```
+
+
+
+
 

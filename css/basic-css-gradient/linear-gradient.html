@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>linear-gradient</title>
+</head>
+<style>
+  .block {
+    padding-left: 300px;
+    border-bottom: 5px grey solid;
+  }
+
+  .div {
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    display: inline-block;
+  }
+
+  .demo10 {
+    /* 渐变轴为45度，从蓝色渐变到红色 */
+    background: linear-gradient(0deg, blue, red);
+  }
+
+  .demo11 {
+    /* 从右下到左上、从蓝色渐变到红色 */
+    background: linear-gradient(to left top, blue, red);
+  }
+
+  .demo12 {
+    background: linear-gradient(red 50%, blue 90%);
+  }
+
+  .demo20 {
+    background: linear-gradient(red, orange, yellow, green, blue);
+  }
+
+  .demo21 {
+    background: linear-gradient(red 0%, orange 25%, yellow 50%, green 75%, blue 100%);
+  }
+
+  .demo22 {
+    background: linear-gradient(red 0%, orange 25px, yellow 50px, green 75px, blue 100%);
+  }
+
+  .demo30 {
+    background: linear-gradient(red 0%, 10%, blue 90%);
+  }
+
+  .demo31 {
+    background: linear-gradient(red 0%, 20%, blue 100%);
+  }
+
+  .demo32 {
+    background: linear-gradient(red 0%, 30%, blue 100%);
+  }
+
+  .demo33 {
+    background: linear-gradient(red 0%, 40%, blue 100%);
+  }
+
+  .demo34 {
+    background: linear-gradient(red 0%, 50%, blue 100%);
+  }
+
+  .demo35 {
+    background: linear-gradient(red 0%, 60%, blue 100%);
+  }
+
+  .demo36 {
+    background: linear-gradient(red 0%, 70%, blue 100%);
+  }
+  .demo40{
+    background: linear-gradient(red 30%, yellow, blue 70%);
+  }
+  .demo41{
+    /* red 30% 即后面的，被 yellow 20% 覆盖*/
+    background: linear-gradient(red 30%, yellow 20%, blue 70%);
+  }
+  .demo50{
+    background: linear-gradient(red 0%, orange 10%, orange 30%, yellow 50%, yellow 70%, green 90%, green 100%);
+  }
+  .demo51{
+    background: linear-gradient(red 0%, orange 10% 30%, yellow 50% 70%, green 90%);
+  }
+  .demo52{
+    background: linear-gradient(red 0%, orange 10% 30%, yellow 50% 70%, green 90% 100%);;
+  }
+  .demo60{
+    background: repeating-linear-gradient( blue , red 40%);
+}
+.demo61{
+    background: repeating-linear-gradient( blue 20% , red 40%);
+}
+.demo62{
+    background: repeating-linear-gradient(45deg, blue 20% , red 40%);
+}
+</style>
+
+<body>
+  <div class="block">
+    <div class="div demo10"></div>
+    <div class="div demo11"></div>
+    <div class="div demo12"></div>
+  </div>
+  <div class="block">
+    <div class="div demo21"></div>
+    <div class="div demo21"></div>
+    <div class="div demo21"></div>
+  </div>
+  <div class="block">
+    <div class="div demo31"></div>
+    <div class="div demo32"></div>
+    <div class="div demo33"></div>
+    <div class="div demo34"></div>
+    <div class="div demo35"></div>
+    <div class="div demo36"></div>
+  </div>
+
+  <div class="block">
+    <div class="div demo40"></div>
+    <div class="div demo41"></div>
+  </div>
+  <div class="block">
+    <div class="div demo50"></div>
+    <div class="div demo51"></div>
+    <div class="div demo52"></div>
+
+  </div>
+  <div class="block">
+    <div class="div demo60"></div>
+    <div class="div demo61"></div>
+    <div class="div demo62"></div>
+  </div>
+</body>
+
+</html>

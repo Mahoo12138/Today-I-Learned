@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>radial-gradient</title>
+</head>
+<style>
+  .block {
+    padding-left: 100px;
+    border-bottom: 5px grey solid;
+  }
+
+  .div {
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    display: inline-block;
+  }
+
+  .ediv {
+    width: 200px;
+    height: 100px;
+    margin: 10px auto;
+    display: inline-block;
+  }
+
+  .demo10 {
+    background: radial-gradient(circle at center, red, blue);
+  }
+
+  .demo11 {
+    background: radial-gradient(circle at top, red, blue);
+  }
+
+  .demo12 {
+    background: radial-gradient(circle at bottom, red, blue);
+  }
+
+  .demo13 {
+    background: radial-gradient(circle at left, red, blue);
+  }
+
+  .demo14 {
+    background: radial-gradient(circle at right, red, blue);
+  }
+
+  .demo15 {
+    background: radial-gradient(at center, red, blue);
+  }
+
+  .demo16 {
+    background: radial-gradient(30px 40px at 160px 50px, red, blue);
+  }
+
+  .demo17 {
+    background: radial-gradient(30px at 30px 30px, red, blue);
+  }
+
+  .demo18 {
+    background: radial-gradient(30px at 80px 80px, red, blue);
+  }
+
+
+  .demo20 {
+    background-image: radial-gradient(closest-side at 40px 30px, red 0%, green 100%);
+  }
+
+  .demo21 {
+    background-image: radial-gradient(closest-corner at 40px 30px, red 0%, green 100%);
+  }
+
+  .demo22 {
+    background-image: radial-gradient(farthest-side at 40px 30px, red 0%, green 100%);
+  }
+
+  .demo23 {
+    background-image: radial-gradient(farthest-corner at 40px 30px, red 0%, green 100%);
+  }
+
+  .demo30 {
+    background: radial-gradient(10px circle, yellow, red);
+  }
+
+  .demo31 {
+    background: radial-gradient(30px circle, yellow, red);
+  }
+
+  .demo32 {
+    background: radial-gradient(50px circle, yellow, red);
+  }
+
+  .demo33 {
+    background: radial-gradient(70px circle, yellow, red);
+  }
+
+  .demo34 {
+    background: radial-gradient(90px circle, yellow, red);
+  }
+
+  .demo40 {
+    background: radial-gradient(circle, yellow, red, green, orange);
+  }
+
+  .demo41 {
+    background: radial-gradient(circle, yellow, red 33.33%, green 66.67%, orange);
+  }
+
+  .demo42 {
+    background: radial-gradient(60px 30px ellipse, yellow, red);
+  }
+
+  .demo43 {
+    background: radial-gradient(30px 60px ellipse, yellow, red);
+  }
+
+  .demo44 {
+    background: radial-gradient(10px 20px ellipse, transparent 20px, 20px, yellow 40px, 40px, black 60px);
+  }
+
+  .demo45 {
+    background: radial-gradient(50px 30px ellipse, yellow 10px, 30px, black);
+  }
+
+  .demo46 {
+    background: radial-gradient(50px 30px ellipse, yellow 10px, 45px, black);
+  }
+
+  .demo47 {
+    background: radial-gradient(50px 30px ellipse, yellow 10px, 50px, black);
+  }
+
+  .demo48 {
+    background: radial-gradient(50px 30px ellipse, yellow 20%, 60%, black);
+  }
+
+  .demo49 {
+    background: radial-gradient(50px 30px ellipse, yellow 10%, 45px, black);
+  }
+
+  .demo50 {
+    background:
+      radial-gradient(25% 25% at 25% 25%, #c39f76 80%, #0000 81%),
+      radial-gradient(25% 25% at 75% 75%, #c39f76 80%, #0000 81%);
+  }
+
+  .demo51 {
+    background:
+      radial-gradient(10px circle at 25% 25%, #c39f76 80%, #0000 81%),
+      radial-gradient(10px 10px at 75% 75%, #c39f76 80%, #0000 81%);
+    background-size: 35px 35px;
+  }
+
+  .demo52 {
+    background:
+      radial-gradient(50% 50% at left, #0000 70%, #c39f76 71% 80%, #0000 81%),
+      radial-gradient(50% 50% at right, #c39f76 0 80%, #0000 81%);
+  }
+
+  .demo53 {
+    background:
+      radial-gradient(50% 50% at left, #0000 70%, #c39f76 71% 80%, #0000 81%),
+      radial-gradient(50% 50% at right, #c39f76 0 80%, #0000 81%);
+    background-size: 20px 20px;
+  }
+
+  .demo54 {
+    background:
+      radial-gradient(54% 54%, #0000 98%, #c39f76);
+  }
+
+  .demo55 {
+    background:
+      radial-gradient(10% 10%, #fff 98%, #0000),
+      radial-gradient(54% 54%, #0000 98%, #c39f76) 50px 50px;
+
+  }
+
+  .demo56 {
+    background:
+      radial-gradient(10% 10%, #fff 98%, #0000),
+      radial-gradient(54% 54%, #0000 98%, #c39f76) 50px 50px;
+    background-size: 20px 20px;
+  }
+
+  .demo57 {
+    background-image: repeating-radial-gradient(#0000 0% 12%, #c39f76 13% 26%);
+  }
+
+  .demo58 {
+    background-image: repeating-radial-gradient(#0000 0% 12%, #c39f76 13% 26%);
+    background-size: 20px 20px;
+  }
+  .demo60 {
+    background: conic-gradient(deeppink, yellowgreen);
+  }
+  .demo61{
+    background: conic-gradient(
+    hsl(360, 100%, 50%),
+    hsl(315, 100%, 50%),
+    hsl(270, 100%, 50%),
+    hsl(225, 100%, 50%),
+    hsl(180, 100%, 50%),
+    hsl(135, 100%, 50%),
+    hsl(90, 100%, 50%),
+    hsl(45, 100%, 50%),
+    hsl(0, 100%, 50%)
+);
+  }
+  .demo62{
+    background: conic-gradient( deeppink 30%, yellowgreen 30%, yellowgreen 70%, teal 70%, teal 100%);
+    border-radius: 50%;
+  }
+  .demo63{
+    background: conic-gradient(deeppink 0 30%, yellowgreen 0 70%, teal 0 100%);
+    /* background: conic-gradient(deeppink 0 40%, yellowgreen 0 70%); */
+    /* background: conic-gradient(deeppink 0 90deg, yellowgreen 0 240deg); */
+
+  }
+  .demo64{
+    background: conic-gradient(#000 12.5%, #fff 0 37.5%, #000 0 62.5%, #fff 0 87.5%, #000 0);
+  }
+  .demo65{
+    background: conic-gradient(#000 12.5%, #fff 0 37.5%, #000 0 62.5%, #fff 0 87.5%, #000 0);
+    background-size: 20px 20px;
+  }
+  .demo66{
+    background: conic-gradient(from 45deg, blue, red);;
+  }
+  .demo67{
+    background: conic-gradient(from 90deg at 30px 30px, blue, red);
+  }
+</style>
+
+<body>
+  <div class="block">
+    <div class="div demo10"></div>
+    <div class="div demo11"></div>
+    <div class="div demo12"></div>
+    <div class="div demo13"></div>
+    <div class="div demo14"></div>
+    <div class="ediv demo15"></div>
+    <div class="ediv demo16"></div>
+    <div class="div demo17"></div>
+    <div class="div demo18"></div>
+  </div>
+  <div class="block">
+    <div class="ediv demo20"></div>
+    <div class="ediv demo21"></div>
+    <div class="ediv demo22"></div>
+    <div class="ediv demo23"></div>
+    <div class="ediv demo24"></div>
+  </div>
+  <div class="block">
+    <div class="ediv demo30"></div>
+    <div class="ediv demo31"></div>
+    <div class="ediv demo32"></div>
+    <div class="ediv demo33"></div>
+    <div class="ediv demo34"></div>
+  </div>
+  <div class="block">
+    <div class="div demo40"></div>
+    <div class="div demo41"></div>
+    <div class="div demo42"></div>
+    <div class="div demo43"></div>
+    <div class="div demo44"></div>
+    <div class="div demo45"></div>
+    <div class="div demo46"></div>
+    <div class="div demo47"></div>
+    <div class="div demo48"></div>
+    <div class="div demo49"></div>
+  </div>
+  <div class="block">
+    <div class="div demo50"></div>
+    <div class="div demo51"></div>
+    <div class="div demo52"></div>
+    <div class="div demo53"></div>
+    <div class="div demo54"></div>
+    <div class="div demo55"></div>
+    <div class="div demo56"></div>
+    <div class="div demo57"></div>
+    <div class="div demo58"></div>
+    <div class="div demo59"></div>
+  </div>
+  <div class="block">
+    <div class="div demo60"></div>
+    <div class="div demo61"></div>
+    <div class="div demo62"></div>
+    <div class="div demo63"></div>
+    <div class="div demo64"></div>
+    <div class="div demo65"></div>
+    <div class="div demo66"></div>
+    <div class="div demo67"></div>
+    <div class="div demo68"></div>
+    <div class="div demo69"></div>
+  </div>
+
+</body>
+
+</html>

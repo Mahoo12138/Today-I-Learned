@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>repeating gradient</title>
+</head>
+<style>
+  div {
+    width: 40vw;
+    height: 40vh;
+
+  }
+
+  @property --angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0.1deg;
+  }
+
+  .demo2 {
+    background: repeating-conic-gradient(#fff, #000, #fff var(--angle));
+    transition: --angle 3s;
+  }
+
+  .demo2:hover {
+    --angle: 30deg;
+  }
+
+  .demo1 {
+    background-image: repeating-radial-gradient(circle at center center,
+        rgb(241, 43, 239),
+        rgb(239, 246, 244) 3px);
+  }
+
+  .demo3 {
+    background-image: repeating-radial-gradient(circle at 15% 30%,
+        rgb(4, 4, 0),
+        rgb(52, 72, 197),
+        rgb(115, 252, 224),
+        rgb(116, 71, 5),
+        rgb(223, 46, 169),
+        rgb(0, 160, 56),
+        rgb(234, 255, 0) 2px);
+  }
+
+  .demo4 {
+    background-image: repeating-radial-gradient(circle at center center,
+        rgb(81, 9, 72),
+        rgb(72, 90, 223),
+        rgb(80, 0, 34),
+        rgb(34, 134, 255),
+        rgb(65, 217, 176),
+        rgb(241, 15, 15),
+        rgb(148, 213, 118) 0.1px);
+  }
+  .demo5{
+    background-image: repeating-radial-gradient(
+        ellipse at center center,
+        rgb(75, 154, 242),
+        rgb(64, 135, 228),
+        rgb(54, 117, 214),
+        rgb(43, 98, 200),
+        rgb(33, 79, 185),
+        rgb(22, 60, 171),
+        rgb(12, 42, 157),
+        rgb(1, 23, 143) 0.01px
+    );
+}
+:root {
+    --length: 10px
+}
+.demo6{
+    background-image: repeating-radial-gradient(
+        circle at 17% 32%,
+        rgb(4, 4, 0),
+        rgb(52, 72, 197),
+        rgb(115, 252, 224),
+        rgb(116, 71, 5),
+        rgb(223, 46, 169),
+        rgb(0, 160, 56),
+        rgb(234, 255, 0) var(--length)
+    );
+}
+
+@property --snow-length {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0.0085px;
+}
+
+
+.demo7 {
+    background-image: repeating-radial-gradient(
+        circle at 17% 32%,
+        rgb(4, 4, 0),
+        rgb(52, 72, 197),
+        rgb(115, 252, 224),
+        rgb(116, 71, 5),
+        rgb(223, 46, 169),
+        rgb(0, 160, 56),
+        rgb(234, 255, 0) var(--snow-length)
+    );
+    animation: change 1s infinite alternate;
+}
+
+@keyframes change {
+    100% {
+      --snow-length: 0.009px;
+    }
+}
+
+</style>
+
+<body>
+  <div class="demo2"></div>
+  <div class="demo1"></div>
+  <div class="demo3"></div>
+  <div class="demo4"></div>
+  <div class="demo5"></div>
+  <div class="demo6"></div>
+  <div class="demo7"></div>
+
+</body>
+
+</html>

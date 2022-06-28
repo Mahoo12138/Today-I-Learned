@@ -125,3 +125,86 @@ DocumentType 类型的节点包含文档的文档类型（ doctype）信息，
 
 将属性作为节点来访问多数情况下并无必要。推荐使用 getAttribute()、removeAttribute()和 setAttribute()方法操作属性，而不是直接操作属性节点；  
 
+## DOM 编程
+
++ 通过 innerHTML 属性创建的\<script>元素永远不会执行；
++ 应该把\<link>元素添加到\<head>元素而不是\<body>元素，这样才能保证所有浏览器都能正常运行；
++ 通过外部文件加载样式是异步的；因此，样式的加载和正执行的 JS 代码并没有先后顺序。一般也没有必要知道样式什么时候加载完成。 
+
+理解 NodeList 对象和相关的 NamedNodeMap、 HTMLCollection，是理解 DOM 编程的关键。
+
+这 3 个集合类型都是“实时的” ，在每次访问时更新集合；
+
+```js
+let divs = document.getElementsByTagName("div");
+for (let i = 0; i < divs.length; ++i){
+    let div = document.createElement("div");
+    document.body.appendChild(div);
+}
+```
+
+如上的例子，代码永远不会遍历结束，因为 i 和 divs.length 在同时递增；解决方法是再定义一个变量用于保存 divs.length：
+
+```js
+for (let i = 0, len = divs.length; i < len; ++i) {}
+```
+
+## MutationObserver
+
+不久前添加到 DOM 规范中的 **MutationObserver 接口**，可以在 DOM 被修改时异步执行回调，该接口是为了取代废弃的 MutationEvent；
+
+`MutationObserver` 的实例要通过调用 MutationObserver 构造函数并传入一个回调函数来创建：
+
+```js
+let observer = new MutationObserver(() => console.log('DOM was mutated!'));  
+```
+
+使用 `observe()` 方法把这个 observer 与 DOM 关联起来，方法接收两个必需的参数：
+
++ 要观察其变化的 DOM 节点；
++ 一个 `MutationObserverInit` 对象  ；
+
+`MutationObserverInit` 对象用于控制观察哪些方面的变化， 是一个键/值对形式配置选项的字典。
+例如，下面的代码会创建一个观察者（observer）并配置它观察\<body>元素上的属性变化：
+
+```js
+let observer = new MutationObserver(() => console.log('<body> attributes changed'));
+observer.observe(document.body, { attributes: true }); 
+```
+
++ 每次执行回调都会传入一个包含按顺序入队的 MutationRecord 实例的数组；
++ 传给回调函数的第二个参数是观察变化的 MutationObserver 的实例；
++ 默认情况下，只要被观察的元素不被垃圾回收；要提前终止执行回调，可以调用 `disconnect()` 方法：`observer.disconnect();  `
++ 多次调用 `observe()` 方法，可以复用一个 MutationObserver 对象观察多个不同的目标节点；
++ `disconnect()` 方法是一个“一刀切”的方案，调用它会停止观察所有目标；
++ 调用 `disconnect()` 并不会结束 `MutationObserver` 的生命。还可以重新使用这个观察者，再将它关联到新的目标节点；
+
+MutationObserverInit 对象用于控制对目标节点的观察范围。粗略地讲，观察者可以观察的事
+件包括属性变化、文本变化和子节点变化：
+
++ subtree：子树
++ attributes：属性
++ attributeFilter：哪些属性
++ attributeOldValue：记录旧的属性值
++ characterData：字符数据
++ characterDataOldValue：字符数据旧值
++ childList：修改子节点
+
+在调用 observe()时， MutationObserverInit 对象中的属性必须至少有一项为 true（无论是直接设置这几个属性，还是通过设置 attributeOldValue 等属性间接导致它们的值转换为 true）。否则会抛出错误，因为没有任何变化事件可能触发回调。  
+
+---
+
+每次 MutationRecord 被添加到 MutationObserver 的记录队列时，仅当之前没有已排期的微任务回调时（队列中微任务长度为 0），才会将观察者注册的回调（在初始化 MutationObserver 时传入）作为微任务调度到任务队列上。这样可以保证记录队列的内容不会被回调处理两次。  
+
+调用 `MutationObserver` 实例的 `takeRecords()` 方法可以清空记录队列，取出并返回其中的所
+有 MutationRecord 实例。  
+
+**将变化回调委托给微任务来执行可以保证事件同步触发**，同时避免随之而来的混乱。为MutationObserver 而实现的记录队列，可以保证即使变化事件被爆发式地触发，也不会显著地拖慢浏览器；
+
++ **MutationObserver 实例与目标节点之间的引用关系是非对称的**。 
+
+  MutationObserver 拥有对要观察的目标节点的弱引用。因为是弱引用，所以不会妨碍垃圾回收程序回收目标节点；目标节点却拥有对 MutationObserver 的强引用。如果目标节点从 DOM 中被移除，随后被垃圾回收，则关联的 MutationObserver 也会被垃圾回收  
+
++ **记录队列中的每个 MutationRecord 实例至少包含对已有 DOM 节点的一个引用**
+
+  如果变化是 childList 类型，则会包含多个节点的引用；

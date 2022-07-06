@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frosted Glass</title>
+</head>
+<style>
+  .bg {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2F100m0d0000006wq082092.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1627269501&t=957b716a2e49a224514c057299950f0c) no-repeat;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+  }
+
+  .bg>div {
+    width: 300px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    font-size: 36px;
+    background: rgba(255, 255, 255, 0.7);
+    margin: auto;
+  }
+
+  .bg .g-filter {
+    filter: blur(6px);
+  }
+
+  .bg .g-backdrop-filter {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+</style>
+
+<body>
+  <div class="bg">
+    <div class="g-normal">Normal</div>
+    <div class="g-filter">filter</div>
+    <div class="g-backdrop-filter">backdrop-filter</div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Element</title>
+  <style>
+    body {
+  font-family: "Roboto", sans-serif;
+  height: 150vh;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 150vh;
+  background: url("https://static.pexels.com/photos/373934/pexels-photo-373934.jpeg") no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+.bg div {
+  width: 200px;
+  height: 120px;
+  line-height: 120px;
+  margin: 50px;
+  border: 10px solid #ddd;
+  color: #fff;
+  text-align: center;
+  font-size: 28px;
+}
+
+.g-glossy {
+  position: fixed;
+  width: 600px;
+  height: 300px;
+  line-height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: #333;
+  font-size: 30px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  z-index: 10;
+}
+.g-glossy::before {
+  content: unset;
+}
+@supports (background: -moz-element(#bg)) {
+  .g-glossy::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: -moz-element(#bg) no-repeat;
+    filter: blur(10px);
+    z-index: 5;
+  }
+}
+  </style>
+</head>
+<body>
+  <div id="bg" class="bg">
+    <div>模拟真实 DOM</div>
+    <div>模拟真实 DOM</div>
+    <div>模拟真实 DOM</div>
+    <div>模拟真实 DOM</div>
+    <div>模拟真实 DOM</div>
+    <div>模拟真实 DOM</div>
+    <div>模拟真实 DOM</div>
+    <div>模拟真实 DOM</div>
+    <div>模拟真实 DOM</div>
+</div>
+<div class="g-glossy">frosted glass effect </div>
+
+<div class="g-glossy-firefox"></div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+type fds = Capitalize<"dsf">

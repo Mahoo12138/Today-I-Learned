@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading Animation</title>
+  <style>
+    #one {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top: 2px solid #000;
+      border-left: 2px solid #000;
+      animation: rotate 3s infinite linear;
+    }
+
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    #two {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+
+    #two::before {
+      position: absolute;
+      content: "";
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top: 3px solid #000;
+      border-left: 3px solid #000;
+      animation: rotate 3s infinite ease-out;
+    }
+
+    #two::after {
+      position: absolute;
+      content: "";
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 50%;
+      border: 7px solid transparent;
+      border-bottom: 7px solid rgb(160, 104, 104);
+      border-right: 7px solid rgb(159, 23, 23);
+      animation: rotate 4s infinite ease-in-out;
+    }
+
+    .circular {
+      width: 100px;
+      height: 100px;
+      animation: rotate 2s linear infinite;
+    }
+
+    .path {
+      stroke-dasharray: 1, 200;
+      /* stroke-dasharray: 89, 100; */
+
+      stroke-dashoffset: 0;
+      stroke: #000;
+      animation: dash 1.5s ease-in-out infinite
+    }
+
+
+    @keyframes dash {
+      0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+      }
+
+      50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+      }
+
+      100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+      }
+    }
+
+    #normal {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: conic-gradient(yellowgreen, yellowgreen 25%, transparent 25%, transparent 100%);
+      transition: background 300ms;
+    }
+
+    #normal:hover {
+      background: conic-gradient(yellowgreen, yellowgreen 60%, transparent 60.1%, transparent 100%);
+    }
+
+    @property --per {
+      syntax: '<percentage>';
+      inherits: false;
+      initial-value: 25%;
+    }
+
+    #property {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: conic-gradient(yellowgreen, yellowgreen var(--per), transparent var(--per), transparent 100%);
+      transition: --per 300ms linear;
+    }
+
+    #property:hover {
+      --per: 60%;
+    }
+
+    @property --perc {
+      syntax: "<percentage>";
+      inherits: false;
+      initial-value: 10%;
+    }
+
+    #loading {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      animation: rotate 11s infinite ease-in-out;
+
+    }
+
+    #loading::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      background: conic-gradient(transparent, transparent var(--perc), #fa7 var(--perc), #fa7);
+      mask: radial-gradient(transparent, transparent 47.5px, #000 48px, #000);
+      -webkit-mask: radial-gradient(transparent, transparent 47.5px, #000 48px);
+
+      animation: change 3s infinite cubic-bezier(0.57, 0.29, 0.49, 0.76);
+      -webkit-animation: change 3s infinite cubic-bezier(0.57, 0.29, 0.49, 0.76);
+
+    }
+
+    @keyframes change {
+      50% {
+        transform: rotate(270deg);
+        --perc: 98%;
+      }
+
+      100% {
+        transform: rotate(720deg);
+      }
+    }
+
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+        filter: hue-rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="one"></div>
+  <div id="two"></div>
+  <svg class="circular" viewbox="25 25 50 50">
+    <circle class="path" cx="50" cy="50" r="20" fill="none" />
+  </svg>
+  <div id="normal"></div>
+  <div id="property"></div>
+  <div id="loading"></div>
+</body>
+
+</html>

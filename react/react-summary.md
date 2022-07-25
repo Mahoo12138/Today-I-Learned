@@ -1032,6 +1032,18 @@ const DemoUseLayoutEffect = () => {
 }
 ```
 
+**useLayoutEffect是来解决什么问题的？**
+
+答：useLayoutEffect的作用是“当页面挂载或渲染完成时，再给你一次机会对页面进行修改”。
+
+如果你选择使用useLayoutEffect，对页面进行了修改，更改样式不会引发重新渲染，但是修改变量则会触发再次渲染。
+如果你不使用 useLayoutEffect，那么之后就应该调用useEffect。
+
+补充说明：
+1、优先使用 useEffect，useEffect 无法满足需求时再考虑使用useLayoutEffect。
+2、useLayoutEffect 先触发，useEffect 后触发。
+3、useEffect 和 useLayoutEffect 在服务器端渲染时，都不行，需要寻求别的解决方案。
+
 ## useReducer
 
 `useState`底层其实是一个简单版的`useReducer`，它接受的第一个参数是一个函数，我们可以认为它就是一个 `reducer` ，`reducer` 的参数就是常规 `reducer` 里面的 `state` 和  `action` ，返回改变后的 `state` , `useReducer` 第二个参数为 `state` 的初始值，返回一个数组，数组的第一项就是更新之后 `state` 的值 ，第二个参数是派发更新的 `dispatch` 函数。
@@ -1119,57 +1131,71 @@ export default ()=>{
 - 第二个参数 `createHandle` ：处理函数，返回值作为暴露给父组件的`ref`对象。
 - 第三个参数 `deps`：依赖项 `deps`，依赖项更改形成新的`ref`对象。
 
-**我们来模拟给场景，用`useImperativeHandle`，使得父组件能让子组件中的`input`自动赋值并聚焦。**
+**我们来模拟给场景，用`useImperativeHandle`，使得父组件能调用子组件中的函数。**
 
 ```jsx
-function Son (props,ref) {
-    console.log(props)
-    const inputRef = useRef(null)
-    const [ inputValue , setInputValue ] = useState('')
-    useImperativeHandle(ref,()=>{
-       const handleRefs = {
-           /* 声明方法用于聚焦input框 */
-           onFocus(){
-              inputRef.current.focus()
-           },
-           /* 声明方法用于改变input的值 */
-           onChangeValue(value){
-               setInputValue(value)
-           }
-       }
-       return handleRefs
-    },[])
-    return <div>
-        <input
-            placeholder="请输入内容"
-            ref={inputRef}
-            value={inputValue}
-        />
+import React,{useState,useImperativeHandle} from 'react'
+
+function ChildComponent(props,ref) {
+  const [count,setCount] =  useState(0); //子组件定义内部变量count
+  //子组件定义内部函数 addCount
+  const addCount = () => {
+    setCount(count + 1);
+  }
+  //子组件通过useImperativeHandle函数，将addCount函数添加到父组件中的ref.current中
+  useImperativeHandle(ref,() => ({addCount}));
+  return (
+    <div>
+        {count}
+        <button onClick={addCount}>child</button>
     </div>
+  )
 }
 
-const ForwarSon = forwardRef(Son)
+//子组件导出时需要被React.forwardRef包裹，否则无法接收 ref这个参数
+export default React.forwardRef(ChildComponent);
 
-class Index extends React.Component{
-    inputRef = null
-    handerClick(){
-       const { onFocus , onChangeValue } = this.cur
-       onFocus()
-       onChangeValue('let us learn React!')
-    }
-    render(){
-        return <div>
-            <ForwarSon ref={node => (this.inputRef = node)} />
-            <button onClick={this.handerClick.bind(this)} >操控子组件</button>
-        </div>
-    }
+
+// 父组件
+import React,{useRef} from 'react'
+import ChildComponent from './childComponent'
+
+function Imperative() {
+  const childRef = useRef(null); //父组件定义一个对子组件的引用
+
+  const clickHandle = () => {
+    childRef.current.addCount(); //父组件调用子组件内部 addCount函数
+  }
+
+  return (
+    <div>
+        {/* 父组件通过给子组件添加 ref 属性，将childRef传递给子组件，
+            子组件获得该引用即可将内部函数添加到childRef中 */}
+        <ChildComponent ref={childRef} />
+        <button onClick={clickHandle}>child component do somting</button>
+    </div>
+  )
 }
+
+export default Imperative;
 ```
+
+**思考一下真的有必要使用useImperativeHandle吗？**
+
+从实际运行的结果，无论点击子组件还是父组件内的按钮，都将执行 addCount函数，使 count + 1 。
+
+react为单向数据流，如果为了实现这个效果，我们完全可以把需求转化成另外一种说法，即**状态提升**：
+1、父组件内定义一个变量count 和 addCount函数
+2、父组件把 count 和 addCount 通过属性传值 传递给子组件
+3、点击子组件内按钮时调用父组件内定义的 addCount函数，使 count +1。
+
+你会发现即使把需求中的 父与子组件 描述对调一下，“最终实际效果”是一样的。所以，到底使用哪种形式，需要根据组件实际需求来做定夺。
 
 ## useDebugValue
 
+`useDebugValue` 可用于在 `React` 开发者工具中显示自定义 `hook` 的标签。这个`hooks`目的就是检查自定义`hooks`：
+
 ```jsx
-useDebugValue` 可用于在 `React` 开发者工具中显示自定义 `hook` 的标签。这个`hooks`目的就是检查自定义`hooks
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);
   // ...
@@ -1181,7 +1207,11 @@ function useFriendStatus(friendID) {
 }
 ```
 
-> 我们不推荐你向每个自定义 Hook 添加 debug 值。当它作为共享库的一部分时才最有价值。在某些情况下，格式化值的显示可能是一项开销很大的操作。除非需要检查 Hook，否则没有必要这么做。因此，useDebugValue 接受一个格式化函数作为可选的第二个参数。该函数只有在 Hook 被检查时才会被调用。它接受 debug 值作为参数，并且会返回一个格式化的显示值。
+> 我们不推荐你向每个自定义 Hook 添加 debug 值。
+>
+> 当它作为共享库的一部分时才最有价值。在某些情况下，格式化值的显示可能是一项开销很大的操作。除非需要检查 Hook，否则没有必要这么做。
+>
+> 因此，useDebugValue 接受一个格式化函数作为可选的第二个参数。该函数只有在 Hook 被检查时才会被调用。它接受 debug 值作为参数，并且会返回一个格式化的显示值。
 
 ## useTransition
 
@@ -1192,8 +1222,8 @@ const TIMEOUT_MS = { timeoutMs: 2000 }
 const [startTransition, isPending] = useTransition(TIMEOUT_MS)
 ```
 
-- `useTransition` 接受一个对象， `timeoutMs`代码需要延时的时间。
-- 返回一个数组。**第一个参数：**  是一个接受回调的函数。我们用它来告诉 `React` 需要推迟的 `state` 。 **第二个参数：** 一个布尔值。表示是否正在等待，过度状态的完成(延时`state`的更新)。
+- `useTransition` 接受一个对象， `timeoutMs`代表需要延时的时间。
+- 返回一个数组。**第一个参数：**  是一个接受回调的函数。**我们用它来告诉 `React` 需要推迟的 `state`** 。 **第二个参数：** 一个布尔值。表示**是否正在等待**，过度状态的完成(延时`state`的更新)。
 
 下面我们引入官网的列子，来了解`useTransition`的使用。
 
@@ -1239,7 +1269,6 @@ function App() {
 
 ```js
 ReactDOM.render(element, container[, callback])
-复制代码
 ```
 
 **使用**
@@ -1249,27 +1278,25 @@ ReactDOM.render(
     < App / >,
     document.getElementById('app')
 )
-复制代码
 ```
 
 `ReactDOM.render`会控制`container`容器节点里的内容，但是不会修改容器节点本身。
 
-## hydrate
+### hydrate
 
 服务端渲染用`hydrate`。用法与 `render()` 相同，但它用于在 `ReactDOMServer` 渲染的容器中对 `HTML` 的内容进行 `hydrate` 操作。
 
 ```js
 ReactDOM.hydrate(element, container[, callback])
-复制代码
 ```
 
-## createPortal
+### createPortal
 
-`Portal` 提供了一种将子节点渲染到存在于父组件以外的 `DOM` 节点的优秀的方案。`createPortal` 可以把当前组件或 `element` 元素的子节点，渲染到组件之外的其他地方。
+`Portal` 提供了一种**将子节点渲染到存在于父组件以外的 `DOM` 节点的优秀的方案**。`createPortal` 可以把当前组件或 `element` 元素的子节点，渲染到组件之外的其他地方。
 
 那么具体应用到什么场景呢？
 
-比如一些全局的弹窗组件`model`,`<Model/>`组件一般都写在我们的组件内部，倒是真正挂载的`dom`，都是在外层容器，比如`body`上。此时就很适合`createPortal`API。
+比如一些全局的弹窗组件`model`，`<Model/>`组件一般都写在我们的组件内部，倒是真正挂载的`dom`，都是在外层容器，比如`body`上。此时就很适合`createPortal`API。
 
 `createPortal`接受两个参数：
 
@@ -1277,7 +1304,7 @@ ReactDOM.hydrate(element, container[, callback])
 ReactDOM.createPortal(child, container)
 ```
 
-第一个： `child` 是任何可渲染的 `React` 子元素 第二个： `container`是一个 `DOM` 元素。
+第一个： `child` 是任何可渲染的 `React` 子元素；第二个： `container`是一个 `DOM` 元素。
 
 接下来我们实践一下：
 
@@ -1286,7 +1313,7 @@ function WrapComponent({ children }){
     const domRef = useRef(null)
     const [ PortalComponent, setPortalComponent ] = useState(null)
     React.useEffect(()=>{
-        setPortalComponent( ReactDOM.createPortal(children,domRef.current) )
+        setPortalComponent( ReactDOM.createPortal(children, domRef.current) )
     },[])
     return <div> 
         <div className="container" ref={ domRef } ></div>
@@ -1307,7 +1334,7 @@ class Index extends React.Component{
 
 可以看到，我们`children`实际在`container` 之外挂载的，但是已经被`createPortal`渲染到`container`中。
 
-## unstable_batchedUpdates
+### unstable_batchedUpdates
 
 在`react-legacy`模式下，对于事件，`react`事件有批量更新来处理功能,但是这一些非常规的事件中，批量更新功能会被打破。所以我们可以用`react-dom`中提供的`unstable_batchedUpdates` 来进行批量更新。
 
@@ -1342,7 +1369,7 @@ class Index extends React.Component{
 **批量更新条件被打破**
 
 ```js
- handerClick=()=>{
+handerClick = () => {
     Promise.resolve().then(()=>{
         this.setState({ numer : this.state.numer + 1 })
         console.log(this.state.numer)
@@ -1351,8 +1378,7 @@ class Index extends React.Component{
         this.setState({ numer : this.state.numer + 1 })
         console.log(this.state.numer)
     })
-  }
-复制代码
+}
 ```
 
 渲染次数三次。
@@ -1376,9 +1402,9 @@ class Index extends React.Component{
 
 渲染次数一次,完美解决批量更新问题。
 
-## flushSync
+### flushSync
 
-`flushSync` 可以将回调函数中的更新任务，放在一个较高的优先级中。我们知道`react`设定了很多不同优先级的更新任务。如果一次更新任务在`flushSync`回调函数内部，那么将获得一个较高优先级的更新。比如
+`flushSync` 可以**将回调函数中的更新任务，放在一个较高的优先级中**。我们知道`react`设定了很多不同优先级的更新任务。如果一次更新任务在`flushSync`回调函数内部，那么将获得一个较高优先级的更新。比如
 
 ```jsx
 ReactDOM.flushSync(()=>{
@@ -1389,11 +1415,11 @@ ReactDOM.flushSync(()=>{
 
 为了让大家理解`flushSync`，我这里做一个`demo`奉上，
 
-```js
+```jsx
 /* flushSync */
 import ReactDOM from 'react-dom'
 class Index extends React.Component{
-    state={ number:0 }
+    state={ number: 0 }
     handerClick=()=>{
         setTimeout(()=>{
             this.setState({ number: 1  })
@@ -1413,7 +1439,6 @@ class Index extends React.Component{
         </div>
     }
 }
-复制代码
 ```
 
 先不看答案，点击一下按钮，打印什么呢？
@@ -1427,20 +1452,19 @@ class Index extends React.Component{
 
 相信这个`demo`让我们更深入了解了`flushSync`。
 
-## findDOMNode
+### findDOMNode
 
 `findDOMNode`用于访问组件`DOM`元素节点，`react`推荐使用`ref`模式，不期望使用`findDOMNode`。
 
 ```js
 ReactDOM.findDOMNode(component)
-复制代码
 ```
 
 注意的是：
 
-- 1 `findDOMNode`只能用在已经挂载的组件上。
-- 2  如果组件渲染内容为 `null` 或者是 `false`，那么 `findDOMNode`返回值也是 `null`。
-- 3 `findDOMNode` 不能用于函数组件。
+- `findDOMNode`只能用在已经挂载的组件上。
+- 如果组件渲染内容为 `null` 或者是 `false`，那么 `findDOMNode`返回值也是 `null`。
+- `findDOMNode` 不能用于函数组件。
 
 接下来让我们看一下，`findDOMNode`具体怎么使用的：
 
@@ -1462,7 +1486,7 @@ class Index extends React.Component{
 
 我们完全可以将外层容器用`ref`来标记，获取捕获原生的`dom`节点。
 
-## unmountComponentAtNode
+### unmountComponentAtNode
 
 从 `DOM` 中卸载组件，会将其事件处理器和 `state` 一并清除。 如果指定容器上没有对应已挂载的组件，这个函数什么也不会做。如果组件被移除将会返回 `true` ，如果没有组件可被移除将会返回  `false` 。
 

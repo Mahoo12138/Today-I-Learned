@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Animation</title>
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+  .container {
+    width: 100%;
+    height: 200px;
+    font-size: 120px;
+    text-align: center;
+    border-bottom: 5px solid black;
+  }
+
+  #demo1 {
+    color: orangered;
+    font-family: 'Mouse Memoirs', sans-serif;
+    text-shadow: 0px 0px #992400, 1px 1px rgba(152, 36, 1, 0.98), 2px 2px rgba(151, 37, 2, 0.96), 3px 3px rgba(151, 37, 2, 0.94), 4px 4px rgba(150, 37, 3, 0.92), 5px 5px rgba(149, 38, 4, 0.9), 6px 6px rgba(148, 38, 5, 0.88), 7px 7px rgba(148, 39, 5, 0.86), 8px 8px rgba(147, 39, 6, 0.84), 9px 9px rgba(146, 39, 7, 0.82), 10px 10px rgba(145, 40, 8, 0.8), 11px 11px rgba(145, 40, 8, 0.78), 12px 12px rgba(144, 41, 9, 0.76), 13px 13px rgba(143, 41, 10, 0.74), 14px 14px rgba(142, 41, 11, 0.72), 15px 15px rgba(142, 42, 11, 0.7), 16px 16px rgba(141, 42, 12, 0.68), 17px 17px rgba(140, 43, 13, 0.66), 18px 18px rgba(139, 43, 14, 0.64), 19px 19px rgba(138, 43, 15, 0.62), 20px 20px rgba(138, 44, 15, 0.6), 21px 21px rgba(137, 44, 16, 0.58), 22px 22px rgba(136, 45, 17, 0.56), 23px 23px rgba(135, 45, 18, 0.54), 24px 24px rgba(135, 45, 18, 0.52), 25px 25px rgba(134, 46, 19, 0.5), 26px 26px rgba(133, 46, 20, 0.48), 27px 27px rgba(132, 47, 21, 0.46), 28px 28px rgba(132, 47, 21, 0.44), 29px 29px rgba(131, 48, 22, 0.42), 30px 30px rgba(130, 48, 23, 0.4), 31px 31px rgba(129, 48, 24, 0.38), 32px 32px rgba(129, 49, 24, 0.36), 33px 33px rgba(128, 49, 25, 0.34), 34px 34px rgba(127, 50, 26, 0.32), 35px 35px rgba(126, 50, 27, 0.3), 36px 36px rgba(125, 50, 28, 0.28), 37px 37px rgba(125, 51, 28, 0.26), 38px 38px rgba(124, 51, 29, 0.24), 39px 39px rgba(123, 52, 30, 0.22), 40px 40px rgba(122, 52, 31, 0.2), 41px 41px rgba(122, 52, 31, 0.18), 42px 42px rgba(121, 53, 32, 0.16), 43px 43px rgba(120, 53, 33, 0.14), 44px 44px rgba(119, 54, 34, 0.12), 45px 45px rgba(119, 54, 34, 0.1), 46px 46px rgba(118, 54, 35, 0.08), 47px 47px rgba(117, 55, 36, 0.06), 48px 48px rgba(116, 55, 37, 0.04), 49px 49px rgba(116, 56, 37, 0.02), 50px 50px rgba(115, 56, 38, 0);
+  }
+
+  #demo2 {
+    color: grey;
+    font-family: 'Abril Fatface', cursive;
+    text-shadow: 0 -1px 0 #ffffff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c, 0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424, 0 7px 0 #222222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c, 0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414, 0 15px 0 #121212
+  }
+
+  #demo3 {
+    font-family: 'Anton', sans-serif;
+    color: #202020;
+    background-color: #2d2d2d;
+    letter-spacing: .1em;
+    text-shadow: -1px -1px 1px #111111, 2px 2px 1px #363636;
+  }
+
+  #demo4 {
+    font-family: 'Anton', sans-serif;
+    color: #66757F;
+    background-color: #F5F8FA;
+    text-shadow: -10px 10px 0px #8899A6,
+      -20px 20px 0px #CCD6DD,
+      -30px 30px 0px #E1E8ED;
+  }
+
+  #demo5 {
+    color: #2c2c2c;
+    background-color: #d5d5d5;
+    letter-spacing: .05em;
+    text-shadow: 4px 4px 0px #d5d5d5, 7px 7px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  #demo6 {
+    /* font-family: 'Anton', sans-serif; */
+    font-family: 'Mouse Memoirs', sans-serif;
+    color: #fff;
+    text-shadow:
+      0 0 10px #0ebeff,
+      0 0 20px #0ebeff,
+      0 0 50px #0ebeff,
+      0 0 100px #0ebeff,
+      0 0 200px #0ebeff
+  }
+
+  @import url("https://fonts.googleapis.com/css2?family=Warnes&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+
+  :root {
+    --color: #42fff6;
+  }
+
+  body {
+    background-color: #000000;
+  }
+
+  p {
+    background: none;
+    color: #999;
+    margin: 0;
+    font-size: 200px;
+    letter-spacing: -26px;
+    cursor: pointer;
+
+  }
+
+  p:hover span {
+    -webkit-animation: flicker 1s linear forwards;
+    animation: flicker 1s linear forwards;
+  }
+
+  p:hover #e {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+  }
+
+  p:hover #o {
+    -webkit-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+  }
+
+  p:hover #n2 {
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+  }
+
+  @-webkit-keyframes flicker {
+    0% {
+      color: #333;
+    }
+
+    5%,
+    15%,
+    25%,
+    30%,
+    100% {
+      color: #fff;
+      text-shadow:
+        0px 0px 5px var(--color),
+        0px 0px 10px var(--color),
+        0px 0px 20px var(--color),
+        0px 0px 50px var(--color);
+    }
+
+    10%,
+    20% {
+      color: #333;
+      text-shadow: none;
+    }
+  }
+
+  @keyframes flicker {
+    0% {
+      color: #333;
+    }
+
+    5%,
+    15%,
+    25%,
+    30%,
+    100% {
+      color: #fff;
+      text-shadow: 0px 0px 5px var(--color), 0px 0px 10px var(--color), 0px 0px 20px var(--color), 0px 0px 50px var(--color);
+    }
+
+    10%,
+    20% {
+      color: #333;
+      text-shadow: none;
+    }
+  }
+
+  #demo8 {
+    font-size: 180px;
+    font-weight: bold;
+    /* color: deeppink; */
+    color: transparent;
+    background: url("https://user-images.githubusercontent.com/8554143/104806356-d4a1e480-5811-11eb-9ead-d6323494a2cd.png") no-repeat center center;
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text
+  }
+
+  #demo9 {
+    background: linear-gradient(45deg, #009688, yellowgreen, pink, #03a9f4, #9c27b0, #8bc34a);
+    background-clip: text;
+    color: transparent;
+    -webkit-background-clip: text;
+  }
+
+  .huerotate {
+    animation: huerotate 5s infinite;
+  }
+
+  @keyframes huerotate {
+    100% {
+      filter: hue-rotate(360deg);
+    }
+  }
+
+
+  #demo10 p {
+    font-size: 150px!important;
+    position: relative;
+    margin: auto;
+    font-size: 5rem;
+    word-spacing: 0.6em;
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    color: transparent;
+    background-color: #E8A95B;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  #demo10 p::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(120deg, transparent 0%, transparent 6rem, white 11rem, transparent 11.15rem, transparent 15rem, rgba(255, 255, 255, 0.3) 20rem, transparent 25rem, transparent 27rem, rgba(255, 255, 255, 0.6) 32rem, white 33rem, rgba(255, 255, 255, 0.3) 33.15rem, transparent 38rem, transparent 40rem, rgba(255, 255, 255, 0.3) 45rem, transparent 50rem, transparent 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    background-size: 150% 100%;
+    background-repeat: no-repeat;
+    animation: shine 5s infinite linear;
+  }
+
+  @keyframes shine {
+    0% {
+      background-position: 50% 0;
+    }
+
+    100% {
+      background-position: -190% 0;
+    }
+  }
+</style>
+
+<body>
+  <div class="container">
+    <div id="demo1">Long Shadow</div>
+  </div>
+  <div class="container">
+    <div id="demo2">Deep Shadow</div>
+  </div>
+  <div class="container">
+    <div id="demo3">Inset Shadow</div>
+  </div>
+  <div class="container">
+    <div id="demo4">Multilevel Shadow</div>
+  </div>
+  <div class="container">
+    <div id="demo5">Retro Shadow</div>
+  </div>
+  <div class="container">
+    <div id="demo6">Neon Shadow</div>
+  </div>
+  <div class="container">
+    <p>
+      <span id="n">n</span>
+      <span id="e">e</span>
+      <span id="o">o</span>
+      <span id="n2">n</span>
+    </p>
+  </div>
+  <div class="container">
+    <div id="demo8">
+      Clip Text
+    </div>
+  </div>
+  <div class="container" style="height: 320px;">
+    <div id="demo9">
+      Gradient Text
+    </div>
+    <div id="demo9" class="huerotate">
+      Gradient Text
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="demo10">
+      <p data-text="Lorem ipsum dolor"> Lorem ipsum dolor </p>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

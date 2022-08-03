@@ -140,3 +140,111 @@ Mozilla 在 XHR 对象上另一个创新是 progress 事件：
 
 CORS 预检请求不能包含凭据。预检请求的响应必须指定 `Access-Control-Allow-Credentials: true` 来表明可以携带凭据进行实际的请求；
 
+### 替代性跨源技术
+
+**图片探测**（ image pings）是利用 `<img>` 标签实现跨域通信的最早的一种技术。任何页面都可以跨域加载图片而不必担心限制；可以通过监听 onload 和 onerror 事件知道什么时候能接收到响应；
+
+```js
+img.src = "http://www.example.com/test?name=Nicholas";
+```
+
+图片探测频繁用于跟踪用户在页面上的点击操作或动态显示广告。当然，图片探测的缺点是只能发
+送 GET 请求和无法获取服务器响应的内容；
+
+JSONP 是“JSON with padding”的简写，JSONP 格式包含两个部分：**回调和数据**，JSONP 服务通常支持以查询字符串形式指定回调函数的名称；
+
+JSONP 服务通常支持以查询字符串形式指定回调函数的名称；JSONP 响应在被加载完成之后会立即执行；
+
+```js
+function handleResponse(response) {
+console.log(`
+You're at IP address ${response.ip}, which is in
+${response.city}, ${response.region_name}`);
+}
+let script = document.createElement("script");
+script.src = "http://freegeoip.net/json/?callback=handleResponse";
+document.body.insertBefore(script, document.body.firstChild);
+```
+
++ JSONP 是从不同的域拉取可执行代码。如果这个域并不可信，则可能在响应中加入恶意内容；
++ 不好确定 JSONP 请求是否失败。虽然 HTML5 规定了<script>元素的 onerror 事件处理程序，但还没有被任何浏览器实现；
+
+### Fetch API
+
+Fetch API 能够执行 XMLHttpRequest 对象的所有任务，但更容易使用，接口也更现代化，能够在
+Web 工作线程等现代 Web 工具中使用：
+
++ XMLHttpRequest 可以选择异步，而 Fetch API 则必须是异步；
+
++ `fetch()`方法是暴露在全局作用域中的，包括主页面执行线程、模块和工作线程  
+
+Fetch API 支持通过 `AbortController/AbortSignal` 对中断请求。调用 `AbortController.abort()`会中断所有网络传输，特别适合希望停止传输大型负载的情况。  
+
+```js
+let abortController = new AbortController();
+fetch('wikipedia.zip', { signal: abortController.signal })
+.catch(() => console.log('aborted!');
+// 10 毫秒后中断请求
+setTimeout(() => abortController.abort(), 10);
+// 已经中断
+```
+
+在初始化 Headers 对象时，也可以使用键/值对形式的对象，而 Map 则不可以； 
+
++ Headers 对象使用护卫来防止不被允许的修改；
++ 在通过构造函数初始化 Request 对象， 对 mode 属性赋值；   
+
+使用 Request 构造函数和使用 `clone()` 方法，可以创建 Request 对象的副本：
+
++ init 对象，则 init 对象的值会覆盖源对象中同名的值；
++ 第一个请求（赋值请求）的请求体 (bodyUsed) 会被标记为“已使用”  ；
++ 如果源对象与创建的新对象不同源，则 referrer 属性会被清除；
++ 使用 `clone()` 方法，这个方法会创建一模一样的副本；
++ 如果请求对象的 bodyUsed 属性为 true（即请求体已被读取），这无法再使用上述方式克隆；
+
+在调用 `fetch()` 时，可以传入已经创建好的 Request 实例而不是 URL：
+
++ `fetch()`也不能拿请求体已经用过的 Request 对象来发送请求；
++ 想基于包含请求体的相同 Request 对象多次调用 fetch()，必须在第一次发送 fetch()请求前
+  调用 `clone()`；
+
+### Beacon API
+
+Beacon API 给 **navigator** 对象增加了一个 `sendBeacon()` 方法；
+
++ 方法接收一个 URL 和一个数据有效载荷参数，并会发送一个 POST 请求；
++ 有效载荷参数有 ArrayBufferView、 Blob、 DOMString、 FormData 实例；
+
+```js
+navigator.sendBeacon('https://example.com/analytics-reporting-url', '{foo: "bar"}');
+```
+
++ `sendBeacon()` 并不是只能在页面生命周期末尾使用，而是任何时候都可以使用；
++ 调用 sendBeacon()后，浏览器会把请求添加到一个内部的请求队列。浏览器会主动地发送队
+  列中的请求。
++ 浏览器保证在原始页面已经关闭的情况下也会发送请求。
++ 状态码、超时和其他网络原因造成的失败完全是不透明的，不能通过编程方式处理。
++ 信标（ beacon）请求会携带调用 sendBeacon()时所有相关的 cookie  
+
+### Web Socket
+
+Web Socket（套接字）的目标是通过一个长时连接实现与服务器全双工、双向的通信；
+
+一个 HTTP 请求会发送到服务器以初始化连接。服务器响应后，连接使用 HTTP的 Upgrade 头部从 HTTP 协议切换到 Web Socket 协议； 
+
+客户端与服务器之间可以发送非常少的数据，不会对HTTP 造成任何负担；
+
++ 必须给 WebSocket 构造函数传入一个绝对 URL。同源策略不适用于 Web Socket；
++ WebSocket 对象没有 readystatechange 事件；
++ 要向服务器发送数据，使用 `send()`方法并传入一个字符串、 ArrayBuffer 或 Blob ；
++ 服务器向客户端发送消息时， WebSocket 对象上会触发 **message** 事件 ；
++ WebSocket 对象不支持 DOM Level 2 事件监听器，因此需要使用 DOM Level 0 风格的事件处理； 
++ 只有 close 事件的 event 对象上有额外信息。这个对象上有 3 个额外属性：wasClean、 code 和 reason；
+
+### 安全
+
+在未授权系统可以访问某个资源时，可以将其视为跨站点请求伪造（ CSRF， cross-site request forgery）
+攻击。  需要验证请求发送者拥有对资源的访问权限。可以通过如下方式实现：
+
++ 要求通过 SSL 访问能够被 Ajax 访问的资源。
++ 要求每个请求都发送一个按约定算法计算好的令牌（ token）  

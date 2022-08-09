@@ -248,3 +248,291 @@ div {
     }
 }
 ```
+
+## 文字与混合模式(mix-blend-mode)及滤镜(filter)
+
+接下来，就到了非常有意思的混合模式及滤镜了。这两个属性给 CSS 世界增添了非常多的趣味性，活灵活用，会感叹 CSS 居然如此的强大美妙。
+
+之前有多非常多篇关于**混合模式**及**滤镜**的文章，一些基础的用法就不再赘述。
+
+### 给文字添加边框，生成镂空文字
+
+在 CSS 中，我们可以利用 `-webkit-text-stroke`，给文字快速的添加边框，利用这个，可以快速生成镂空型的文字：
+
+```css
+p {
+    -webkit-text-stroke: 3px #373750;
+}
+```
+
+当然，我们看到，用到的属性 `-webkit-text-stroke` 带了 `webkit` 前缀，存在一定的兼容性问题。
+
+所以，在更早的时候，我们还会使用 `text-shadow`，生成镂空文字。
+
+```css
+p {
+    text-shadow: 0 0 5px #fff;
+}
+```
+
+可以看到，因为使用的是阴影，所以有很明显的虚化的感觉，存在一定的瑕疵。
+
+还有一种非常绕的方法，利用混合模式加上滤镜，也能生成镂空文字。
+
+```css
+p {
+    position: relative;
+    color: #fff;
+
+    &::after {
+        content: 'Magic Text';
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #fff;
+        mix-blend-mode: difference;
+        filter: blur(1px);
+    }
+}
+```
+
+这里利用 `filter: blur(1px)` 生成了一个比原字体稍微大一点点的字体覆盖在原字体之上，再利用 `mix-blend-mode: difference` 消除掉了同色的部分，只留下了利用模糊滤镜多出来的那一部分。
+
+> `mix-blend-mode: difference`: 差值模式（Difference），作用是查看每个通道中的颜色信息，比较底色和绘图色，用较亮的像素点的像素值减去较暗的像素点的像素值。与白色混合将使底色反相；与黑色混合则不产生变化。
+
+### 利用混合模式，生成渐变色镂空文字
+
+好，回到上面的 `-webkit-text-stroke`，拿到了镂空文字后，我们还可以利用混合模式 `mix-blend-mode: multiply` 生成渐变色的文字。
+
+> `mix-blend-mode: multiply`: 正片叠底（multiply），将两个颜色的像素值相乘，然后除以255得到的结果就是最终色的像素值。通常执行正片叠底模式后的颜色比原来两种颜色都深。任何颜色和黑色正片叠底得到的仍然是黑色，任何颜色和白色执行正片叠底则保持原来的颜色不变，而与其他颜色执行此模式会产生暗室中以此种颜色照明的效果。
+
+```css
+p {
+    position: relative;
+    -webkit-text-stroke: 3px #9a9acc;
+
+    &::before{
+		content: ' ';
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background-image: linear-gradient(45deg, #ff269b, #2ab5f5, #ffbf00);
+		mix-blend-mode: multiply;
+	}
+}
+```
+
+在这里，`mix-blend-mode: multiply` 发挥的作用和 mask 非常的类似，我们其实是生成了一幅渐变图案，但是只有**在文字轮廓内，渐变颜色才会显现**。
+
+### 利用混合模式，生成光影效果文字
+
+OK，在上述的基础上，我们可以继续叠加混合模式，这次我们利用剩余的一个 `::after` 伪类，再添加一个 `mix-blend-mode: color-dodge` 混合模式，给文字加上最后的点缀，实现美妙的光影效果。
+
+> `mix-blend-mode: color-dodge`: 颜色减淡模式（Color Dodge），查看每个通道的颜色信息，通过降低“对比度”使底色的颜色变亮来反映绘图色，和黑色混合没变化。。
+
+核心的伪代码：
+
+```css
+p {
+    position: relative;
+    -webkit-text-stroke: 3px #7272a5;
+
+    &::before {
+		content: ' ';
+		background-image: linear-gradient(45deg, #ff269b, #2ab5f5, #ffbf00);
+		mix-blend-mode: multiply;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        background: radial-gradient(circle, #fff, #000 50%);
+        background-size: 25% 25%;
+        mix-blend-mode: color-dodge;
+        animation: mix 8s linear infinite;
+    }
+}
+
+@keyframes mix {
+    to {
+        transform: translate(50%, 50%);
+    }
+}
+```
+
+### 利用混合模式实现文字与底色反色的效果
+
+这里还是利用 `mix-blend-mode: difference` 差值模式，实现一种文字与底色反色的 Title 效果。
+
+> `mix-blend-mode: difference`: 差值模式（Difference），作用是查看每个通道中的颜色信息，比较底色和绘图色，用较亮的像素点的像素值减去较暗的像素点的像素值。与白色混合将使底色反相；与黑色混合则不产生变化。
+
+代码非常的简单，我们实现一个黑白相间的背景，文本的颜色为白色，配合上差值模式，即可实现黑底上的文字为白色，白底上的文字为黑色的效果。
+
+```css
+p  {
+    background: repeating-radial-gradient(circle at 200% 200%, #000 0, #000 150px, #fff 150px, #fff 300px);
+
+    &::before {
+        content: "LOREM IPSUM";
+        color: #fff;
+        mix-blend-mode: difference;
+    }
+}
+```
+
+### 利用混合模式实现动态类抖音风格 Glitch 效果
+
+OK，接下来，我们再尝试下其他混合模式的搭配。在 [CSS 故障艺术](https://github.com/chokcoco/iCSS/issues/78) 一文中，提到了一种故障艺术。
+
+什么是故障艺术？我们熟知的抖音的 LOGO 正是故障艺术其中一种表现形式。它有一种魔幻的感觉，看起来具有闪烁、震动的效果，很吸引人眼球。
+
+#### 关键点
+
+- 利用 mix-blend-mode: lighten 混合模式实现两段文字结构重叠部分为白色
+- 利用元素位移完成错位移动动画，形成视觉上的冲击效果
+
+本文篇幅有点长，代码就不上了，完整 DEMO 在这里：
+
+[类抖音 LOGO 文字故障效果](https://chokcoco.github.io/CSS-Inspiration/#/./blendmode/blend-text-glitch.md)
+
+当然，我们也不是一定要使用混合模式去使得融合部分为白色，可以仅仅是使用这个配色效果，基于上面效果的另外一个版本，没有使用混合模式。
+
+#### 关键点
+
+- 利用了伪元素生成了文字的两个副本
+- 视觉效果由位移、遮罩、混合模式完成
+- 配色借鉴了抖音 LOGO 的风格
+
+### Glitch Art 风格的 404 效果
+
+稍微替换一下文本文案为 404，再添加上一些滤镜效果（`hue-rotate()`、`blur()`）嘿嘿，找到了一个可能实际可用的场景，两个 404 效果的 Demo 如下：
+
+- [CodePen -- CSS 404故障效果](https://codepen.io/Chokcoco/pen/OJPexEm)
+- [CodePen -- 404故障效果](https://codepen.io/Chokcoco/pen/QWwXqra)
+
+> 小技巧，在使用混合模式的时，有的时候，效果不希望和背景混合在一起，可以使用 `isolation: isolate` 进行隔离。
+
+### 使用滤镜生成文字融合效果
+
+在 [你所不知道的 CSS 滤镜技巧与细节](https://github.com/chokcoco/iCSS/issues/30) 一文中，介绍了利用滤镜实现的一种融合效果。
+
+利用了**模糊滤镜叠加**文字与 SVG
+
+最后，我们再来看看文字与 SVG。
+
+在 SVG 与 CSS 的搭配中，有一类非常适合拿来做动画的属性，也就是 `stroke-*` 相关的几个属性，利用它们，我们只需要掌握简单的 SVG 语法，就可以快速制作相关的线条动画。
+
+我们利用 SVG 中几个和边框、线条相关的属性，来实现文字的线条动画，下面罗列一下，其实大部分和 CSS 对比一下非常好理解，只是换了个名字：
+
+- stroke-width：类比 css 中的 border-width，给 svg 图形设定边框宽度；
+- stroke：类比 css 中的 border-color，给 svg 图形设定边框颜色；
+- stroke-linejoin | stroke-linecap：设定线段连接处的样式；
+- stroke-dasharray：值是一组数组，没数量上限，每个数字交替表示划线与间隔的宽度；
+- stroke-dashoffset：则是虚线的偏移量
+
+> 具体的更深入的介绍，可以看看这篇：[【Web动画】SVG 线条动画入门](https://www.cnblogs.com/coco1s/p/6225973.html)
+
+### 线条文字动画
+
+接下来，我们利用 `stroke-*` 相关属性，实现一个简单的线条文字动画。
+
+```
+<svg viewBox="0 0 400 200">
+	<text x="0" y="70%"> Lorem </text>
+</svg>	
+svg text {
+	animation: stroke 5s infinite alternate;
+	letter-spacing: 10px;
+	font-size: 150px;
+}
+@keyframes stroke {
+	0% {
+		fill: rgba(72, 138, 20, 0);
+		stroke: rgba(54, 95, 160, 1);
+		stroke-dashoffset: 25%;
+		stroke-dasharray: 0 50%;
+		stroke-width: 1;
+	}
+	70% {
+		fill: rgba(72, 138, 20, 0);
+		stroke: rgba(54, 95, 160, 1);
+		stroke-width: 3;
+	}
+	90%,
+	100% {
+		fill: rgba(72, 138, 204, 1);
+		stroke: rgba(54, 95, 160, 0);
+		stroke-dashoffset: -25%;
+		stroke-dasharray: 50% 0;
+		stroke-width: 0;
+	}
+}
+```
+
+动画的核心就是，利用动态变化文字的 `stroke-dasharray` 和 `stroke-dashoffset` 形成视觉上的线条变换，动画的最后再给文字上色。看看效果：**对比度滤镜产生的融合效果**。
+
+单独将两个滤镜拿出来，它们的作用分别是：
+
+1. `filter: blur()`： 给图像设置高斯模糊效果。
+2. `filter: contrast()`： 调整图像的对比度。
+
+但是，当他们“合体”的时候，产生了奇妙的融合现象。
+
+## 文字与 SVG
+
+最后，我们再来看看文字与 SVG。
+
+在 SVG 与 CSS 的搭配中，有一类非常适合拿来做动画的属性，也就是 `stroke-*` 相关的几个属性，利用它们，我们只需要掌握简单的 SVG 语法，就可以快速制作相关的线条动画。
+
+我们利用 SVG 中几个和边框、线条相关的属性，来实现文字的线条动画，下面罗列一下，其实大部分和 CSS 对比一下非常好理解，只是换了个名字：
+
+- stroke-width：类比 css 中的 border-width，给 svg 图形设定边框宽度；
+- stroke：类比 css 中的 border-color，给 svg 图形设定边框颜色；
+- stroke-linejoin | stroke-linecap：设定线段连接处的样式；
+- stroke-dasharray：值是一组数组，没数量上限，每个数字交替表示划线与间隔的宽度；
+- stroke-dashoffset：则是虚线的偏移量
+
+> 具体的更深入的介绍，可以看看这篇：[【Web动画】SVG 线条动画入门](https://www.cnblogs.com/coco1s/p/6225973.html)
+
+### 线条文字动画
+
+接下来，我们利用 `stroke-*` 相关属性，实现一个简单的线条文字动画。
+
+```css
+<svg viewBox="0 0 400 200">
+	<text x="0" y="70%"> Lorem </text>
+</svg>	
+svg text {
+	animation: stroke 5s infinite alternate;
+	letter-spacing: 10px;
+	font-size: 150px;
+}
+@keyframes stroke {
+	0% {
+		fill: rgba(72, 138, 20, 0);
+		stroke: rgba(54, 95, 160, 1);
+		stroke-dashoffset: 25%;
+		stroke-dasharray: 0 50%;
+		stroke-width: 1;
+	}
+	70% {
+		fill: rgba(72, 138, 20, 0);
+		stroke: rgba(54, 95, 160, 1);
+		stroke-width: 3;
+	}
+	90%,
+	100% {
+		fill: rgba(72, 138, 204, 1);
+		stroke: rgba(54, 95, 160, 0);
+		stroke-dashoffset: -25%;
+		stroke-dasharray: 50% 0;
+		stroke-width: 0;
+	}
+}
+```
+
+动画的核心就是，利用动态变化文字的 `stroke-dasharray` 和 `stroke-dashoffset` 形成视觉上的线条变换，动画的最后再给文字上色。
+
+[CodePen Demo -- SVG Text Line Effect](https://codepen.io/Chokcoco/pen/dyOjMMd)

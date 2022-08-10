@@ -78,25 +78,91 @@ Encoding API 提供了两种将字符串转换为定型数组二进制格式的�
 
 ## FileAPI与BlobAPI
 
+FileReader 类型表示一种异步文件读取机制，progress 事件每 50 毫秒就会触发一次；
 
+blob 表示二进制大对象（ binary larget object），是 JavaScript 对不可修改二进制数据的封装类型。  
+
+Blob 对象有一个 size 属性和一个 type 属性，还有一个 slice()方法用于进一步切分数据。  
+
+要创建对象 URL，可以使用 window.URL.createObjectURL()方法并传入 File 或 Blob 对象。
+
+拖放文件会触发 drop 事件。被放置的文件可以通过事件的 event.dataTransfer.files 属性读到 ；
 
 ## 媒体元素
 
+HTML5 新增了两个与媒体相关的元素，即`<audio>`和`<video>`，从而为浏览器提
+供了嵌入音频和视频的统一解决方案；
 
+使用`<audio>`和`<video>`的 `play()` 和 `pause()`方法，可以手动控制媒体文件的播放；
+
+这两个媒体元素都有一个名为 canPlayType()的方法，该方法接收一个格式/编解码器字符串，返回一个字符串值： "probably"、 "maybe"或""（空字符串）；
+
+`<audio>`元素还有一个名为 Audio 的原生 JavaScript 构造函数，创建 Audio 的新实例就会开始下载指定的文件。下载完毕后，可以调用 play() 来播放音频。  
 
 ## 原生拖放
 
+HTML5 在 IE 的拖放实现基础上标准化了拖放功能。所有主流浏览器都根据 HTML5 规范实现了原生的拖放。
 
+在某个元素被拖动时，会（按顺序）触发以下事件：dragstart，drag，dragend；
+
+拖动开始后，大多数浏览器此时会创建元素的一个半透明副本，始终跟随在光标下方。  
+
+在把某个元素拖动到无效放置目标上时，会看到一个特殊光标（圆环中间一条斜杠）表示不能放下。  
+
+通过覆盖 dragenter 和 dragover 事件的默认行为，可以把任何元素转换为有效的放置目标；
+
+在 Firefox 中，放置事件的默认行为是导航到放在放置目标上的 URL。  
+
+event 的属性中的 dataTransfer 对象，用于从被拖动元素向放置目标传递字符串数据：
+
++ dataTransfer 对象有两个主要方法： getData()和 setData()；
++ HTML5 已经将其扩展为允许任何 MIME 类型；
+
+在从文本框拖动文本时，浏览器会调用 setData()并将拖动的文本以"text"格式存储起来。  在拖动链接或图片时，浏览器会调用 setData()并把 URL 存储起来；
+
+dataTransfer 对象不仅可以用于实现简单的数据传输，还可以用于确定能够对被拖动元素和放置目标执行什么操作。  
+
+可以使用两个属性： dropEffect 与 effectAllowed：
+
++ dropEffect 属性可以告诉浏览器允许哪种放置行为，除非同时设置 effectAllowed，否则 dropEffect 属性也没有用  ；
++ effectAllowed 属性表示对被拖动元素是否允许 dropEffect，必须在 ondragstart 事件处理程序中设置这个属性；
+
+默认情况下，图片、链接和文本是可拖动的，这意味着无须额外代码用户便可以拖动它们；
+
+HTML5 在所有 HTML 元素上规定了一个 draggable 属性，表示元素是否可以拖动；
 
 ## NotificationAPI
 
+Notifications API 用于向用户显示通知。  
 
+Notifications API 在 Service Worker 中非常有用。渐进 Web 应用（ PWA， Progressive Web Application）通过触发通知可以在页面不活跃时向用户显示消息，看起来就像原生应用。 
 
+ 默认会开启两项安全措施：
 
++ 通知只能在运行在安全上下文的代码中被触发；
++ 通知必须按照每个源的原则明确得到用户允许。  
+
+一旦拒绝，就无法通过编程方式挽回，因为不可能再触发授权提示；
+
+Notifications API 提供了 4 个用于添加回调的生命周期方法：
++ onshow 在通知显示时触发；
++ onclick 在通知被点击时触发；
++ onclose 在通知消失或通过 close()关闭时触发；
++ onerror 在发生错误阻止通知显示时触发。  
 
 ## PageVisibilityAPI
 
+Web 开发中一个常见的问题是开发者不知道用户什么时候真正在使用页面。  Page Visibility API 旨在为开发者提供页面对用户是否可见的信息。  
 
+document.visibilityState 值，表示下面 4 种状态之一。
++ 页面在后台标签页或浏览器中最小化了；
++ 页面在前台标签页中；
++ 实际页面隐藏了，但对页面的预览是可见的（例如在 Windows 7 上，用户鼠标移到任务栏图标上会显示网页预览）；
++ 页面在屏外预渲染；
+
+visibilitychange 事件，该事件会在文档从隐藏变可见（或反之）时触发；
+
+document.hidden 布尔值，表示页面是否隐藏  
 
 
 

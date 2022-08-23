@@ -164,21 +164,97 @@ visibilitychange 事件，该事件会在文档从隐藏变可见（或反之）
 
 document.hidden 布尔值，表示页面是否隐藏  
 
-
-
 ## StreamAPI
 
+Web 应用如何消费有序的小信息块而不是大块信息？  
 
++ 大块数据可能不会一次性都可用；
++ 大块数据可能需要分小部分处理；
+
+Stream API 直接解决的问题是处理网络请求和读写磁盘。  
+
++ 可读流：数据在内部从底层源进入流，然后由**消费者（ consumer）**进行处理；
++ 可写流： **生产者（ producer）**将数据写入流，数据在内部传入底层**数据槽（sink）**。
++ 转换流：由两种流组成，可写流用于接收数据（可写端），可读流用于输出数据（可读端）。这
+  两个流之间是**转换程序（ transformer）**，可以根据需要检查和修改流内容；
+
+所有流都会为已进入流但尚未离开流的块提供一个内部队列；
+
++ 流不能允许其内部队列无限增大，因此会使用**反压（ backpressure）**通知流入口停止发送数据；
++ 这个策略定义了内部队列可以占用的最大内存，即**高水位线（ high water mark）；**  
+
+一个 `ReadableStreamDefaultReader` 的实例，可以通过流的 getReader()方法获取。调用这个方法会获得
+流的锁，保证只有这个读取器可以从流中读取值：  
+
+数据写入流，可以通过流的 `getWriter()`方法获取 `WritableStreamDefaultWriter` 的实例。
+
++ 在向流中写入数据前，生产者必须确保写入器可以接收值；
+
+转换流用于组合可读流和可写流 ，数据块在两个流之间的转换是通过 `TransformStream` 的实例的 `transform()` 方法完成的；
+
+流可以通过管道连接成一串。最常见的用例是使用 `pipeThrough()`方法把 `ReadableStream` 接入 TransformStream。  
 
 ## 计时API
 
-
++ `window.performance.now()` 这个方法返回一个微秒精度的浮点值，采用相对度量，即在执行上下文创建时从 0 开始计时；
+  + 不同上下文之间如果没有共享参照点则不可能直接比较；
+  + performance.timeOrigin 属性返回计时器初始化时全局系统时钟的值；
++ 在一个执行上下文中被记录的所有性能条目可以通过 `performance.getEntries()` 获取  
+  + 返回的集合代表浏览器的**性能时间线**（ performance timeline）  
++ User Timing API 用于记录和分析自定义性能条目；
+  + 即使用 `performance.mark()` 方法，  在计算开始前和结束后各创建一个自定义性能条目可以计算时间差。
+  + 最新的标记（ mark）会被推到 `getEntriesByType()`返回数组；
+  + 由 `performance.measure()` 方法生成   **PerformanceMeasure**（性能度量）条目，对应由名字作为标识的两个标记之间的持续时间； 
++ Navigation Timing API 提供了高精度时间戳，用于度量当前页面加载速度：
+  + 浏览器会在导航事件发生时自动记录 PerformanceNavigationTiming 条目；
+  + `const [performanceNavigationTimingEntry] = performance.getEntriesByType('navigation');  `
++ Resource Timing API 提供了高精度时间戳，用于度量当前页面加载时请求资源的速度：
+  + 浏览器会在加载资源时自动记录 PerformanceResourceTiming；
+  + 这个对象会捕获大量时间戳，用于描述资源加载的速度；
 
 ## Web组件
 
+Web 组件指的是一套用于增强 DOM 行为的工具，包括影子 DOM、自定义
+元素和 HTML 模板。
 
+一直缺少基于 HTML 解析构建 DOM 子树，然后在需要时再把这个子树渲染出
+来的机制：
+
++ 使用 innerHTML 把标记字符串转换为 DOM 元素；
++ 使用 `document.createElement()`构建每个元素；
+
+使用 `DocumentFragment` 可以一次性添加所有子节点，最多只会有一次布局重排；
+
+```js
+const fragment = new DocumentFragment();
+fragment.appendChild(document.createElement('p'));
+```
+
+脚本执行可以推迟到将 DocumentFragment 的内容实际添加到 DOM 树；
+
+---
+
+**影子 DOM**（ shadow DOM） Web 组件可以将一个完整的 DOM 树作为
+节点添加到父 DOM 树；
+
+影子 DOM 与 HTML 模板很相似，因为它们都是类似 document 的结构，影子 DOM 的内容会实际渲染到页面上，而 HTML 模板的内容不会；
+
++ 把 CSS 限制在使用它们的 DOM 上：这正是影子 DOM 最初的使用场景；
+
+影子 DOM 是通过 attachShadow()方法创建并添加给有效 HTML 元素的。
+
++ 容纳影子 DOM 的元素被称为影子宿主（ shadow host）；
+
++ 影子 DOM 的根节点被称为影子根（ shadow root）；
 
 ## WebCryptographyAPI
 
+Web Cryptography API 描述了一套密码学工具，规范了 JavaScript 如何以安全和符合惯例的方式实现加密；
 
-
++ `crypto.getRandomValues()` 在全局 Crypto 对象上访问，把随机值写入作为参数传给它的定型数组 ；
++ 通过 `window.crypto.subtle` 访问 SubtleCrypto 对象，用于执行常见的密码学功能，如加密、散列、签名和生成密钥；
++ 使用 `SubtleCrypto.generateKey()`方法可以生成随机 CryptoKey；
++ 如果密钥是可提取的，那么就可以在 CryptoKey 对象内部暴露密钥原始的二进制内容；
++ 使用 SubtleCrypto 对象可以通过可配置的属性从已有密钥获得新密钥；
++ 通过 SubtleCrypto 对象可以使用公钥算法用私钥生成签名，或者用公钥验证签名；
++ SubtleCrypto 对象支持使用公钥和对称算法加密和解密消息；

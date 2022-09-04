@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        border: 0;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #e3e4e8;
+        --fg: #17181c;
+        --primary: #255ff4;
+        --yellow: #f4a825;
+        --yellow-t: rgba(244, 168, 37, 0);
+        --bezier: cubic-bezier(0.42, 0, 0.58, 1);
+        --trans-dur: 0.3s;
+        font-size: calc(24px + (30 - 24) * (100vw - 320px) / (1280 - 320));
+      }
+      .rating__star-fill {
+        fill: var(--yellow);
+        transform: scale(1);
+        transition: fill var(--trans-dur) var(--bezier),
+          transform var(--trans-dur) var(--bezier);
+      }
+      .rating__star-stroke {
+        stroke: #c7cad1;
+        transition: stroke var(--trans-dur);
+      }
+      .rating__star,
+      .rating__star-line {
+        fill: var(--yellow);
+        stroke: var(--yellow);
+      }
+    </style>
+  </head>
+  <body>
+    <svg
+      class="rating__star"
+      width="64"
+      height="64"
+      viewBox="0 0 64 64"
+      aria-hidden="true"
+    >
+      <g
+        stroke="#000"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <g transform="translate(16,16) rotate(180)">
+          <polygon
+            class="rating__star-stroke"
+            points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07"
+            fill="#000"
+          />
+          <!-- <polygon
+            class="rating__star-fill"
+            points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07"
+            fill="#000"
+          /> -->
+        </g>
+      </g>
+
+      <g
+        stroke="#000"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <g transform="translate(16,16) rotate(180)">
+          <polygon
+            class="rating__star-fill"
+            points="0,15 4.41,6.07 14.27,4.64 7.13,-2.32 8.82,-12.14 0,-7.5 -8.82,-12.14 -7.13,-2.32 -14.27,4.64 -4.41,6.07"
+            fill="#000"
+          />
+        </g>
+      </g>
+    </svg>
+    
+    <svg
+
+    >
+      <g
+        stroke="#000"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <g transform="translate(16,16) rotate(180)">
+          <g
+            transform="translate(16,16)"
+            stroke-dasharray="12 12"
+            stroke-dashoffset="12"
+          >
+            <polyline
+              class="rating__star-line"
+              transform="rotate(0)"
+              points="0 4,0 16"
+            />
+            <polyline
+              class="rating__star-line"
+              transform="rotate(72)"
+              points="0 4,0 16"
+            />
+            <polyline
+              class="rating__star-line"
+              transform="rotate(144)"
+              points="0 4,0 16"
+            />
+            <polyline
+              class="rating__star-line"
+              transform="rotate(216)"
+              points="0 4,0 16"
+            />
+            <polyline
+              class="rating__star-line"
+              transform="rotate(288)"
+              points="0 4,0 16"
+            />
+          </g>
+        </g>
+      </g>
+    </svg>
+  </body>
+</html>

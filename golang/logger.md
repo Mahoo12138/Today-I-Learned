@@ -81,9 +81,11 @@ func (l *Logger) Output(calldepth int, s string) error {
         if !ok {     
             file = "???"      
             line = 0    
-        }    
+        } 
+        // 获取到行号等信息后，再加锁，保证安全
         l.mu.Lock()  
     }  
+    // 把日志信息和设置的日志抬头进行拼接
     l.buf = l.buf[:0]  
     l.formatHeader(&l.buf, now, file, line)  
     l.buf = append(l.buf, s...)  
@@ -116,3 +118,6 @@ func (l *Logger) Output(calldepth int, s string) error {
 > [Go 每日一库之 log - 大俊的博客 (darjun.github.io)](https://darjun.github.io/2020/02/07/godailylib/log/)
 >
 > [Go语言标准库之log - 二十三岁的有德 - 博客园 (cnblogs.com)](https://www.cnblogs.com/nickchen121/p/11517450.html#一log)
+>
+> [Go语言实战笔记（十八）| Go log 日志](https://cloud.tencent.com/developer/article/1196810)
+

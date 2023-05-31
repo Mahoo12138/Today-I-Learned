@@ -63,3 +63,13 @@ func signal01() {
 ```
 
 优雅的重启方式： [Graceful restart in Golang - Gregory Trubetskoy (grisha.org)](https://grisha.org/blog/2014/06/03/graceful-restart-in-golang/)
+
+## 常见方法
+
+### os.Stat
+
+用于获取文件或目录的相关信息，例如文件大小、修改时间等
+
+### os.IsNotExist
+
+用于判断一个错误是否表示文件或目录不存在，它接受一个错误作为参数，并返回一个布尔值，表示该错误是否表示文件或目录不存在。即通常与 `os.Stat` 一起使用，判断某个文件或目录是否存在。

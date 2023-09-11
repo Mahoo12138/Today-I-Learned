@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.js.map
+.vs
+shared/dist
+shared/dist-esm
+shared/tsconfig.tsbuildinfo
+shared/tsconfig.esm.tsbuildinfo

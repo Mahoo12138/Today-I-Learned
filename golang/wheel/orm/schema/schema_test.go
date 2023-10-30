@@ -1,8 +1,7 @@
-package schema_test
+package schema
 
 import (
 	"mahoo12138/wheel/orm/dialect"
-	"mahoo12138/wheel/orm/schema"
 	"testing"
 )
 
@@ -14,7 +13,7 @@ type User struct {
 var TestDial, _ = dialect.GetDialect("sqlite3")
 
 func TestParse(t *testing.T) {
-	schema := schema.Parse(&User{}, TestDial)
+	schema := Parse(&User{}, TestDial)
 	if schema.Name != "User" || len(schema.Fields) != 2 {
 		t.Fatal("failed to parse User struct")
 	}

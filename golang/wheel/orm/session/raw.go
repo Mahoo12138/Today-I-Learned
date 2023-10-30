@@ -2,6 +2,7 @@ package session
 
 import (
 	"database/sql"
+	"mahoo12138/wheel/orm/clause"
 	"mahoo12138/wheel/orm/dialect"
 	"mahoo12138/wheel/orm/log"
 	"mahoo12138/wheel/orm/schema"
@@ -14,6 +15,7 @@ type Session struct {
 	sqlVars  []interface{}   // SQL 语句中占位符的对应值
 	dialect  dialect.Dialect
 	refTable *schema.Schema
+	clause   clause.Clause
 }
 
 func New(db *sql.DB, dialect dialect.Dialect) *Session {
@@ -23,6 +25,7 @@ func New(db *sql.DB, dialect dialect.Dialect) *Session {
 func (s *Session) Clear() {
 	s.sql.Reset()
 	s.sqlVars = nil
+	s.clause = clause.Clause{}
 }
 
 func (s *Session) DB() *sql.DB {

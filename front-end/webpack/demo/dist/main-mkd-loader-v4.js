@@ -100,10 +100,7 @@ console.log("markdown", _doc_md__WEBPACK_IMPORTED_MODULE_0___default.a)
 /* 1 */
 /***/ (function(module, exports) {
 
-// Module
-var code = "<h1>About</h1>\n<p>Hello markdown !</p>\n";
-// Exports
-module.exports = code;
+module.exports = "<h1>About</h1>\n<p>Hello markdown !</p>\n"
 
 /***/ })
 /******/ ]);

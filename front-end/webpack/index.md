@@ -261,3 +261,244 @@ __webpack_require__.r = function(exports) {
 ```
 
 r 函数很简单，只是在模块导出内容对象上做了一个标记，指明这是个 ESModule。
+
+### 如何通过 Loader 加载特殊资源？
+
+Webpack 支持管理前端项目中任意类型的资源文件，只需要添加合适 Loader 进行处理即可。
+
+### 如何加载资源模块？
+
+我们以一个例子来进行了解，修改 Webpack 配置，新建一个 main.css 文件，将其作为入口模块，此时进行打包会报错，因为默认的 Loader 只能处理 js 文件，而对于 CSS 样式会报错不能进行语法解析。
+
+而处理 CSS 文件，可使用 `css-loader `，修改配置文件：
+
+```js
+module.exports = {
+  entry: "./src/main.css",
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: "css-loader"
+      }
+    ]
+  }
+}
+```
+
+此时则可以进行正常打包了，虽然只有一个 main.css 文件，但是打包后的模块却有两个：
+
+```js
+[
+  (function (module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+    __webpack_require__.r(__webpack_exports__);
+    var _css_loader_ = __webpack_require__(1);
+    var _css_loader__default = __webpack_require__.n(_css_loader_);
+    // Imports
+    var ___CSS_LOADER_EXPORT___ = _css_loader__default()(function (i) { return i[1] });
+    // Module
+    ___CSS_LOADER_EXPORT___.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n}", ""]);
+    // Exports
+    __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+  }),
+  (function (module, exports, __webpack_require__) {
+    "use strict";
+
+    /**
+     * MIT License http://www.opensource.org/licenses/mit-license.php
+     * Author Tobias Koppers @sokra
+     */
+    // css base code, injected by the css-loader
+    // eslint-disable-next-line func-names
+    module.exports = function (cssWithMappingToString) {
+      var list = []; // return the list of modules as css string
+
+      list.toString = function toString() {
+        return this.map(function (item) {
+          var content = cssWithMappingToString(item);
+
+          if (item[2]) {
+            return "@media ".concat(item[2], " {").concat(content, "}");
+          }
+
+          return content;
+        }).join("");
+      }; 
+      // import a list of modules into the list
+      list.i = function (modules, mediaQuery, dedupe) {
+        if (typeof modules === "string") {
+          modules = [[null, modules, ""]];
+        }
+
+        var alreadyImportedModules = {};
+
+        if (dedupe) {
+          for (var i = 0; i < this.length; i++) {
+            var id = this[i][0];
+
+            if (id != null) {
+              alreadyImportedModules[id] = true;
+            }
+          }
+        }
+
+        for (var _i = 0; _i < modules.length; _i++) {
+          var item = [].concat(modules[_i]);
+
+          if (dedupe && alreadyImportedModules[item[0]]) {
+            continue;
+          }
+
+          if (mediaQuery) {
+            if (!item[2]) {
+              item[2] = mediaQuery;
+            } else {
+              item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+            }
+          }
+          list.push(item);
+        }
+      };
+      return list;
+    };
+  })
+]
+```
+
+通过注释，可以了解到，第二个模块是 `css_loader` 注入的一个模块，先不管其作用，首先`main.css` 是并没有生效的：
+
+```js
+___CSS_LOADER_EXPORT___.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n}", ""]);
+__webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+```
+
+因为代码中，入口模块仅是把 CSS 字符串化，然后放到一个数组中，默认导出了，这也就是 `css-loader` 的主要做的。
+
+也就是说，只是把 CSS 加载到了 js 代码中，并没有进行使用，使其生效的做法是添加 `style-loader`：
+
+```js
+{
+    test: /\.css$/,
+    use: [
+        "style-loader",
+        "css-loader"
+    ]
+}
+```
+
+> 注意，对同一个模块使用多个 Loader 时，需要注意 Loader 的顺序，因为 Webpack 会从 loader 数组尾部开始对模块进行处理。 
+
+### 为什么在 js 加载资源文件？
+
+假设在开发页面上的某个局部功能时，需要用到一个样式模块和一个图片文件；如果你还是将这些资源文件单独引入到 HTML 中，然后再到 JS 中添加对应的逻辑代码。
+
+试想如果后期这个局部功能不用了，你就需要同时删除 JS 中的代码和 HTML 中的资源文件引入，也就是**需要同时维护两条线**。而如果你遵照 Webpack 的这种设计，所有资源的加载都是由 JS 代码控制，**后期只需要维护 JS 代码这一条线**即可。
+
+如果建立这种依赖关系：
+
+1. 逻辑上比较合理，因为 JS 确实需要这些资源文件配合才能实现整体功能；
+2. 配合 Webpack 这类工具的打包能确保在上线时，资源不会缺失，而且都是必要的；
+
+**学习新事物不是说学会它的所有用法，你就能提高，能搞明白新事物为什么这样设计，基本上你就算出道了。**
+
+### 开发一个 Loader
+
+开发一个处理 markdown 的 Loader，进一步了解 Loader 的处理机制：
+
+```js
+module.exports = (source) => {
+  console.log(source)
+  return "hello loader!"
+}
+```
+
+```js
+{
+    test: /\.md$/,
+    // 使用相对路径导入
+    use: './loader/markdown-loader'
+}
+```
+
+通过这样配置后，直接打包输出，会提示 *You may need an additional loader to handle the result of these loaders.*，这是因为资源文件经过一连串的流水线式的 Loader 处理后，必须返回标准的 JS 代码：
+
+```mermaid
+graph LR
+S[Any Source] --> Loader1 
+Loader1 --> Loader2
+Loader2 --> Loader3
+Loader3 --> E[JavaScript Code]
+```
+
+解决办法：
+
++ 直接在这个 Loader 的最后返回一段 JS 代码字符串
++ 再找一个合适的加载器，在后面接着处理我们这里得到的结果
+
+ 我们尝试着，将 loader 中的返回内容，替换为 js 代码字符串：
+
+```js
+module.exports = (source) => {
+  console.log(source)
+  return "console.log('hello loader!')"
+}
+```
+
+此时进行打包则不会报错了，而生成的模块中也包含了 loader 返回的内容：
+
+```js
+(function(module, exports) {
+    console.log('hello loader!')
+})
+```
+
+#### 实现 Loader 的逻辑
+
+需要安装一个能够将 Markdown 解析为 HTML 的模块 —— *marked*，在 *markdown-loader.js* 中导入这个模块然后使用这个模块去解析 source。
+
+```js
+const { marked } = require('marked')
+
+module.exports = source => {
+  //1. 将 markdown 转换为 html 字符串
+  const html = marked(source)
+  //2. 将 html 字符串拼接为一段导出字符串的 JS 代码
+  const code = `module.exports = ${JSON.stringify(html)}`
+  return code
+}
+```
+
+再次打包模块内容如下：
+
+```js
+(function(module, exports) {
+    module.exports = "<h1>About</h1>\n<p>Hello markdown !</p>\n"
+})
+```
+
+#### 多个 Loader 的配合
+
+另外，我们可以直接让 *markdown-loader* 返回 html 字符串，将其交给其他 Loader 进行处理。
+
+安装一个处理 HTML 的 Loader *html-loader*，安装完成过后，回到配置文件同样把 use 属性修改为一个数组以便依次使用多个 Loader：
+
+```js
+{
+    test: /\.md$/,
+    use: ["html-loader", './loader/markdown.loader']
+}
+```
+
+*html-loader* 所作的操作等价于我们上面手动处理的操作：
+
+```js
+(function(module, exports) {
+    // Module
+    var code = "<h1>About</h1>\n<p>Hello markdown !</p>\n";
+    // Exports
+    module.exports = code;
+})
+```
+

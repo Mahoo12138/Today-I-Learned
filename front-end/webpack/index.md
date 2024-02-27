@@ -502,3 +502,135 @@ module.exports = source => {
 })
 ```
 
+## 如何利用插件机制横向扩展 Webpack 的构建能力？
+
+Webpack 插件机制的目的，是为了增强Webpack在项目自动化构建方面的能力。
+
+常见的插件使用场景：
+
++ 实现自动在打包之前清除 dist目录(上次的打包结果）
++ 自动生成应用所需要的 HTML 文件
++ 根据不同环境为代码注入类似 API 地址这种可能变化的部分
++ 拷贝不需要参与打包的资源文件到输出目录压缩 
++ Webpack 打包完成后输出的文件自动发布打包结果到服务器，实现自动部署
+
+### 体验插件机制
+
+#### 清除打包产物插件
+
+Webpack 每次打包的结果都是直接覆盖到 dist 目录打包前，dist 目录中就可能已经存入了一些在上一次打包操作时遗留的文件，再次打包时，只能覆盖掉同名文件；已经移除的资源文件就会一直累积在里面，最终导致部署上线时出现多余文件。
+
+更合理的做法是，在每次完整打包之前，自动清理 dist 目录每次打包过后，dist 目录中就只会存在那些必要的文件。
+
+`clean-webpack-plugin `是一个第三方的 npm 包，安装后回到 Webpack 的配置文件中导入该插件模块导出 `CleanWebpackPlugin`：
+
+```bash
+$ npm install clean-webpack-plugin --save-dev
+```
+
+```js
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+```
+
+#### 生成 html 插件
+
+HTML 文件一般都是通过硬编码的方式，单独存放在项目根目录下这种方式有两个问题：
+
+1. 项目发布时，我们需要同时发布根目录下的 HTML 文件和 dist 目录中所有的打包结果，非常麻烦，而且上线过后还要确保 HTML 代码中的资源文件路径是正确的。
+2. 如果打包结果输出的目录或者文件名称发生变化，那 HTML 代码中所对应的 script 标签也需要我们手动修改路径。
+
+相比于之前写死 HTML 文件的方式，自动生成 HTML 的优势在于：
+
++ HTML 也输出到 dist目录中了，上线时只需要把 dist 目录发布出去；
++ HTML 中的 script 标签是自动引入的，所以可以确保资源文件的路径是正常的；
+
+```bash
+$ npm install html-webpack-plugin --save-dev
+```
+
+```js
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+```
+
+对于生成的 HTML 文件，页面 title 必须要，改很多时候还需要我们自定义页面的一些 meta 标签和一些基础的 DOM 结构，可以在该插件配置中进行指定：
+
+```js
+new HtmlWebpackPlugin({
+    title: 'Webpack Plugin Sample', 
+    meta: {viewport: 'width=device-width'}
+})
+```
+
+而当需要更复杂的修改时，可以通过提供一个模板 html 文件，在模板中进行变量替换：
+
+```js
+new HtmlWebpackPlugin({
+    title: 'Webpack Plugin Sample', 
+    template: './src/index.html'
+})
+```
+
+`html-webpack-plugin` 插件除了自定义输出文件的内容，同时输出多个 HTML 文件也是一个非常常见的需求。
+
+通过 `HtmlWebpackPlugin` 创建的对象就是用于生成 *index.html* 文件的，可通过再创建一个新的实例对象用于创建额外的 HTML 文件。
+
+#### 用于复制文件的插件
+
+项目中一般还有一些不需要参与构建的静态文件，最终也需要发布到线上，例如网站的 *favicon, robots.txt* 等。一般建议把这类文件统一放在项目根目录下的 public 或者 static 目录中，希望 Webpack 在打包时一并将这个目录下所有的文件复制到输出目录，这种需求可以使用`copy-webpack-plugin`插件实现：
+
+```bash
+$ npm install copy-webpack-plugin --save-dev
+```
+
+```js
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+new CopyWebpackPlugin(['public','static'])
+```
+
+### 开发一个插件
+
+开发一个用于移除打包产物中的多行注释的插件：
+
+```js
+class RemoveCommentsPlugin {
+    apply(compiler) {
+        compiler.hooks.emit.tap('RemoveCommentsPlugin', compilation => {
+            // compilation => 可以理解为此次打包的上下文
+            for (const name in compilation.assets) {
+                if (name.endsWith('.js')) {
+                    const contents = compilation.assets[name].source()
+                    const noComments = contents.replace(/\/\*{2,}\/\s?/g, "")
+                    compilation.assets[name] = {
+                        source: () => noComments,
+                        size: () => noComments.length
+                    }
+                }
+            }
+        })
+    }
+}
+```
+
+Webpack 为每一个工作环节都预留了合适的钩子，扩展时只需要找到合适的时机去做合适的事情。
+
+## 探索 Webpack 运行机制与核心工作原理
+
+如果想了解 Webpack 整个工作过程的细节，那就需要更深入地了解刚刚说到的每一个环节，它们落实到代码层面到底做了些什么，或者说是如何实现的，必须有针对性的去“**查阅**” Webpack的源代码。
+
+### 工作原理剖析
+
++ Webpack CLI 启动打包流程；
++ 递归依赖树，将每个模块交给对应的 Loader 处理；
++ 载入 Webpack 核心模块，创建 Compiler 对象；
++ 使用 Compiler 对象开始编译整个项目；
++ 从入口文件开始，解析模块依赖，形成依赖关系树；
++ 合并 Loader 处理完的结果，将打包结果输出到 dist 目录。
+
+#### Webpack CLI 作用
+
+就是将 CLI 参数和 Webpack 配置文件中的配置整合，得到一个完整的配置对象：
+
++ 通过 yargs 模块解析 CLI 参数（运行 webpack 命令时通过命令行传入的参数）；
++ 
+

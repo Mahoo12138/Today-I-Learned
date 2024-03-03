@@ -455,3 +455,327 @@ container.style.color = 'red'
 ...（省略了许多类似的后续操作）
 container.style.display = 'block'
 ```
+
+## 伪类和伪元素有什么区别？
+
+伪类（Pseudo-classes）和伪元素（Pseudo-elements）是 CSS 中的两个不同概念，它们用于向选择器添加特殊的样式规则，以实现一些特定的效果，但它们之间有一些区别：
+
+### 伪类（Pseudo-classes）
+
+- 伪类用于向选择器添加特殊的样式规则，以根据**元素的状态或位置**来选择元素。
+- 伪类通常以冒号（`:`）开头，如 `:hover`、`:active`、`:focus` 等。
+- 伪类表示元素的特定状态，例如鼠标悬停、元素处于激活状态、元素获得焦点等。
+- 伪类可以用于任何 CSS 选择器中，包括类选择器、ID 选择器、标签选择器等。
+
+### 伪元素（Pseudo-elements）
+
+- 伪元素用于向选择器添加额外的元素，以在选定的元素上创建虚拟的元素。
+- 伪元素通常以双冒号（`::`）开头，如 `::before`、`::after`、`::first-line` 等。
+- 伪元素用于在选定的元素的特定位置插入内容，例如在元素的前面、后面、第一行等位置。
+- 伪元素不能用于任何 CSS 选择器中，只能用于部分选择器，如类选择器、ID 选择器、标签选择器等。
+
+## 你知道哪些实现元素居中的方案？
+
+### 文本或内联元素水平居中
+
+使用`text-align: center;`属性可以实现文本或内联元素（如链接）的水平居中。
+
+```css
+css.container {
+  text-align: center;
+}
+```
+
+**适用场景**：适用于文本、链接或其他内联元素的水平居中。
+
+### 块级元素水平居中
+
+使用`margin: 0 auto;`可以实现块级元素（如`<div>`）的水平居中。
+
+```css
+css.child {
+  width: 50%; /* 必须指定宽度 */
+  margin: 0 auto;
+}
+```
+
+**适用场景**：适用于需要水平居中的块级元素，元素宽度需预先定义。
+
+### Flexbox居中
+
+#### 水平居中
+
+在父元素上使用`display: flex;`和`justify-content: center;`实现子元素的水平居中。
+
+```css
+css.container {
+  display: flex;
+  justify-content: center;
+}
+```
+
+#### 垂直居中
+
+在父元素上使用`display: flex;`和`align-items: center;`实现子元素的垂直居中。
+
+```css
+css.container {
+  display: flex;
+  align-items: center;
+}
+```
+
+**适用场景**：适用于需要在容器内部水平或垂直居中一个或多个元素的情况。Flexbox还支持响应式布局。
+
+### Grid居中
+
+使用CSS Grid布局，可以通过`display: grid;`和`place-items: center;`在两个方向上同时居中元素。
+
+```css
+css.container {
+  display: grid;
+  place-items: center;
+}
+```
+
+**适用场景**：适用于需要在容器内部水平和垂直同时居中一个或多个元素的情况。Grid 布局提供了更为强大和灵活的布局控制。
+
+### 绝对定位与负边距/Transform居中
+
+通过设置父元素`position: relative;`，子元素`position: absolute;`和`top: 50%; left: 50%;`配合`transform: translate(-50%, -50%);`可以实现元素的完全居中。
+
+```css
+.container {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+```
+
+**适用场景**：适用于需要完全居中一个元素，且元素大小未知或动态变化的情况。
+
+总结，CSS提供了多种方法实现元素的居中，选择哪种方法取决于具体的需求和场景。Flexbox和Grid布局因其灵活性和强大的布局能力，成为现代Web开发中推荐的居中方案。
+
+## 为什么要做样式初始化？
+
+因为**浏览器有默认样式**，而且不同浏览器默认样式不一样，为了让样式显示一致，要去掉这些默认样式。
+
+常见的方案有：
+
+1. `reset.css`：将所有元素的样式都设置为相同的初始值，以消除不同浏览器之间的差异。这种方式需要注意的是，一些元素的样式可能与开发者所期望的有所不同，因此需要进行特殊处理。
+2. `Normalize.css`：只重置一部分元素的样式，而不是重置所有元素。这种方式可以避免一些样式上的问题，同时还可以保留一些元素的默认样式，提高代码的可维护性和可读性。
+
+## 什么是BFC，有什么作用？
+
+CSS中的BFC（Block Formatting Context，块级格式化上下文）是Web页面的可视CSS渲染的一部分，它决定了元素如何对其内容进行布局，以及与其他元素的关系和相互作用。
+
+一个元素形成了BFC之后，那么它内部元素产生的布局不会影响到外部元素，外部元素的布局也不会影响到BFC中的内部元素。一个BFC就像是一个隔离区域，和其他区域互不影响。
+
+BFC的作用主要包括以下几点：
+
+1. **包含浮动元素（清除浮动）**：传统的布局问题之一是浮动元素不会影响其容器的高度，因为浮动元素脱离了文档流。通过创建BFC，可以使得容器包含其内部的浮动元素，从而解决高度塌陷问题。
+2. **阻止外边距折叠**：在BFC中，块级元素的垂直外边距不会与其BFC内的兄弟元素发生折叠。这是因为BFC为这些元素提供了一个隔离的环境，使得它们的布局不会相互影响。
+3. **防止文本环绕**：在BFC中，浮动元素不会影响到BFC内部的元素布局。这意味着，如果不希望文本环绕在浮动元素周围，可以通过创建BFC来避免这种情况。
+4. **创建独立的布局环境**：BFC提供了一个独立的布局环境，其中的元素布局不会影响到外部元素。这对于实现某些布局效果非常有用，比如网页的侧边栏和内容区域的布局。
+
+创建 BFC 的方法有多种，包括：
+
+- 应用`overflow`属性（不是`visible`值）到一个块级元素上。
+- 将元素设置为浮动（使用`float`属性，不是`none`）。
+- 将元素设置为绝对定位（使用`position`属性为`absolute`或`fixed`）。
+- 以及其他一些方法，如使用`display`属性的`inline-block`、`table-cell`、`table-caption`、`flex`、`grid`等值。
+
+## 怎么做移动端适配？
+
+常用的移动端适配方案有以下几种：
+
+1. rem方案：淘宝的移动端适配方案，使用相对单位rem结合JS动态计算rem值来实现移动端适配，将页面在不同尺寸的屏幕小按照宽度等比例缩放。
+2. vw方案：和rem方案原理类似，只是单位换成了vw。
+3. px方案：rem和vw方案都是等比例缩放，但是对于一些对UI要求特别高的大厂项目，缩放的显示效果并不是最佳，这时候也可以和UI配合采取px绝对像素。
+4. 媒体查询：对于一些具体的场景，可以根据不同设备的像素区间来针对性地编写样式，这时候就使用媒体查询。
+5. 百分比布局：将元素的宽度和高度设置为百分比，使得页面可以根据不同的屏幕尺寸进行等比例缩放，这种方案和rem、vw原理类似，但是计算比较困难，而且百分比相对的元素不固定，容易使问题变得复杂。
+6. 响应式布局：对于一些定制化程度要求不高，但是需要PC和移动两端共用一套代码的场景，可以使用一些响应式布局的样式库，比如Bootstrap和Tailwind。
+
+我在项目里一般使用vw方案，结合自动化工具，如postcss-px-to-viewport和flexible.js进行自动的转换适配。然后对于一些特殊的场景，采用媒体查询作为辅助来实现。
+
+## 移动端 1px 边框问题怎么解决？
+
+由于不同的设备屏幕像素密度的不同，一些边框、线条等细节元素的显示可能会出现“1px问题”，即在某些设备上，本应该显示为1像素的边框或者线条，实际上却被放大成了2像素或者更多像素，导致显示效果不佳。
+
+常见的解决方案：
+
+1. 使用 border-image：使用border-image可以将图片作为边框来显示，避免了使用CSS边框样式时的1px问题。
+
+2. 使用box-shadow：使用box-shadow代替边框，然后将边框设为透明，可以避免1px问题。
+
+   ```css
+   .border {
+       box-shadow: 0 0 0 1px #ccc;
+   }
+   ```
+
+3. border + transform：使用transform将边框缩小一半。
+
+   ```css
+   .border {
+       border: 1px solid #ccc;
+       transform: scaleY(0.5);
+   }
+   ```
+
+4. 伪元素 + transform：与3类似，不同的是用伪元素来实现，在父元素上添加一个伪元素，然后给伪元素设置一个边框，并将其缩小为0.5倍。这样就可以实现1px的边框效果了。
+
+   ```css
+   .border:before{
+       content: "";
+       display: block;
+       position: absolute;
+       left: 0;
+       top: 0;
+       bottom: 0;
+       right: 0;
+       border: 1px solid #ccc;
+       transform-origin: 0 0;
+       transform: scaleY(0.5);
+   }
+   ```
+
+5. 使用viewport单位：使用viewport相关的单位（如vw、vh、vmin和vmax）来设置边框或者线条的大小，可以让元素的大小自适应不同的设备像素密度。
+
+
+
+## 怎么实现换肤？
+
+### 使用CSS变量
+
+可以定义一个`theme-color`变量来存储主题色：
+
+```css
+:root {
+  --theme-color: #007bff; /* 定义主题色 */
+}
+```
+
+然后在需要使用主题色的地方使用var()函数来引用这个变量：
+
+```css
+.button {
+  background-color: var(--theme-color); /* 使用主题色 */
+}
+```
+
+再通过JS动态更改这个CSS变量的值，从而实现换肤的效果：
+
+```js
+// 获取根元素（即:root）
+const root = document.documentElement;
+
+// 修改主题色变量的值
+root.style.setProperty('--theme-color', '#ff0000');
+```
+
+### 使用 class 切换
+
+通过添加或移除不同的class来改变元素的样式，从而实现换肤。比如，可以定义多个class来表示不同的主题样式：
+
+```css
+.theme-blue {
+  /* 定义蓝色主题样式 */
+  background-color: #007bff;
+  color: #fff;
+}
+
+.theme-red {
+  /* 定义红色主题样式 */
+  background-color: #dc3545;
+  color: #fff;
+}
+```
+
+然后在需要换肤的元素上添加对应的 class：
+
+```html
+<button class="theme-blue">蓝色主题</button>
+<button class="theme-red">红色主题</button>
+```
+
+最后再通过JS动态添加或移除这些class来改变元素的样式，来实现换肤的效果。
+
+
+
+## 有没有了解过CSS命名规范？
+
+常见的CSS命名规范有：BEM规范、SMACSS规范、OOCSS规范。
+
+### BEM规范
+
+BEM （Block, Element, Modifier）将CSS类名分为块、元素和修饰符三个部分，举个例子：
+
+```html
+<div class="block">
+  <h2 class="block__title">标题</h2>
+  <ul class="block__list">
+    <li class="block__list-item">列表项1</li>
+    <li class="block__list-item block__list-item--highlighted">列表项2</li>
+  </ul>
+</div>
+```
+
+其中block代表一个组件或UI部件，`block__title`和`block__list`代表块的子元素，`block__list-item`代表列表项。`block__list-item--highlighted`是一个修饰符，表示该列表项被突出显示。
+
+### SMACSS规范
+
+SMACSS ([Scalable and Modular Architecture for CSS](https://link.juejin.cn/?target=http%3A%2F%2Fsmacss.com%2F)) 不仅仅是命名规范，还包括CSS文件结构的组织规范。SMACSS主要是将样式分成五大类，分别是Base、Layout、Module、State、Theme。其中：
+
+- Base类主要是基本样式规则，例如重置浏览器默认样式、设置全局的基本样式等。这些样式通常以选择器（标签选择器、通用选择器）为基础，并且适用于整个项目；
+- Layout类用于创建页面布局和网格系统，它定义了页面的整体结构、栏目布局、容器和网格样式等；
+- Module类用于定义可重复使用的模块样式；
+- State类用于定义组件的状态样式，如`.btn`和`.btn-primary`的样式；
+- Theme 类主要是主题相关的样式，如`.site-title`和`.module-title`的样式；
+
+### OOCSS规范
+
+OOCSS (Object-oriented CSS) 规范主要遵循结构（Structure）与外观（Skin）分离的原则：
+
+```html
+<div class="box box-red">你好</div>
+<div class="box box-blue">OOCSS规范</div>
+```
+
+其中结构部分（可复用样式）用`.box`，外观部分（不同样式）用`.box-red`来命名。
+
+### ACSS 规范
+
+ACSS（Atomic CSS），原子化 CSS，它将样式属性分解成小的、可重用的单元（原子），每个原子只包含一个样式属性和它的值，以实现更高程度的样式复用和代码压缩。
+
+ACSS 的核心理念是将样式属性分解成最小的可重用单元，然后根据需要组合这些单元来构建页面样式。
+
+```css
+.m-0 {
+  margin: 0;
+}
+.text-red {
+  color: red;
+}
+```
+
+通常会使用成熟的CSS 框架，如 [Tailwind CSS](https://tailwindcss.com/) ， [UnoCSS](https://unocss.dev/) 等。
+
+## 什么是CSS工程化？
+
+CSS 工程化是指在开发和维护大型 Web 项目时，采用一系列规范化、模块化、自动化的工具和方法来提高 CSS 开发效率、代码可维护性和项目的整体质量。CSS 工程化的目标是通过规范化的工具链和工作流，解决 CSS 开发中的一些常见问题，例如命名冲突、样式复用、代码兼容性、性能优化等，从而提升项目的开发效率和质量。
+
+CSS 工程化通常包括以下几个方面的内容：
+
+1. **规范化：** 包括制定 CSS 编码规范、命名规范、组织规范等，统一团队的代码风格，降低团队成员之间的沟通成本。
+2. **模块化：** 将 CSS 代码分割成多个模块，每个模块负责管理特定功能或样式，使用模块化的方式可以提高代码的可维护性和复用性。
+3. **预处理器和后处理器：** 使用 CSS 预处理器（如 Sass、Less、Stylus 等）来编写更加灵活和可维护的 CSS 代码，通过变量、混合、嵌套、函数等功能来提高 CSS 开发效率。同时，还可以使用后处理器（如 PostCSS）来对生成的 CSS 进行优化、压缩、自动添加浏览器前缀等操作。
+4. **模块打包和构建工具：** 使用模块打包工具（如 webpack、Parcel 等）来处理 CSS 文件之间的依赖关系、打包、压缩、代码分割等操作，提高项目的性能和加载速度。
+5. **组件化：** 将页面拆分成多个组件，每个组件都有自己的 CSS 样式文件，通过组件化的方式来管理 CSS，降低样式的耦合性，提高代码的可维护性。
+6. **代码检查和测试：** 使用 CSS 静态分析工具（如 Stylelint）对 CSS 代码进行规范检查，确保代码符合规范，同时可以编写单元测试和集成测试来验证 CSS 样式的正确性。
+
+通过实施 CSS 工程化，可以有效地提高团队的协作效率、降低项目维护成本，同时提高项目的可扩展性和可维护性，是现代 Web 开发中不可或缺的一部分。

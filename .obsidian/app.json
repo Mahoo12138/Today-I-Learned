@@ -1,1 +1,7 @@
-{}
+{
+  "userIgnoreFilters": [
+    "node_modules"
+  ],
+  "showUnsupportedFiles": false,
+  "attachmentFolderPath": "./_resources"
+}

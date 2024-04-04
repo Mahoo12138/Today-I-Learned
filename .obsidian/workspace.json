@@ -11,8 +11,12 @@
             "id": "001a917b502376f3",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "front-end/gis/README.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -65,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 205.5110321044922
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "front-end/gis/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "front-end/gis/README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,14 +124,17 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "front-end/gis/README.md"
+              }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 200,
     "collapsed": true
   },
   "left-ribbon": {
@@ -140,6 +149,27 @@
   },
   "active": "001a917b502376f3",
   "lastOpenFiles": [
+    "front-end/gis/_resources/tiles-z12.png",
+    "front-end/gis/_resources/640.png",
+    "front-end/gis/_resources/render.png",
+    "front-end/gis/_resources/z-index.png",
+    "front-end/gis/_resources/642.png",
+    "front-end/gis/README.md",
+    "front-end/gis/_resources/z-int.png",
+    "front-end/gis/_resources/tiles.png",
+    "front-end/gis/_resources/mercator.png",
+    "interview/css.md",
+    "front-end/gis/_resources",
+    "README.md",
+    "front-end/vite/README.md",
+    "front-end/gis",
+    "algorithm/sort/quick.md",
+    "front-end/vite",
+    "front-end/react/react-hooks-ref.md",
+    "algorithm/sort/qucik.md",
+    "algorithm/sort",
+    "algorithm/200/215.md",
+    "algorithm/200/206.md",
     "others/yarn.md",
     "algorithm/100/141.md",
     "docs/advanced.md",

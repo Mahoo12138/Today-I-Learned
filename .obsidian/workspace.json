@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "algorithm/sort/quick.md",
+                "file": "front-end/webgl/2. WebGL绘制点.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 205.5110321044922
+    "width": 282.5
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "algorithm/sort/quick.md",
+                "file": "front-end/webgl/2. WebGL绘制点.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "algorithm/sort/quick.md",
+                "file": "front-end/webgl/2. WebGL绘制点.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,17 +125,15 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "algorithm/sort/quick.md"
+                "file": "front-end/webgl/2. WebGL绘制点.md"
               }
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 265.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -149,37 +147,49 @@
   },
   "active": "47ce7d31f2c02cb9",
   "lastOpenFiles": [
+    "front-end/webgl/1. 初识 WebGL.md",
+    "front-end/webgl/2. WebGL绘制点.md",
+    "functional-paradigm/ch3.md",
+    "nodejs/EventLoop/event-loop-4.md",
+    "interview/bytedance/1.md",
+    "algorithm/100/141.md",
+    "others/yarn.md",
+    "algorithm/100/142.md",
+    "front-end/webgl/_resource/second/1.1.png",
+    "front-end/webgl/_resource/fourth/5.2.png",
+    "front-end/webgl/_resource/fourth/5.1.gif",
+    "front-end/webgl/_resource/fourth/4.5.png",
+    "front-end/webgl/_resource/fourth/4.4.png",
+    "front-end/webgl/_resource/fourth/4.3.png",
+    "front-end/webgl/_resource/fourth/4.2.png",
+    "front-end/webgl/_resource/fourth/4.1.png",
+    "front-end/webgl/_resource/fourth/3.5.png",
+    "front-end/webgl/_resource/fourth/3.4.png",
+    "front-end/webgl/_resource/fourth",
+    "front-end/webgl/_resource/fifth",
+    "front-end/webgl/_resource/third",
+    "front-end/webgl/_resource/sixth",
+    "front-end/webgl/_resource/second",
+    "front-end/webgl/_resource",
+    "algorithm/sort/quick.md",
+    "front-end/webgl",
     "front-end/vue/page-cache.md",
     "front-end/web-component/README.md",
     "front-end/web-component",
     "front-end/reading/03-用 JS 实现一个 LRU 缓存.md",
     "front-end/reading/03-.md",
     "algorithm/README.md",
-    "algorithm/sort/quick.md",
     "front-end/gis/README.md",
-    "front-end/gis/_resources/tiles-z12.png",
-    "front-end/gis/_resources/640.png",
-    "front-end/gis/_resources/render.png",
-    "front-end/gis/_resources/z-index.png",
-    "front-end/gis/_resources/642.png",
-    "front-end/gis/_resources/z-int.png",
-    "front-end/gis/_resources/tiles.png",
-    "front-end/gis/_resources/mercator.png",
     "interview/css.md",
     "front-end/gis/_resources",
     "README.md",
     "front-end/vite/README.md",
     "front-end/gis",
-    "front-end/vite",
     "front-end/react/react-hooks-ref.md",
     "algorithm/sort/qucik.md",
-    "algorithm/sort",
     "algorithm/200/215.md",
     "algorithm/200/206.md",
-    "others/yarn.md",
-    "algorithm/100/141.md",
     "docs/advanced.md",
-    "docs",
     "front-end/webpack/demo/node_modules/union-value/README.md",
     "front-end/react/handle-errors.md"
   ]

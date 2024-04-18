@@ -1,4 +1,4 @@
-# Vue3除了 keep-alive，还有哪些页面缓存的实现方案
+# Vue3 除了 keep-alive，还有哪些页面缓存的实现方案
 
 ## 引言
 
@@ -6,17 +6,17 @@
 
 对于这个需求，我的第一个想法就是使用 keep-alive 来缓存列表页，列表和详情页切换时，列表页会被缓存；从首页进入列表页时，就重置列表页数据并重新获取新数据来达到列表页重新加载的效果。
 
-但是，这个方案有个很不好的地方就是：如果列表页足够复杂，有下拉刷新、下拉加载、有弹窗、有轮播等，在清除缓存时，就需要重置很多数据和状态，而且还可能要手动去销毁和重新加载某些组件，这样做既增加了复杂度，也容易出bug。
+但是，这个方案有个很不好的地方就是：如果列表页足够复杂，有下拉刷新、下拉加载、有弹窗、有轮播等，在清除缓存时，就需要重置很多数据和状态，而且还可能要手动去销毁和重新加载某些组件，这样做既增加了复杂度，也容易出 bug。
 
-接下来说说我的想到的新实现方案（代码基于Vue3）。
+接下来说说我的想到的新实现方案（代码基于 Vue3）。
 
 ## keep-alive 缓存和清除
 
-> keep-alive 缓存原理：进入页面时，页面组件渲染完成，keep-alive 会缓存页面组件的实例；离开页面后，组件实例由于已经缓存就不会进行销毁；当再次进入页面时，就会将缓存的组件实例拿出来渲染，因为组件实例保存着原来页面的数据和Dom的状态，那么直接渲染组件实例就能得到原来的页面。
+> keep-alive 缓存原理：进入页面时，页面组件渲染完成，keep-alive 会缓存页面组件的实例；离开页面后，组件实例由于已经缓存就不会进行销毁；当再次进入页面时，就会将缓存的组件实例拿出来渲染，因为组件实例保存着原来页面的数据和 Dom 的状态，那么直接渲染组件实例就能得到原来的页面。
 
-**keep-alive 最大的难题就是缓存的清理**，如果能有简单的缓存清理方法，那么keep-alive 组件用起来就很爽。
+**keep-alive 最大的难题就是缓存的清理**，如果能有简单的缓存清理方法，那么 keep-alive 组件用起来就很爽。
 
-但是，keep-alive 组件没有提供清除缓存的API，那有没有其他清除缓存的办法呢？答案是有的。我们先看看 keep-alive 组件的props：
+但是，keep-alive 组件没有提供清除缓存的 API，那有没有其他清除缓存的办法呢？答案是有的。我们先看看 keep-alive 组件的 props：
 
 ```
 include - string | RegExp | Array 只有名称匹配的组件会被缓存
@@ -24,7 +24,7 @@ exclude - string | RegExp | Array 任何名称匹配的组件都不会被缓存
 max - number | string 最多可以缓存多少组件实例
 ```
 
-从include描述来看，我发现 include 是可以用来清除缓存，做法是：将组件名称添加到 include里，组件会被缓存；移除组件名称，组件缓存会被清除。根据这个原理，用 hook 简单封装一下代码：
+从 include 描述来看，我发现 include 是可以用来清除缓存，做法是：将组件名称添加到 include 里，组件会被缓存；移除组件名称，组件缓存会被清除。根据这个原理，用 hook 简单封装一下代码：
 
 ```js
 import { ref, nextTick } from 'vue'
@@ -38,7 +38,7 @@ export default function useRouteCache () {
       componentName.forEach(addCache)
       return
     }
-    
+
     if (!componentName || caches.value.includes(componentName)) return
 
     caches.value.push(componentName)
@@ -51,15 +51,15 @@ export default function useRouteCache () {
       return caches.value.splice(index, 1)
     }
   }
-  
+
   // 移除缓存的路由组件的实例
-  async function removeCacheEntry (componentName: string) {    
+  async function removeCacheEntry (componentName: string) {
     if (removeCache(componentName)) {
       await nextTick()
       addCache(componentName)
     }
   }
-  
+
   return {
     caches,
     addCache,
@@ -90,10 +90,10 @@ addCache(['List'])
 清除列表页缓存如下：
 
 ```js
-import useRouteCache from '@/hooks/useRouteCache'
+import useRouteCache from "@/hooks/useRouteCache";
 
-const { removeCacheEntry } = useRouteCache()
-removeCacheEntry('List')
+const { removeCacheEntry } = useRouteCache();
+removeCacheEntry("List");
 ```
 
 > 此处`removeCacheEntry`方法清除的是列表组件的实例，'List' 值仍然在 组件的 include 里，下次重新进入列表页会重新加载列表组件，并且之后会继续列表组件进行缓存。
@@ -106,14 +106,14 @@ removeCacheEntry('List')
 
 ```js
 defineOptions({
-  name: 'List1',
-  beforeRouteEnter (to: RouteRecordNormalized, from: RouteRecordNormalized) {
-    if (from.name === 'Home') {
-      const { removeCacheEntry } = useRouteCache()
-      removeCacheEntry('List1')
+  name: "List1",
+  beforeRouteEnter(to: RouteRecordNormalized, from: RouteRecordNormalized) {
+    if (from.name === "Home") {
+      const { removeCacheEntry } = useRouteCache();
+      removeCacheEntry("List1");
     }
-  }
-})
+  },
+});
 ```
 
 这种缓存方式有个不太友好的地方：当从首页进入列表页，列表页和详情页来回切换，列表页是缓存的；但是在首页和列表页间用浏览器的前进后退来切换时，我们更多的是希望列表页能保留缓存，就像在多页面中浏览器前进后退会缓存原页面一样的效果。但实际上，列表页重新刷新了，这就需要使用另一种解决办法，**点击链接时清除缓存清除缓存**。
@@ -129,19 +129,18 @@ defineOptions({
   <router-link to="/list" @click="removeCacheBeforeEnter">列表页</router-link>
 </li>
 
-
 <script setup lang="ts">
-import useRouteCache from '@/hooks/useRouteCache'
+import useRouteCache from "@/hooks/useRouteCache";
 
 defineOptions({
-  name: 'Home'
-})
+  name: "Home",
+});
 
-const { removeCacheEntry } = useRouteCache()
+const { removeCacheEntry } = useRouteCache();
 
 // 进入页面前，先清除缓存实例
-function removeCacheBeforeEnter () {
-  removeCacheEntry('List')
+function removeCacheBeforeEnter() {
+  removeCacheEntry("List");
 }
 </script>
 ```
@@ -153,14 +152,14 @@ function removeCacheBeforeEnter () {
 首先使用 pinia 创建列表页 store：
 
 ```ts
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
 interface Item {
-  id?: number,
-  content?: string
+  id?: number;
+  content?: string;
 }
 
-const useListStore = defineStore('list', {
+const useListStore = defineStore("list", {
   // 推荐使用 完整类型推断的箭头函数
   state: () => {
     return {
@@ -168,23 +167,23 @@ const useListStore = defineStore('list', {
       pageSize: 30,
       currentPage: 1,
       list: [] as Item[],
-      curRow: null as Item | null
-    }
+      curRow: null as Item | null,
+    };
   },
   actions: {
-    setList (data: Item []) {
-      this.list = data
+    setList(data: Item[]) {
+      this.list = data;
     },
-    setCurRow (data: Item) {
-      this.curRow = data
+    setCurRow(data: Item) {
+      this.curRow = data;
     },
-    setIsRefresh (data: boolean) {
-      this.isRefresh = data
-    }
-  }
-})
+    setIsRefresh(data: boolean) {
+      this.isRefresh = data;
+    },
+  },
+});
 
-export default useListStore
+export default useListStore;
 ```
 
 然后在列表页中使用 store：
@@ -211,7 +210,7 @@ export default useListStore
     :total="listStore.list.length"
   />
 </div>
-  
+
 <script setup lang="ts">
 import useListStore from '@/store/listStore'
 const listStore = useListStore()
@@ -220,33 +219,33 @@ const listStore = useListStore()
 </script>
 ```
 
-通过beforeRouteEnter钩子判断是否从首页进来，是则通过 `listStore.$reset()` 来重置数据，否则使用缓存的数据状态；之后根据 `listStore.isRefresh` 标示判断是否重新获取列表数据。
+通过 beforeRouteEnter 钩子判断是否从首页进来，是则通过 `listStore.$reset()` 来重置数据，否则使用缓存的数据状态；之后根据 `listStore.isRefresh` 标示判断是否重新获取列表数据。
 
 ```js
 defineOptions({
-    beforeRouteEnter (to: RouteLocationNormalized, from: RouteLocationNormalized) {
-        if (from.name === 'Home') {
-            const listStore = useListStore()
-            listStore.$reset()
-        }
+  beforeRouteEnter(to: RouteLocationNormalized, from: RouteLocationNormalized) {
+    if (from.name === "Home") {
+      const listStore = useListStore();
+      listStore.$reset();
     }
-})
+  },
+});
 
 onBeforeMount(() => {
-    if (!listStore.useCache) {
-        loading.value = true
-        setTimeout(() => {
-            listStore.setList(getData())
-            loading.value = false
-        }, 1000)
-        listStore.useCache = true
-    }
-})
+  if (!listStore.useCache) {
+    loading.value = true;
+    setTimeout(() => {
+      listStore.setList(getData());
+      loading.value = false;
+    }, 1000);
+    listStore.useCache = true;
+  }
+});
 ```
 
 ### 缺点
 
-通过状态管理去做缓存的话，需要将状态数据都存在 store  里，状态多起来的话，会有点繁琐，而且状态写在 store 里肯定没有写在列表组件里来的直观；状态管理由于只做列表页数据的缓存，对于一些非受控组件来说，组件内部状态改变是缓存不了的，这就导致页面渲染后跟原来有差别，需要额外代码操作。
+通过状态管理去做缓存的话，需要将状态数据都存在 store 里，状态多起来的话，会有点繁琐，而且状态写在 store 里肯定没有写在列表组件里来的直观；状态管理由于只做列表页数据的缓存，对于一些非受控组件来说，组件内部状态改变是缓存不了的，这就导致页面渲染后跟原来有差别，需要额外代码操作。
 
 ## 页面弹窗实现缓存
 
@@ -266,58 +265,57 @@ onBeforeMount(() => {
 </template>
 
 <script setup lang="ts">
-import { useLockscreen } from 'element-plus'
-import { computed, defineProps, defineEmits } from 'vue'
-import useHistoryPopup from './useHistoryPopup'
+import { useLockscreen } from "element-plus";
+import { computed, defineProps, defineEmits } from "vue";
+import useHistoryPopup from "./useHistoryPopup";
 
 const props = defineProps({
   modelValue: {
     type: Boolean,
-    default: false
+    default: false,
   },
   // 路由记录
   history: {
-    type: Object
+    type: Object,
   },
   // 配置了history后，初次渲染时，如果有url上有history参数，则自动打开弹窗
   auto: {
     type: Boolean,
-    default: true
+    default: true,
   },
   size: {
     type: String,
-    default: '50%'
+    default: "50%",
   },
   full: {
     type: Boolean,
-    default: false
-  }
-})
-const emit = defineEmits(
-  ['update:modelValue', 'autoOpen', 'autoClose']
-)
-
-const dialogVisible = computed<boolean>({ // 控制弹窗显示
-  get () {
-    return props.modelValue
+    default: false,
   },
-  set (val) {
-    emit('update:modelValue', val)
-  }
-})
+});
+const emit = defineEmits(["update:modelValue", "autoOpen", "autoClose"]);
 
-useLockscreen(dialogVisible)
+const dialogVisible = computed<boolean>({
+  // 控制弹窗显示
+  get() {
+    return props.modelValue;
+  },
+  set(val) {
+    emit("update:modelValue", val);
+  },
+});
+
+useLockscreen(dialogVisible);
 
 useHistoryPopup({
   history: computed(() => props.history),
   auto: props.auto,
   dialogVisible: dialogVisible,
-  onAutoOpen: () => emit('autoOpen'),
-  onAutoClose: () => emit('autoClose')
-})
+  onAutoOpen: () => emit("autoOpen"),
+  onAutoClose: () => emit("autoClose"),
+});
 </script>
 
-<style lang='less'>
+<style lang="less">
 .popup-page {
   position: fixed;
   left: 0;
@@ -328,7 +326,7 @@ useHistoryPopup({
   overflow: auto;
   padding: 10px;
   background: #fff;
-  
+
   &.hidden {
     display: none;
   }
@@ -339,10 +337,7 @@ useHistoryPopup({
 弹窗组件调用：
 
 ```vue
-<popup-page 
-  v-model="visible" 
-  full
-  :history="{ id: id }">
+<popup-page v-model="visible" full :history="{ id: id }">
   <Detail></Detail>
 </popup-page>
 ```
@@ -379,9 +374,14 @@ useHistoryPopup({
 ```vue
 // 列表页
 <template>
-  <el-table v-loading="loading" :data="tableData" border style="width: 100%; margin-top: 30px;">
+  <el-table
+    v-loading="loading"
+    :data="tableData"
+    border
+    style="width: 100%; margin-top: 30px;"
+  >
     <el-table-column prop="id" label="id" />
-    <el-table-column prop="content" label="内容"/>
+    <el-table-column prop="content" label="内容" />
     <el-table-column label="操作">
       <template v-slot="{ row }">
         <el-link type="primary" @click="gotoDetail(row)">进入详情</el-link>
@@ -395,12 +395,12 @@ useHistoryPopup({
     layout="total, prev, pager, next"
     :total="list.length"
   />
-  
+
   <!-- 详情页 -->
   <router-view class="popyp-page"></router-view>
 </template>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
 .popyp-page {
   position: fixed;
   top: 0;

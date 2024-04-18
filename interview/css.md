@@ -4,7 +4,7 @@
 
 一个盒子由四个部分组成：`content`、`padding`、`border`、`margin`：
 
-![css-box-model](.\_resources\css-box-model.png)
+![css-box-model](css-box-model.png)
 
 + `content`，即实际内容，显示文本和图像
 
@@ -16,7 +16,7 @@
 
 上述是一个从二维的角度观察盒子，下面再看看看三维图：
 
-![css-box-model-hierarchy](.\_resources\css-box-model-hierarchy.png)
+![css-box-model-hierarchy](css-box-model-hierarchy.png)
 
 下面来段代码：
 
@@ -57,7 +57,7 @@
 
 同样看看IE 怪异盒子模型的模型图：
 
-![ie-css-box-model](.\_resources\ie-css-box-model.png)
+![ie-css-box-model](ie-css-box-model.png)
 
 从上图可以看到：
 
@@ -303,7 +303,7 @@ cursor：箭头可以变成需要的形状
 
 具体的浏览器解析渲染机制如下所示：
 
-![painting](.\_resources\painting.png)
+![painting](painting.png)
 
 - 解析HTML，生成DOM树，解析CSS，生成CSSOM树
 - 将DOM树和CSSOM树结合，生成渲染树(Render Tree)

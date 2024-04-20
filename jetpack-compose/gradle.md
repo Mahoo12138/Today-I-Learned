@@ -1,6 +1,6 @@
 ## Basic Gradle
 
-![Gradle basic](.\resources\gradle-basic-1.png)
+![Gradle basic](gradle-basic-1.png)
 
 ### Gradle core concepts
 

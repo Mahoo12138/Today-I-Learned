@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "43a5bc2d3f657f87",
+        "id": "5c9312d1b2075ee3",
         "type": "tabs",
         "children": [
           {
-            "id": "47ce7d31f2c02cb9",
+            "id": "5c6cff2d820a5b3e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "front-end/webgl/6. WebGL绘制基本图形.md",
+                "file": "rust/rust-bible/advanced/07-全局变量.md",
                 "mode": "source",
                 "source": false
               }
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#TODO",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 282.5
+    "width": 296.5
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "front-end/webgl/6. WebGL绘制基本图形.md",
+                "file": "rust/rust-bible/advanced/07-全局变量.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "front-end/webgl/6. WebGL绘制基本图形.md",
+                "file": "rust/rust-bible/advanced/07-全局变量.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,15 +125,16 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "front-end/webgl/6. WebGL绘制基本图形.md"
+                "file": "rust/rust-bible/advanced/07-全局变量.md"
               }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 265.5
+    "width": 296.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -145,21 +146,37 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "47ce7d31f2c02cb9",
+  "active": "5c6cff2d820a5b3e",
   "lastOpenFiles": [
-    "front-end/webgl/5. WebGL绘制线和三角.md",
-    "front-end/webgl/4. 绘制动态颜色点.md",
-    "front-end/webgl/6. WebGL绘制基本图形.md",
-    "front-end/webgl/3. WebGL绘制动态点.md",
-    "front-end/webgl/_resource/3. WebGL绘制动态点.md",
-    "front-end/webgl/2. WebGL绘制点.md",
-    "front-end/webgl/1. 初识 WebGL.md",
-    "functional-paradigm/ch3.md",
-    "nodejs/EventLoop/event-loop-4.md",
+    "rust/rust-bible/advanced/07-全局变量.md",
+    "rust/rust-bible/advanced/04-智能指针.md",
+    "rust/rust-bible/advanced/00-疑惑解答.md",
+    "rust/rust-bible/advanced/06-多线程并发编程.md",
+    "rust/rust-bible/advanced/05-循环引用与自引用.md",
+    "rust/rust-bible/advanced/03-深入类型.md",
+    "rust/rust-bible/advanced/02-函数式编程-迭代器.md",
+    "rust/rust-bible/advanced/01-函数式编程-闭包.md",
+    "functional-paradigm/ch1.md",
+    "ch6.md",
+    "jetpack-compose/gradle.md",
+    "algorithm/200/206.md",
     "interview/bytedance/1.md",
-    "algorithm/100/141.md",
+    "algorithm/2.md",
+    "nodejs/EventLoop/event-loop-4.md",
     "others/yarn.md",
-    "algorithm/100/142.md",
+    "functional-paradigm/ch5.md",
+    "front-end/webgl/5. WebGL绘制线和三角.md",
+    "content/二、WebGL基础/2. .html.md",
+    "content/二、WebGL基础",
+    "content",
+    "WebGL绘制点.md",
+    "front-end/webgl/3. WebGL绘制动态点.md",
+    "res/4.Event-loop-and-JavaScript.jpg.md",
+    "res",
+    "nodejs/EventLoop/event-loop-1.md",
+    "front-end/webgl/6. WebGL绘制基本图形.md",
+    "front-end/webgl/4. 绘制动态颜色点.md",
+    "front-end/webgl/_resource/3. WebGL绘制动态点.md",
     "front-end/webgl/_resource/second/1.1.png",
     "front-end/webgl/_resource/fourth/5.2.png",
     "front-end/webgl/_resource/fourth/5.1.gif",
@@ -176,22 +193,6 @@
     "front-end/webgl/_resource/sixth",
     "front-end/webgl/_resource/second",
     "front-end/webgl/_resource",
-    "algorithm/sort/quick.md",
-    "front-end/webgl",
-    "front-end/vue/page-cache.md",
-    "front-end/web-component/README.md",
-    "front-end/web-component",
-    "front-end/reading/03-用 JS 实现一个 LRU 缓存.md",
-    "front-end/reading/03-.md",
-    "algorithm/README.md",
-    "front-end/gis/README.md",
-    "interview/css.md",
-    "front-end/gis/_resources",
-    "README.md",
-    "front-end/vite/README.md",
-    "front-end/gis",
-    "front-end/react/react-hooks-ref.md",
-    "algorithm/sort/qucik.md",
-    "algorithm/200/215.md"
+    "front-end/webgl"
   ]
 }

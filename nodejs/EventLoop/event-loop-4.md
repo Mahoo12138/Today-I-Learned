@@ -15,11 +15,11 @@ NodeJS 中我们反复谈到异步 I/O。正如本系列第一篇文章提到的
 - c-ares —— DNS 操作
 - 其他插件如 http-parser，crypto 和 zlib
 
-![5.NodeJS-Architecture](res\5.NodeJS-Architecture.png)
+![5.NodeJS-Architecture](5.NodeJS-Architecture.png)
 
 这篇文章中我会讲解 Libuv 和它如何向 Node 提供异步 I/O。让我们再回顾事件循环图示。
 
-![4.all-Q](res\4.all-Q.png)
+![4.all-Q](4.all-Q.png)
 
 我们已经学到的事件循环知识有：
 
@@ -42,7 +42,7 @@ JavaScript 本身没有能力实现异步 I/O 操作。NodeJS 开发过程中，
 
 如 NodeJS 架构图所示，libuv 在架构中处于较底层的位置。现在，让我们看看 NodeJS 上层和 libuv 事件循环各阶段之间的关系。
 
-![4.Event-loop-and-JavaScript](res\4.Event-loop-and-JavaScript.jpg)
+![4.Event-loop-and-JavaScript](4.Event-loop-and-JavaScript.jpg)
 
 相比于事件循环中存在 4 个可区分的阶段，在 libuv 中其实存在 7 个可区分的阶段：
 

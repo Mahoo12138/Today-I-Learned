@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "front-end/webgl/2. WebGL绘制点.md",
+                "file": "front-end/webgl/6. WebGL绘制基本图形.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "front-end/webgl/2. WebGL绘制点.md",
+                "file": "front-end/webgl/6. WebGL绘制基本图形.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "front-end/webgl/2. WebGL绘制点.md",
+                "file": "front-end/webgl/6. WebGL绘制基本图形.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "front-end/webgl/2. WebGL绘制点.md"
+                "file": "front-end/webgl/6. WebGL绘制基本图形.md"
               }
             }
           }
@@ -147,8 +147,13 @@
   },
   "active": "47ce7d31f2c02cb9",
   "lastOpenFiles": [
-    "front-end/webgl/1. 初识 WebGL.md",
+    "front-end/webgl/5. WebGL绘制线和三角.md",
+    "front-end/webgl/4. 绘制动态颜色点.md",
+    "front-end/webgl/6. WebGL绘制基本图形.md",
+    "front-end/webgl/3. WebGL绘制动态点.md",
+    "front-end/webgl/_resource/3. WebGL绘制动态点.md",
     "front-end/webgl/2. WebGL绘制点.md",
+    "front-end/webgl/1. 初识 WebGL.md",
     "functional-paradigm/ch3.md",
     "nodejs/EventLoop/event-loop-4.md",
     "interview/bytedance/1.md",
@@ -187,10 +192,6 @@
     "front-end/gis",
     "front-end/react/react-hooks-ref.md",
     "algorithm/sort/qucik.md",
-    "algorithm/200/215.md",
-    "algorithm/200/206.md",
-    "docs/advanced.md",
-    "front-end/webpack/demo/node_modules/union-value/README.md",
-    "front-end/react/handle-errors.md"
+    "algorithm/200/215.md"
   ]
 }

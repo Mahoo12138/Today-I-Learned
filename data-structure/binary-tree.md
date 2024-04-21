@@ -2,11 +2,10 @@
 title: 数据结构与算法学习之二叉树
 date: 2022-06-14 10:46:51
 mathjax: true
-img: https://cdn.jsdelivr.net/gh/mahoo12138/js-css-cdn/hexo-images/study/algorithm/20210418160102.png
-tags: 
-- 数据结构与算法
-categories: 
-- 学习笔记
+tags:
+  - 数据结构与算法
+categories:
+  - 学习笔记
 ---
 
 ## 树介绍

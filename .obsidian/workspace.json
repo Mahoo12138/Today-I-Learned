@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "5c9312d1b2075ee3",
+        "id": "cc11bbb571dabb1a",
         "type": "tabs",
         "children": [
           {
-            "id": "5c6cff2d820a5b3e",
+            "id": "d4d11cbffa5225f6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "rust/rust-bible/advanced/07-全局变量.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "graph",
+              "state": {}
             }
           }
         ]
@@ -48,7 +44,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#TODO",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -69,7 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 296.5
+    "width": 279.5110321044922
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -80,12 +76,30 @@
         "type": "tabs",
         "children": [
           {
+            "id": "260547aff3817ca4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          },
+          {
+            "id": "405ac676f5f143ae",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
             "id": "bb152053d8bc49c8",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "rust/rust-bible/advanced/07-全局变量.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,52 +116,42 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "rust/rust-bible/advanced/07-全局变量.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
-          },
-          {
-            "id": "405ac676f5f143ae",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true
-              }
-            }
-          },
-          {
-            "id": "260547aff3817ca4",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "rust/rust-bible/advanced/07-全局变量.md"
-              }
-            }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 296.5
+    "width": 364.5
   },
   "left-ribbon": {
     "hiddenItems": {
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "random-note:Open random note": false,
+      "workspaces:Manage workspace layouts": false
     }
   },
-  "active": "5c6cff2d820a5b3e",
+  "active": "d4d11cbffa5225f6",
   "lastOpenFiles": [
+    "ch6.md",
+    "rust/rust-bible/advanced/08-错误处理.md",
+    "rust/rust-bible/basic/19-返回值与错误处理.md",
+    "data-structure/binary-tree.md",
+    "front-end/webgl/2. WebGL绘制点.md",
+    "functional-paradigm/ch5.md",
+    "jetpack-compose/gradle.md",
+    "Untitled.canvas",
+    "jetpack-compose/getting-started.md",
+    "jetpack-compose/android-build.md",
+    "README.md",
+    "content/二、WebGL基础/2. .html.md",
     "rust/rust-bible/advanced/07-全局变量.md",
     "rust/rust-bible/advanced/04-智能指针.md",
     "rust/rust-bible/advanced/00-疑惑解答.md",
@@ -157,26 +161,15 @@
     "rust/rust-bible/advanced/02-函数式编程-迭代器.md",
     "rust/rust-bible/advanced/01-函数式编程-闭包.md",
     "functional-paradigm/ch1.md",
-    "ch6.md",
-    "jetpack-compose/gradle.md",
     "algorithm/200/206.md",
     "interview/bytedance/1.md",
     "algorithm/2.md",
     "nodejs/EventLoop/event-loop-4.md",
-    "others/yarn.md",
-    "functional-paradigm/ch5.md",
+    "front-end/others/yarn.md",
     "front-end/webgl/5. WebGL绘制线和三角.md",
-    "content/二、WebGL基础/2. .html.md",
     "content/二、WebGL基础",
     "content",
-    "WebGL绘制点.md",
-    "front-end/webgl/3. WebGL绘制动态点.md",
-    "res/4.Event-loop-and-JavaScript.jpg.md",
     "res",
-    "nodejs/EventLoop/event-loop-1.md",
-    "front-end/webgl/6. WebGL绘制基本图形.md",
-    "front-end/webgl/4. 绘制动态颜色点.md",
-    "front-end/webgl/_resource/3. WebGL绘制动态点.md",
     "front-end/webgl/_resource/second/1.1.png",
     "front-end/webgl/_resource/fourth/5.2.png",
     "front-end/webgl/_resource/fourth/5.1.gif",

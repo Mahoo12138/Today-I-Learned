@@ -1,4 +1,4 @@
-﻿# TypeScript AST Viewer
+# TypeScript AST Viewer
 
 [![CI](https://github.com/dsherret/ts-ast-viewer/workflows/CI/badge.svg)](https://github.com/dsherret/ts-ast-viewer/actions?query=workflow%3ACI)
 

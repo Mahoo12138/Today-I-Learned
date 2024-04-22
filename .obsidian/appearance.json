@@ -1,4 +1,6 @@
 {
   "accentColor": "",
-  "cssTheme": "Border"
+  "cssTheme": "Border",
+  "monospaceFontFamily": "MesloLGS Nerd Font",
+  "theme": "obsidian"
 }

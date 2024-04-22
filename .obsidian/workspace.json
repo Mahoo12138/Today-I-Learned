@@ -4,15 +4,31 @@
     "type": "split",
     "children": [
       {
-        "id": "cc11bbb571dabb1a",
+        "id": "1b71fef1a3d00b08",
         "type": "tabs",
         "children": [
           {
-            "id": "d4d11cbffa5225f6",
+            "id": "5f8d0ec430bb88c6",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "front-end/webgl/2.1. 绘制彩色的三角.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c76918a4fb2518f1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "front-end/webgl/1.3. WebGL 绘制动态点.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -65,7 +81,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 279.5110321044922
+    "width": 272.5110321044922
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -80,7 +96,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "front-end/webgl/2.1. 绘制彩色的三角.md"
+              }
             }
           },
           {
@@ -100,6 +118,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "front-end/webgl/2.1. 绘制彩色的三角.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,6 +135,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "front-end/webgl/2.1. 绘制彩色的三角.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,48 +145,52 @@
       }
     ],
     "direction": "horizontal",
-    "width": 364.5
+    "width": 300.5
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "random-note:Open random note": false,
-      "workspaces:Manage workspace layouts": false
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "random-note:开始漫游笔记": false,
+      "workspaces:管理工作区布局": false
     }
   },
-  "active": "d4d11cbffa5225f6",
+  "active": "5f8d0ec430bb88c6",
   "lastOpenFiles": [
-    "ch6.md",
-    "rust/rust-bible/advanced/08-错误处理.md",
-    "rust/rust-bible/basic/19-返回值与错误处理.md",
+    "data-structure/binary-search-tree/src/Main.java",
+    "data-structure/binary-search-tree/src/BinarySearchTree.java",
+    "data-structure/binary-search-tree/src",
+    "front-end/webgl/1.3. WebGL 绘制动态点.md",
+    "front-end/webgl/2.1. 绘制彩色的三角.md",
+    "front-end/webgl/1.2. WebGL 绘制点.md",
+    "front-end/webgl/1.1 初识 WebGL.md",
+    "front-end/webgl/1.4. 绘制动态颜色点.md",
+    "front-end/webgl/1.6. WebGL 绘制基本图形.md",
+    "front-end/webgl/1.5. WebGL 绘制线和三角.md",
     "data-structure/binary-tree.md",
-    "front-end/webgl/2. WebGL绘制点.md",
-    "functional-paradigm/ch5.md",
-    "jetpack-compose/gradle.md",
-    "Untitled.canvas",
-    "jetpack-compose/getting-started.md",
-    "jetpack-compose/android-build.md",
-    "README.md",
-    "content/二、WebGL基础/2. .html.md",
-    "rust/rust-bible/advanced/07-全局变量.md",
-    "rust/rust-bible/advanced/04-智能指针.md",
-    "rust/rust-bible/advanced/00-疑惑解答.md",
-    "rust/rust-bible/advanced/06-多线程并发编程.md",
-    "rust/rust-bible/advanced/05-循环引用与自引用.md",
-    "rust/rust-bible/advanced/03-深入类型.md",
-    "rust/rust-bible/advanced/02-函数式编程-迭代器.md",
-    "rust/rust-bible/advanced/01-函数式编程-闭包.md",
-    "functional-paradigm/ch1.md",
+    "data-structure/B-tree.md",
+    "data-structure/binary-search-tree/README.md",
+    "data-structure/AVL/README.md",
+    "code-learing/lz-string/code.png",
+    "code-learing/lz-string/decode.png",
+    "code-learing/lz-string/DOC.md",
+    "code-learing/lz-string/README.md",
+    "front-end/css/basic-css-filter/README.md",
+    "functional-paradigm/ch2.md",
+    "front-end/css/basic-css-text/font/README.md",
+    "rust/rust-bible/basic/22-格式化输出.md",
     "algorithm/200/206.md",
-    "interview/bytedance/1.md",
-    "algorithm/2.md",
-    "nodejs/EventLoop/event-loop-4.md",
-    "front-end/others/yarn.md",
-    "front-end/webgl/5. WebGL绘制线和三角.md",
+    "code-learing/ts-ast-viewer/readme.md",
+    "code-learing/ts-ast-viewer/docs/about.md",
+    "golang/interface/interface.md",
+    "rust/rust-bible/advanced/08-错误处理.md",
+    "front-end/interview/misc.md",
+    "jetpack-compose/android-build.md",
+    "jetpack-compose/getting-started.md",
+    "Untitled.canvas",
     "content/二、WebGL基础",
     "content",
     "res",
@@ -178,14 +202,10 @@
     "front-end/webgl/_resource/fourth/4.3.png",
     "front-end/webgl/_resource/fourth/4.2.png",
     "front-end/webgl/_resource/fourth/4.1.png",
-    "front-end/webgl/_resource/fourth/3.5.png",
-    "front-end/webgl/_resource/fourth/3.4.png",
     "front-end/webgl/_resource/fourth",
     "front-end/webgl/_resource/fifth",
     "front-end/webgl/_resource/third",
     "front-end/webgl/_resource/sixth",
-    "front-end/webgl/_resource/second",
-    "front-end/webgl/_resource",
-    "front-end/webgl"
+    "front-end/webgl/_resource/second"
   ]
 }

@@ -1,3 +1,6 @@
+---
+title: 代码组合（compose）
+---
 # 第 5 章: 代码组合（compose）
 
 ## 函数饲养
@@ -220,8 +223,9 @@ dasherize('The world is a vampire');
 
 这张图展示了什么是组合：
 
-<img src="images/cat_comp1.png" />
-<img src="images/cat_comp2.png" />
+![](cat_comp1.png)
+
+![](cat_comp2.png)
 
 这里有一个具体的例子：
 

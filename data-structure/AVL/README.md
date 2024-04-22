@@ -1,3 +1,6 @@
+---
+title: AVL 树
+---
 ## 基本概念
 
 AVL 是最早发明的自平衡二叉搜索树之一，名称来源于 G. M. **A**delson-**V**elsky 和 E. M. **L**andis (两位来自苏联的科学家)；
@@ -29,7 +32,7 @@ AVL 是最早发明的自平衡二叉搜索树之一，名称来源于 G. M. **A
 
 ### RR - 左旋转
 
-![RR](D:\Workbench\每日学习\data-structure\AVL\res\RR.png)
+![RR](https://cdn.jsdelivr.net/gh/mahoo12138/js-css-cdn/hexo-images/study/algorithm/RR.png)
 
 + `g.right= p.left`
 + `p.left= g`
@@ -38,13 +41,13 @@ AVL 是最早发明的自平衡二叉搜索树之一，名称来源于 G. M. **A
 
 ### LR - 左旋转，右旋转
 
-![](D:\Workbench\每日学习\data-structure\AVL\res\LR.png)
+![](https://cdn.jsdelivr.net/gh/mahoo12138/js-css-cdn/hexo-images/study/algorithm/LR.png)
 
 经过两次旋转：先将 p 节点左旋，即形成 LL 情况，再右旋 g 节点；
 
 ### RL - 右旋转，左旋转
 
-![](D:\Workbench\每日学习\data-structure\AVL\res\RL.png)
+![](https://cdn.jsdelivr.net/gh/mahoo12138/js-css-cdn/hexo-images/study/algorithm/RL.png)
 
 经过两次旋转：先将 p 节点右旋，即形成 RR 情况，再左旋 g 节点；
 

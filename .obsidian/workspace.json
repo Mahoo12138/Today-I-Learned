@@ -1,19 +1,19 @@
 {
   "main": {
-    "id": "dbf97d652aceece9",
+    "id": "e9eaaa718aad558a",
     "type": "split",
     "children": [
       {
-        "id": "8e491732120a1580",
+        "id": "1b71fef1a3d00b08",
         "type": "tabs",
         "children": [
           {
-            "id": "dc252c66f46cf269",
+            "id": "5f8d0ec430bb88c6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "android/system/Android 的启动过程.md",
+                "file": "rust/rust-bible/advanced/06-多线程并发编程.md",
                 "mode": "source",
                 "source": false
               }
@@ -25,15 +25,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "d016f50d480ad1a2",
+    "id": "b2a0ea05d694e859",
     "type": "split",
     "children": [
       {
-        "id": "e9abdba08f26ac96",
+        "id": "c4c2448ffeb2b4dd",
         "type": "tabs",
         "children": [
           {
-            "id": "898fadc22e4931a8",
+            "id": "e52f80322eaad5fd",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -43,12 +43,12 @@
             }
           },
           {
-            "id": "953db051489e8534",
+            "id": "97c43b792c6246b0",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "Send",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -58,7 +58,7 @@
             }
           },
           {
-            "id": "1464225120f97980",
+            "id": "86382c6f1a09feb6",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -69,23 +69,44 @@
       }
     ],
     "direction": "horizontal",
-    "width": 293.5
+    "width": 235.5110321044922
   },
   "right": {
-    "id": "707036e048130130",
+    "id": "8b4e9b5c2bc3e45c",
     "type": "split",
     "children": [
       {
-        "id": "8aca5519de4baa49",
+        "id": "7091505fb22ffeae",
         "type": "tabs",
         "children": [
           {
-            "id": "f1a7e51139c12f9f",
+            "id": "260547aff3817ca4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "rust/rust-bible/advanced/06-多线程并发编程.md"
+              }
+            }
+          },
+          {
+            "id": "405ac676f5f143ae",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "bb152053d8bc49c8",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "android/system/Android 的启动过程.md",
+                "file": "rust/rust-bible/advanced/06-多线程并发编程.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,35 +118,14 @@
             }
           },
           {
-            "id": "0e38536ead4a406d",
+            "id": "6c194739af9449a7",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "android/system/Android 的启动过程.md",
+                "file": "rust/rust-bible/advanced/06-多线程并发编程.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "c53a03eb6f207cbb",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true
-              }
-            }
-          },
-          {
-            "id": "f7773f7a1903ec53",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "android/system/Android 的启动过程.md"
               }
             }
           }
@@ -133,67 +133,68 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 300.5,
     "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
-      "random-note:Open random note": false,
-      "workspaces:Manage workspace layouts": false,
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "random-note:开始漫游笔记": false,
+      "workspaces:管理工作区布局": false
     }
   },
-  "active": "dc252c66f46cf269",
+  "active": "5f8d0ec430bb88c6",
   "lastOpenFiles": [
-    "android/system/_resources/android-boot-process.png",
-    "android/system/_resources/android-boot-process.png.crdownload",
-    "android/system/_resources",
-    "android/system/Untitled.md",
-    "android/system/Android 的启动过程.md",
-    "front-end/gis/README.md",
-    "android/system",
-    "android/jetpack-compose/_resources/gradle-basic-1.png",
-    "android/jetpack-compose/_resources",
-    "rust/rust-bible/advanced/08-错误处理.md",
-    "rust/rust-bible/advanced/07-全局变量.md",
-    "nodejs/EventLoop/_resources/3.libuv-architecture.jpeg",
-    "nodejs/EventLoop/_resources/5.NodeJS-Architecture.png",
-    "nodejs/EventLoop/_resources/4.Event-loop-and-JavaScript.jpg",
-    "nodejs/EventLoop/_resources/4.all-Q.png",
-    "nodejs/EventLoop/_resources/1.Event-Loop.jpeg",
-    "nodejs/EventLoop/_resources",
-    "functional-paradigm/_resources/relation-not-function.gif",
-    "functional-paradigm/_resources/function-sets.gif",
-    "functional-paradigm/_resources/fn_graph.png",
-    "functional-paradigm/_resources/cat_theory.png",
-    "functional-paradigm/_resources",
-    "android/kotlin/Kotlin-继承类.md",
-    "android/jetpack-compose/layout.md",
-    "language",
-    "android/kotlin",
+    "rust/rust-bible/advanced/09-Unsafe Rust.md",
+    "Device Tree.md",
     "golang/module.md",
     "golang/goroutine.md",
     "golang/function.md",
     "front-end/react/19.md",
     "front-end/react/18.md",
-    "react/19.md",
-    "react/18.md",
-    "react",
-    "front-end/webpack/demo/src/markdown/main.js",
-    "front-end/webpack/demo/src/markdown/doc.md",
-    "front-end/webpack/README.md",
-    "front-end/webpack/index.md",
-    "front-end/javascript/review/await/generator.md",
-    "front-end/javascript/advanced/promise/singleton.md",
-    "front-end/javascript/advanced/promise/memoization.md",
-    "front-end/css/basic-css-text/baseline/index.md",
-    "front-end/css/basic-css-text/font/README.md",
-    "front-end/css/basic-css-text/animation/README.md",
-    "front-end/css/basic-css-scroll/scroll-snap/README.md",
-    "front-end/css/basic-css-layout/Masonry/README.md"
+    "android/system/_resources/android-boot-process.png",
+    "android/jetpack-compose/_resources/gradle-basic-1.png",
+    "android/system/_resources",
+    "android/system/Android 的启动过程.md",
+    "android/kotlin/Kotlin-继承类.md",
+    "android/jetpack-compose/_resources",
+    "android/jetpack-compose/layout.md",
+    "android/jetpack-compose/gradle.md",
+    "android/jetpack-compose/getting-started.md",
+    "android/jetpack-compose/android-build.md",
+    "android/kotlin",
+    "android/system",
+    "android/jetpack-compose",
+    "android",
+    "rust/rust-bible/advanced/06-多线程并发编程.md",
+    "rust/rust-bible/advanced/04-智能指针.md",
+    "rust/rust-bible/advanced/08-错误处理.md",
+    "front-end/webgl/2.4. 初探纹理图像.md",
+    "rust/rust-bible/advanced/05-循环引用与自引用.md",
+    "rust/rust-bible/basic/19-返回值与错误处理.md",
+    "front-end/webgl/2.3. 实战消除锯齿.md",
+    "front-end/webgl/4. 初探纹理图像.md",
+    "front-end/gis/README.md",
+    "front-end/webgl/2.2. 为什么会出现颜色渐变.md",
+    "front-end/webgl/3. 实战消除锯齿.md",
+    "front-end/webgl/2.1. 绘制彩色的三角.md",
+    "rust/rust-bible/advanced/07-全局变量.md",
+    "data-structure/binary-search-tree/src/Main.java",
+    "data-structure/binary-search-tree/src/BinarySearchTree.java",
+    "data-structure/binary-search-tree/src",
+    "code-learing/lz-string/code.png",
+    "code-learing/lz-string/decode.png",
+    "Untitled.canvas",
+    "content/二、WebGL基础",
+    "front-end/webgl/_resource/second/1.1.png",
+    "front-end/webgl/_resource/fourth/5.2.png",
+    "front-end/webgl/_resource/fourth/5.1.gif",
+    "front-end/webgl/_resource/fourth/4.5.png",
+    "front-end/webgl/_resource/fourth/4.4.png",
+    "front-end/webgl/_resource/fourth/4.3.png"
   ]
 }

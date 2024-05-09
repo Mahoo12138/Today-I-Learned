@@ -1,7 +1,6 @@
 {
   "userIgnoreFilters": [
-    "node_modules",
-    "README"
+    "/node_modules/"
   ],
   "showUnsupportedFiles": false,
   "attachmentFolderPath": "./_resources",

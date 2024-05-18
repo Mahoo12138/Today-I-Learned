@@ -1,2 +1,6 @@
 desktop.ini
 **/node_modules
+
+**/target/debug/*
+.rustc_info.json
+CACHEDIR.TAG

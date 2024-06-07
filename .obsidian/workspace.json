@@ -4,16 +4,28 @@
     "type": "split",
     "children": [
       {
-        "id": "1b71fef1a3d00b08",
+        "id": "f0880f04a48a642b",
         "type": "tabs",
         "children": [
           {
-            "id": "5f8d0ec430bb88c6",
+            "id": "4a6736fe8f6f5b42",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "rust/rust-bible/advanced/10-Macro 宏编程.md",
+                "file": "front-end/javascript/review/extend.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e55331704c5c9e4a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "front-end/interview/bytedance/1.md",
                 "mode": "source",
                 "source": false
               }
@@ -48,44 +60,12 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "instanceof",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
-            }
-          },
-          {
-            "id": "86382c6f1a09feb6",
-            "type": "leaf",
-            "state": {
-              "type": "bookmarks",
-              "state": {}
-            }
-          }
-        ]
-      }
-    ],
-    "direction": "horizontal",
-    "width": 258.5110321044922
-  },
-  "right": {
-    "id": "8b4e9b5c2bc3e45c",
-    "type": "split",
-    "children": [
-      {
-        "id": "7091505fb22ffeae",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "260547aff3817ca4",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "rust/rust-bible/advanced/10-Macro 宏编程.md"
               }
             }
           },
@@ -101,13 +81,45 @@
             }
           },
           {
+            "id": "86382c6f1a09feb6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 277.5110321044922
+  },
+  "right": {
+    "id": "8b4e9b5c2bc3e45c",
+    "type": "split",
+    "children": [
+      {
+        "id": "7091505fb22ffeae",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "260547aff3817ca4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "front-end/javascript/review/extend.md"
+              }
+            }
+          },
+          {
             "id": "bb152053d8bc49c8",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "rust/rust-bible/advanced/10-Macro 宏编程.md",
-                "collapseAll": false,
+                "file": "front-end/javascript/review/extend.md",
+                "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
@@ -123,17 +135,18 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "rust/rust-bible/advanced/10-Macro 宏编程.md",
+                "file": "front-end/javascript/review/extend.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 200,
+    "width": 243.5,
     "collapsed": true
   },
   "left-ribbon": {
@@ -147,54 +160,55 @@
       "workspaces:管理工作区布局": false
     }
   },
-  "active": "e52f80322eaad5fd",
+  "active": "4a6736fe8f6f5b42",
   "lastOpenFiles": [
-    "linux/设备树.md",
-    "linux/Linux 系统构成.md",
-    "linux/Kernel 工程结构.md",
-    "linux",
+    "front-end/javascript/review/copy.md",
+    "front-end/javascript/review/type.md",
+    "front-end/javascript/review/extend.md",
+    "front-end/interview/bytedance/1.md",
+    "front-end/interview/bytedance/2.md",
+    "front-end/interview/bytedance/3.md",
+    "front-end/javascript/review/symbol.md",
+    "front-end/javascript/review/await/generator.md",
+    "front-end/javascript/review/generator.md",
+    "front-end/javascript/_resources",
+    "front-end/javascript/advanced/promise/singleton.md",
+    "front-end/javascript/advanced/promise/memoization.md",
+    "front-end/reading/04-关于 V8 中 Map 数据结构的实现.md",
+    "front-end/reading/_resources/04-memory-footprint.webp",
+    "front-end/reading/_resources/04-memory-footprint.webp.crdownload",
+    "front-end/reading/_resources",
+    "cant/hot code.md",
+    "cant",
+    "front-end/reading/03-用 JS 实现一个 LRU 缓存.md",
+    "front-end/interview/tencent/1.md",
+    "front-end/interview/big-front-end/js-21-30.md",
+    "front-end/interview/big-front-end/js-11-20.md",
+    "front-end/interview/daily",
+    "front-end/interview/1.md",
+    "front-end/interview/tencent",
+    "front-end/interview/132",
+    "未命名.canvas",
+    "front-end/interview/daily/1/js.md",
+    "functional-paradigm/ch2.md",
+    "rust/rust-bible/advanced/06-多线程并发编程.md",
+    "front-end/css/basic-css-gradient/repeating-gradient.md",
+    "[ECMAScript®.md",
+    "front-end/interview/big-front-end/js-1-10.md",
+    "front-end/interview/big-front-end/js-50-60.md",
+    "front-end/interview/big-front-end/js-120-130.md",
+    "front-end/html",
+    "rust/rust-bible/practice/minigrep/target/debug/incremental/minigrep-2bk4lg2md16fi/s-gwa34kq0wz-10a5aeq-3idwy8lp6p5bs5vbfgti2aqcw/work-products.bin",
+    "rust/rust-bible/practice/minigrep/target/debug/incremental/minigrep-2bk4lg2md16fi/s-gwa34kq0wz-10a5aeq-3idwy8lp6p5bs5vbfgti2aqcw/z9fagzhior1i9lk.o",
     "computer/_resources/user-space&kernel-space-1.png",
-    "computer/_resources",
-    "computer/User space 与 Kernel space.md",
-    "computer",
     "android/system/_resources/linux-modules.jpeg",
     "android/system/_resources/dtb.png",
     "android/system/_resources/apk-sign.png",
     "android/system/_resources/android-system-framework.png",
-    "android/system/README.md",
-    "android/system/Android 设备分区.md",
-    "android/system/Android 系统架构.md",
-    "android/system/Android 签名校验机制.md",
-    "android/system/Android 启动过程.md",
-    "android/system/AB分区.md",
-    "android/kotlin/面向对象/Kotlin-继承类.md",
-    "android/kotlin/面向对象/Kotlin-枚举类.md",
-    "android/kotlin/面向对象/Kotlin-数据类.md",
-    "android/kotlin/面向对象/Kotlin-接口.md",
-    "android/kotlin/面向对象/Kotlin-抽象类.md",
-    "android/kotlin/面向对象/Kotlin-密封类.md",
-    "android/kotlin/面向对象/Kotlin-内部类.md",
-    "android/kotlin/面向对象/Kotlin-object 关键字.md",
-    "android/kotlin/面向对象",
-    "android/kotlin/异步编程/README.md",
-    "android/kotlin/异步编程",
-    "TODO.md",
-    "android/jetpack-compose/getting-started.md",
-    "front-end/javascript/red-book/dom2&dom3.md",
-    "rust/rust-bible/advanced/10-Macro 宏编程.md",
-    "rust/rust-bible/basic/17-集合类型.md",
-    "rust/rust-bible/basic/18-生命周期.md",
-    "rust/rust-bible/basic/02-数据类型.md",
     "android/system/_resources/android-boot-process.png",
     "android/jetpack-compose/_resources/gradle-basic-1.png",
-    "android/system/_resources",
-    "android/jetpack-compose/_resources",
-    "android/kotlin",
-    "android/system",
-    "android/jetpack-compose",
     "code-learing/lz-string/code.png",
     "code-learing/lz-string/decode.png",
-    "Untitled.canvas",
-    "front-end/webgl/_resource/second/1.1.png"
+    "Untitled.canvas"
   ]
 }

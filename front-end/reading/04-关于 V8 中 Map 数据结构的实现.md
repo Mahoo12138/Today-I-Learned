@@ -44,7 +44,7 @@ If you have substantial experience with Maps, you might already notice a contrad
 
 V8 uses the so-called [deterministic hash tables algorithm](https://wiki.mozilla.org/User:Jorend/Deterministic_hash_tables) proposed by Tyler Close. The following TypeScript-based pseudo-code shows main data structures used by this algorithm:
 
-V8 使用了 Tyler Close 提出的所谓 [deterministic hash tables algorithm](https://wiki.mozilla.org/User:Jorend/Deterministic_hash_tables)（确定性哈希表算法）。以下基于 TypeScript 的伪代码展示了该算法使用的主要数据结构：
+V8 使用了 Tyler Close 提出的所谓 [deterministic hash tables algorithm](https://wiki.mozilla.org/User:Jorend/Deterministic_hash_tables)（**确定性哈希表算法**）。以下基于 TypeScript 的伪代码展示了该算法使用的主要数据结构：
 
 ```typescript
 interface Entry {

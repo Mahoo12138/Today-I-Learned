@@ -85,6 +85,45 @@ CSS 的 `em` 单位的名字来自于一个排版单位。在字体排印学�
 
 在这个例子中，`p` 的 `font-size` 是 `16px`_（16 * 1）_。同时，`h2` 的 `font-size` 为 `48px`_（16 * 3）_，`h3` 为 `32px`_（16 * 2）_。
 
+> 基于这种特性，比较直观的一个例子是，可以用来编写嵌套的菜单项：
+> ```html
+> <div class="menu">
+>   <div class="menu-item">
+>     Home
+>   </div>
+>   <div class="menu-item">
+>     About
+>     <div class="menu-item">
+>       Projects
+>       <div class="menu-item">Professional Projects</div>
+>       <div class="menu-item">Hobby Projects</div>
+>     </div>
+>     <div class="menu-item">Portfolio</div>
+>   </div>
+>   <div class="menu-item">
+>     Services
+>   </div>
+>   <div class="menu-item">
+>     Contact
+>   </div>
+> </div>
+> 
+> <style>
+> /* Parent */
+> .menu {
+>   font-size: 25px;
+> }
+> 
+> /* Child */
+> .menu-item {
+>   font-size: 0.9em;
+>   padding-left: 12px;
+> }
+> </style>
+> ```
+>
+> 根据菜单的层级的增大，字体按比例进行缩小。
+
 如果 `em` 与另一个属性（如 `width`）一起使用，`em` 是用目标元素的大小来计算的。
 
 也就是说，子元素可以覆盖父元素的  `font-size`  属性，也就是说 **`em` 的值基于当前元素的 `font-size` 进行计算的。**

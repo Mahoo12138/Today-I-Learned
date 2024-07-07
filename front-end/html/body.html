@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Capture Example</title>
+    <style>
+        div { padding: 20px; border: 1px solid black; }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        Outer
+        <div id="inner">
+            Inner
+        </div>
+    </div>
+
+    <script>
+        const outer = document.getElementById('outer');
+        const inner = document.getElementById('inner');
+
+        // 捕获阶段的事件处理程序
+        outer.addEventListener('click', function(event) {
+            console.log('Outer div capture1');
+        }, true);
+
+        outer.addEventListener('click', function(event) {
+            console.log('Outer div capture2');
+            event.stopPropagation()
+        }, true);
+
+        inner.addEventListener('click', function(event) {
+            console.log('Inner div capture');
+        }, true);
+
+        // 冒泡阶段的事件处理程序
+        outer.addEventListener('click', function(event) {
+            console.log('Outer div bubble');
+        }, false);
+
+        inner.addEventListener('click', function(event) {
+            console.log('Inner div bubble');
+        }, false);
+    </script>
+</body>
+</html>

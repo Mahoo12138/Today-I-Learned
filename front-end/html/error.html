@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>body onerror Example</title>
+  </head>
+  <body>
+    <div id="child">Child</div>
+
+    <script>
+      // Using onerror on the body
+      document.body.onerror = function () {
+        console.log("Error handler on body (watching window)");
+      };
+
+      // Using addEventListener on the body
+      document.body.addEventListener("error", function () {
+        console.log("Error event listener on body");
+      });
+
+
+      // window.onerror = function () {
+      //   console.log("Error handler on window");
+      // };
+
+      // Using addEventListener on the window
+      window.addEventListener("error", function () {
+        console.log("Error event listener on window");
+      });
+
+      // Triggering an error event on the child div
+      document
+        .getElementById("child")
+        .dispatchEvent(new Event("error", { bubbles: true }));
+    </script>
+  </body>
+</html>

@@ -1,4 +1,7 @@
-# 类型
+---
+title: JavaScript 类型
+---
+# JavaScript 类型
 
 ## [[front-end/interview/bytedance/1#js 数据类型有哪些，如何判断？|原始类型]]
 

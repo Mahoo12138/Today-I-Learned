@@ -1,6 +1,6 @@
 ---
 
-kanban-plugin: basic
+kanban-plugin: board
 
 ---
 
@@ -21,9 +21,23 @@ kanban-plugin: basic
 - [x] 第七章 - 接口
 - [x] 第六章 - 方法
 - [x] 第五章 - 函数
-- [x] 第四章 - 复合数据结构<br>- [x] 数组<br>- [x] 切片<br>- [x] 映射<br>- [x] 结构体
-- [x] 第三章 - 基础数据结构<br>- [x] 复数<br>- [x] 浮点数<br>- [x] 布尔型<br>- [x] 字符串<br>- [x] 常量
-- [x] 第二章 - 程序结构<br>- [x] 命名<br>- [x] 声明<br>- [x] 类型<br>- [x] 包和文件<br>- [x] 作用域
+- [x] 第四章 - 复合数据结构
+	- [x] 数组
+	- [x] 切片
+	- [x] 映射
+	- [x] 结构体
+- [x] 第三章 - 基础数据结构
+	- [x] 复数
+	- [x] 浮点数
+	- [x] 布尔型
+	- [x] 字符串
+	- [x] 常量
+- [x] 第二章 - 程序结构
+	- [x] 命名
+	- [x] 声明
+	- [x] 类型
+	- [x] 包和文件
+	- [x] 作用域
 - [x] 第一章 - 入门
 
 
@@ -53,10 +67,23 @@ kanban-plugin: basic
 - [x] 第一章 了解 SQL
 
 
+## 图解 TCP/IP
+
+- [x] 第一章 网络基础知识
+- [ ] 第二章 TCP/IP 基础知识
+- [ ] 第三章 数据链路
+- [ ] 第四章 IP 协议
+- [ ] 第五章 IP 协议相关技术
+- [ ] 第六章 TCP 与 UDP
+- [ ] 第七章 路由协议
+- [ ] 第八章 应用协议
+- [ ] 第九章 网络安全
+
+
 
 
 %% kanban:settings
 ```
-{"kanban-plugin":"basic","show-checkboxes":true,"new-note-folder":"ToDo","tag-colors":[{"tagKey":"@tag4","color":"rgba(182, 173, 214, 1)","backgroundColor":"rgba(221, 103, 9, 0.1)"},{"tagKey":"","color":"rgba(228, 18, 64, 1)","backgroundColor":""}],"show-add-list":true,"show-relative-date":true}
+{"kanban-plugin":"board","show-checkboxes":true,"new-note-folder":"ToDo","tag-colors":[{"tagKey":"@tag4","color":"rgba(182, 173, 214, 1)","backgroundColor":"rgba(221, 103, 9, 0.1)"},{"tagKey":"","color":"rgba(228, 18, 64, 1)","backgroundColor":""}],"show-add-list":true,"show-relative-date":true,"list-collapse":[true,true,true,false]}
 ```
 %%

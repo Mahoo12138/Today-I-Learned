@@ -146,7 +146,7 @@ When run, it calls `Math.random()` in a loop and outputs the resulting through
 
 Armed with the benchmark, we’re going to compare `kCacheSize=64` (the default) and `kCacheSize=1` (no pool) builds of Node.js. Here is the measured result.
 
-![](math-random-benchmark.webp)
+![](05-math-random-benchmark.webp)
 
 The benchmark shows that removing the pool makes `Math.random()` 22% slower. The difference is relatively small, yet the pool improves the throughput by removing the overhead of JS-to-C++ switches in each `Math.random()` call. Interestingly, that [uuid](https://github.com/uuidjs/uuid/pull/513) npm package and, later, [crypto.randomUUID()](https://github.com/nodejs/node/pull/36729) standard function from Node.js also employ a similar approach with the entropy pool (note: the difference is that they use a CSPRNG and the performance boost is much more significant).
 

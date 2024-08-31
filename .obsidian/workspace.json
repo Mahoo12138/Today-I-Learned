@@ -4,34 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "f0880f04a48a642b",
+        "id": "4ba1e03579ae39fa",
         "type": "tabs",
         "children": [
           {
-            "id": "4a6736fe8f6f5b42",
+            "id": "f924e1403fb99455",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "front-end/javascript/review/extend.md",
+                "file": "algorithm/1.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "e55331704c5c9e4a",
+            "id": "06c3bf0a8cb75cb1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "front-end/interview/bytedance/1.md",
+                "file": "front-end/interview/javascript/内存泄漏.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -60,10 +61,10 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "instanceof",
+                "query": "内存泄漏",
                 "matchingCase": true,
                 "explainSearch": false,
-                "collapseAll": false,
+                "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
               }
@@ -92,7 +93,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 277.5110321044922
+    "width": 238.5110321044922
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -103,22 +104,24 @@
         "type": "tabs",
         "children": [
           {
-            "id": "260547aff3817ca4",
+            "id": "962e383634dd1978",
             "type": "leaf",
             "state": {
-              "type": "outline",
+              "type": "all-properties",
               "state": {
-                "file": "front-end/javascript/review/extend.md"
+                "sortOrder": "frequency",
+                "showSearch": true,
+                "searchQuery": ""
               }
             }
           },
           {
-            "id": "bb152053d8bc49c8",
+            "id": "9bdefaa01ca7bf80",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "front-end/javascript/review/extend.md",
+                "file": "front-end/interview/javascript/内存泄漏.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -130,85 +133,96 @@
             }
           },
           {
-            "id": "6c194739af9449a7",
+            "id": "dfa339444f379f55",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "front-end/javascript/review/extend.md",
+                "file": "front-end/interview/javascript/内存泄漏.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
+          },
+          {
+            "id": "dd51bfc28b9dfa48",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "front-end/interview/javascript/内存泄漏.md"
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 243.5,
-    "collapsed": true
+    "width": 280.5
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:打开快速切换": false,
-      "graph:查看关系图谱": false,
-      "canvas:新建白板": false,
-      "templates:插入模板": false,
-      "command-palette:打开命令面板": false,
-      "random-note:开始漫游笔记": false,
-      "workspaces:管理工作区布局": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "random-note:Open random note": false,
+      "workspaces:Manage workspace layouts": false,
+      "obsidian-kanban:Create new board": false,
+      "canvas:Create new canvas": false,
+      "obsidian-omnivore:Omnivore": false
     }
   },
-  "active": "4a6736fe8f6f5b42",
+  "active": "e52f80322eaad5fd",
   "lastOpenFiles": [
-    "front-end/javascript/review/copy.md",
-    "front-end/javascript/review/type.md",
-    "front-end/javascript/review/extend.md",
-    "front-end/interview/bytedance/1.md",
+    "linux/命令/source.md",
+    "linux/命令",
+    "linux",
+    "front-end/reading/_resources/07-wrong-intersection.webp",
+    "front-end/reading/_resources/07-numbers-and-strings.webp",
+    "front-end/reading/_resources/07-mapped-types.webp",
+    "front-end/reading/_resources/07-infer-diagram.webp",
+    "front-end/reading/_resources/07-correct-union.webp",
+    "front-end/reading/_resources/07-correct-set.webp",
+    "front-end/reading/_resources/07-correct-intersection.webp",
+    "front-end/reading/_resources/07-array-set.webp",
+    "front-end/reading/_resources/07-array-flat.webp",
+    "front-end/reading/_resources/05-math-random-benchmark.webp",
+    "front-end/reading/07-换个角度看 TypeScript.md",
+    "daily-notes/2024-08-15.md",
+    "daily-notes",
+    "algorithm/1.md",
+    "front-end/interview/javascript/内存泄漏.md",
     "front-end/interview/bytedance/2.md",
-    "front-end/interview/bytedance/3.md",
-    "front-end/javascript/review/symbol.md",
-    "front-end/javascript/review/await/generator.md",
-    "front-end/javascript/review/generator.md",
-    "front-end/javascript/_resources",
-    "front-end/javascript/advanced/promise/singleton.md",
-    "front-end/javascript/advanced/promise/memoization.md",
-    "front-end/reading/04-关于 V8 中 Map 数据结构的实现.md",
-    "front-end/reading/_resources/04-memory-footprint.webp",
-    "front-end/reading/_resources/04-memory-footprint.webp.crdownload",
-    "front-end/reading/_resources",
-    "cant/hot code.md",
-    "cant",
-    "front-end/reading/03-用 JS 实现一个 LRU 缓存.md",
-    "front-end/interview/tencent/1.md",
-    "front-end/interview/big-front-end/js-21-30.md",
-    "front-end/interview/big-front-end/js-11-20.md",
-    "front-end/interview/daily",
-    "front-end/interview/1.md",
-    "front-end/interview/tencent",
-    "front-end/interview/132",
+    "rust/rust-bible/advanced/05-循环引用与自引用.md",
+    "front-end/interview/javascript",
+    "front-end/others/web/performance.md",
+    "front-end/interview/bytedance/1.md",
+    "omnivore/2024-04-28/React Playground 实现原理揭秘.md",
+    "omnivore/2024-03-28/Vite 的实现原理，确实很巧妙.md",
+    "omnivore/2024-01-28/前端安全系列（一）：如何防止XSS攻击？ - 美团技术团队.md",
+    "omnivore/2024-01-27/The history of “typeof null”.md",
+    "algorithm/100/128.md",
+    "algorithm/49.md",
+    "algorithm/README.md",
+    "algorithm/24.md",
+    "algorithm/20.md",
+    "algorithm/4.md",
+    "algorithm/3.md",
+    "algorithm/2.md",
+    "omnivore/2024-04-28",
+    "omnivore/2024-03-28",
+    "omnivore/2024-01-28",
+    "omnivore/2024-01-27",
+    "omnivore",
+    "Omnivore/2024-06-25/A virtual DOM in 200 lines of JavaScript – Marcelo Lazaroni – Developing for the Interwebs.md",
+    "Omnivore/2024-03-28/Vite 的实现原理，确实很巧妙.md",
+    "Omnivore/2023-11-12/重新理解 Web - 知乎.md",
+    "Omnivore/2023-08-19/一文带你全面体验八种状态管理库.md",
+    "TODO.md",
+    "Omnivore/2024-06-25",
     "未命名.canvas",
-    "front-end/interview/daily/1/js.md",
-    "functional-paradigm/ch2.md",
-    "rust/rust-bible/advanced/06-多线程并发编程.md",
-    "front-end/css/basic-css-gradient/repeating-gradient.md",
-    "[ECMAScript®.md",
-    "front-end/interview/big-front-end/js-1-10.md",
-    "front-end/interview/big-front-end/js-50-60.md",
-    "front-end/interview/big-front-end/js-120-130.md",
-    "front-end/html",
-    "rust/rust-bible/practice/minigrep/target/debug/incremental/minigrep-2bk4lg2md16fi/s-gwa34kq0wz-10a5aeq-3idwy8lp6p5bs5vbfgti2aqcw/work-products.bin",
-    "rust/rust-bible/practice/minigrep/target/debug/incremental/minigrep-2bk4lg2md16fi/s-gwa34kq0wz-10a5aeq-3idwy8lp6p5bs5vbfgti2aqcw/z9fagzhior1i9lk.o",
-    "computer/_resources/user-space&kernel-space-1.png",
-    "android/system/_resources/linux-modules.jpeg",
-    "android/system/_resources/dtb.png",
-    "android/system/_resources/apk-sign.png",
-    "android/system/_resources/android-system-framework.png",
-    "android/system/_resources/android-boot-process.png",
-    "android/jetpack-compose/_resources/gradle-basic-1.png",
-    "code-learing/lz-string/code.png",
-    "code-learing/lz-string/decode.png",
     "Untitled.canvas"
   ]
 }

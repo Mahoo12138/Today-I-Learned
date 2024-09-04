@@ -78,7 +78,7 @@
   "navigation": false,
   "password": "",
   "needVerify": false,
-  "addTagAutomatically": false,
+  "addTagAutomatically": true,
   "addTagPosition": "End",
   "addTagWithNewline": false,
   "chatViewStyle": "default",
@@ -113,7 +113,7 @@
   "WaitTemplaterToFinishParse": false,
   "NavbarButton": false,
   "AlwaysShowStatusText": false,
-  "FilterByMetadata": false,
+  "FilterByMetadata": true,
   "ShowSourcePath": false,
   "ShowUpdateMessage": false,
   "SyncManually": false

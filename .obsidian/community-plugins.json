@@ -1,5 +1,7 @@
 [
   "obsidian-front-matter-title-plugin",
   "obsidian-kanban",
+  "obsidian-admonition",
+  "obsidian-vault-statistics-plugin",
   "obsidian-memos"
 ]

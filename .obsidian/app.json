@@ -4,5 +4,6 @@
   ],
   "showUnsupportedFiles": false,
   "attachmentFolderPath": "./_resources",
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "spellcheck": false
 }

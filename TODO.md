@@ -80,10 +80,19 @@ kanban-plugin: board
 - [ ] 第九章 网络安全
 
 
+## 软件设计的哲学
+
+- [x] 第一章 介绍
+- [x] [[第二章 复杂性的本质]]
+- [x] [[第三章 工作代码是不够的]]
+- [ ] [[第四章 模块应该是深的]]
+- [ ] 第五章 信息泄露和隐藏
+
+
 
 
 %% kanban:settings
 ```
-{"kanban-plugin":"board","show-checkboxes":true,"new-note-folder":"ToDo","tag-colors":[{"tagKey":"@tag4","color":"rgba(182, 173, 214, 1)","backgroundColor":"rgba(221, 103, 9, 0.1)"},{"tagKey":"","color":"rgba(228, 18, 64, 1)","backgroundColor":""}],"show-add-list":true,"show-relative-date":true,"list-collapse":[true,true,true,false]}
+{"kanban-plugin":"board","show-checkboxes":true,"new-note-folder":"ToDo","tag-colors":[{"tagKey":"@tag4","color":"rgba(182, 173, 214, 1)","backgroundColor":"rgba(221, 103, 9, 0.1)"},{"tagKey":"","color":"rgba(228, 18, 64, 1)","backgroundColor":""}],"show-add-list":true,"show-relative-date":true,"list-collapse":[true,true,true,false,false]}
 ```
 %%

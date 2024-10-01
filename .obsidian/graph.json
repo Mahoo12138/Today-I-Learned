@@ -4,21 +4,28 @@
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
-  "showOrphans": true,
+  "showOrphans": false,
   "collapse-color-groups": true,
   "colorGroups": [
     {
-      "query": "path:rust  ",
+      "query": "path:rust",
       "color": {
         "a": 1,
         "rgb": 16746496
       }
     },
     {
-      "query": "path:front-end  ",
+      "query": "path:front-end",
       "color": {
         "a": 1,
         "rgb": 0
+      }
+    },
+    {
+      "query": "path:algorithm  ",
+      "color": {
+        "a": 1,
+        "rgb": 11392604
       }
     }
   ],
@@ -32,6 +39,6 @@
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.7565339239886641,
+  "scale": 1.0298774796156942,
   "close": false
 }

@@ -4,35 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "4ba1e03579ae39fa",
+        "id": "8075afe23085f73d",
         "type": "tabs",
         "children": [
           {
-            "id": "f924e1403fb99455",
+            "id": "63600ef4c3b4b33e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "algorithm/1.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "06c3bf0a8cb75cb1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "front-end/interview/javascript/内存泄漏.md",
+                "file": "kubernetes/Pod.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -61,10 +48,10 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "内存泄漏",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": false,
-                "collapseAll": true,
+                "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
               }
@@ -93,7 +80,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 238.5110321044922
+    "width": 211.5110321044922
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -103,6 +90,16 @@
         "id": "7091505fb22ffeae",
         "type": "tabs",
         "children": [
+          {
+            "id": "dd51bfc28b9dfa48",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "kubernetes/Pod.md"
+              }
+            }
+          },
           {
             "id": "962e383634dd1978",
             "type": "leaf",
@@ -121,7 +118,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "front-end/interview/javascript/内存泄漏.md",
+                "file": "kubernetes/Pod.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -138,91 +135,86 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "front-end/interview/javascript/内存泄漏.md",
+                "file": "kubernetes/Pod.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
-          },
-          {
-            "id": "dd51bfc28b9dfa48",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "front-end/interview/javascript/内存泄漏.md"
-              }
-            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 280.5
+    "width": 234.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
+      "daily-notes:Open today's daily note": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "random-note:Open random note": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
       "workspaces:Manage workspace layouts": false,
       "obsidian-kanban:Create new board": false,
+      "obsidian-memos:Thino": false,
       "canvas:Create new canvas": false,
-      "obsidian-omnivore:Omnivore": false
+      "random-note:Open random note": false,
+      "remotely-save:Remotely Save": false
     }
   },
-  "active": "e52f80322eaad5fd",
+  "active": "63600ef4c3b4b33e",
   "lastOpenFiles": [
-    "linux/命令/source.md",
-    "linux/命令",
-    "linux",
-    "front-end/reading/_resources/07-wrong-intersection.webp",
-    "front-end/reading/_resources/07-numbers-and-strings.webp",
-    "front-end/reading/_resources/07-mapped-types.webp",
-    "front-end/reading/_resources/07-infer-diagram.webp",
-    "front-end/reading/_resources/07-correct-union.webp",
-    "front-end/reading/_resources/07-correct-set.webp",
-    "front-end/reading/_resources/07-correct-intersection.webp",
-    "front-end/reading/_resources/07-array-set.webp",
-    "front-end/reading/_resources/07-array-flat.webp",
-    "front-end/reading/_resources/05-math-random-benchmark.webp",
-    "front-end/reading/07-换个角度看 TypeScript.md",
-    "daily-notes/2024-08-15.md",
-    "daily-notes",
-    "algorithm/1.md",
-    "front-end/interview/javascript/内存泄漏.md",
-    "front-end/interview/bytedance/2.md",
-    "rust/rust-bible/advanced/05-循环引用与自引用.md",
-    "front-end/interview/javascript",
-    "front-end/others/web/performance.md",
-    "front-end/interview/bytedance/1.md",
-    "omnivore/2024-04-28/React Playground 实现原理揭秘.md",
-    "omnivore/2024-03-28/Vite 的实现原理，确实很巧妙.md",
-    "omnivore/2024-01-28/前端安全系列（一）：如何防止XSS攻击？ - 美团技术团队.md",
-    "omnivore/2024-01-27/The history of “typeof null”.md",
-    "algorithm/100/128.md",
-    "algorithm/49.md",
-    "algorithm/README.md",
-    "algorithm/24.md",
-    "algorithm/20.md",
-    "algorithm/4.md",
-    "algorithm/3.md",
-    "algorithm/2.md",
-    "omnivore/2024-04-28",
-    "omnivore/2024-03-28",
-    "omnivore/2024-01-28",
-    "omnivore/2024-01-27",
-    "omnivore",
-    "Omnivore/2024-06-25/A virtual DOM in 200 lines of JavaScript – Marcelo Lazaroni – Developing for the Interwebs.md",
-    "Omnivore/2024-03-28/Vite 的实现原理，确实很巧妙.md",
-    "Omnivore/2023-11-12/重新理解 Web - 知乎.md",
-    "Omnivore/2023-08-19/一文带你全面体验八种状态管理库.md",
+    "kubernetes/overview.md",
+    "kubernetes/Pod.md",
+    "kubernetes/Deployment.md",
+    "kubernetes/architecture.md",
+    "kubernetes/master.md",
+    "software-engineer/a-philosophy-of-software-design/第三章 工作代码是不够的.md",
+    "algorithm/200/206.md",
     "TODO.md",
-    "Omnivore/2024-06-25",
-    "未命名.canvas",
-    "Untitled.canvas"
+    "front-end/reading/06-大型单页应用中的灵活网络数据预加载.md",
+    "kubernetes/Untitled.canvas",
+    "Untitled.canvas",
+    "kubernetes",
+    "front-end/reading/10-如何使用 Vike 和 Vite 构建可扩展的微前端架构.md",
+    "daily-notes/2024/Q3/2024-09-23.md",
+    "front-end/authentication/authentication.md",
+    "daily-notes/2024/Q3/2024-09-19.md",
+    "front-end/reading/09-优化 JS代码的乐趣和收益.md",
+    "front-end/reading/09-优化 JS 代码的乐趣和收益.md",
+    "rust/rust-bible/advanced/11-async await 异步编程.md",
+    "computer/cant/primitive.md",
+    "front-end/authentication/tokens.md",
+    "front-end/authentication/_resources/tokens/entra-id.webp",
+    "front-end/authentication/_resources/tokens/entra-id.webp.crdownload",
+    "front-end/authentication/_resources/tokens/未确认 232308.crdownload",
+    "front-end/authentication/_resources/tokens/640.svg",
+    "front-end/authentication/_resources/tokens/openid-authed.png",
+    "front-end/authentication/_resources/tokens/未确认 697998.crdownload",
+    "front-end/authentication/_resources/tokens/openid-connect.png",
+    "front-end/authentication/_resources/openid-connect.svg",
+    "front-end/authentication/_resources/未确认 952489.crdownload",
+    "front-end/authentication/_resources/tokens",
+    "front-end/authentication/_resources/新建文件夹",
+    "software-engineer/data-structure/binary-tree.md",
+    "front-end/authentication/cookies.md",
+    "front-end/authentication/_resources/cookies/google-cookie.webp",
+    "front-end/authentication/_resources/cookies/google-cookie.webp.crdownload",
+    "front-end/authentication/_resources/cookies/cookie-manage.webp",
+    "front-end/authentication/_resources/cookies/cookie-manage.webp.crdownload",
+    "front-end/authentication/_resources/cookies/cookie-path.webp",
+    "front-end/authentication/_resources/cookies/cookie-path.webp.crdownload",
+    "front-end/authentication/_resources/cookies/cookies.png",
+    "front-end/authentication/_resources/SSO-2.png",
+    "front-end/reading/08-垃圾回收和闭包.md",
+    "daily-notes/2024/Q3/2024-09-09.md",
+    "daily-notes/2024/Q3/2024-09-05.md",
+    "daily-notes/2024/Q3/2024-09-04.md",
+    "summary/read-code.md",
+    "daily-notes/2024/Q3/2024-08-28.md",
+    "未命名.canvas"
   ]
 }

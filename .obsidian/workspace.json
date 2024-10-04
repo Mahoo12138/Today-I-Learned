@@ -13,9 +13,19 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "kubernetes/Pod.md",
+                "file": "kubernetes/StatefulSet.md",
                 "mode": "source",
                 "source": false
+              }
+            }
+          },
+          {
+            "id": "1458c0253a72f0b2",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "kubernetes/architecture.md"
               }
             }
           }
@@ -96,7 +106,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "kubernetes/Pod.md"
+                "file": "kubernetes/StatefulSet.md"
               }
             }
           },
@@ -118,7 +128,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "kubernetes/Pod.md",
+                "file": "kubernetes/StatefulSet.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -135,7 +145,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "kubernetes/Pod.md",
+                "file": "kubernetes/StatefulSet.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -167,10 +177,16 @@
   },
   "active": "63600ef4c3b4b33e",
   "lastOpenFiles": [
-    "kubernetes/overview.md",
-    "kubernetes/Pod.md",
     "kubernetes/Deployment.md",
     "kubernetes/architecture.md",
+    "kubernetes/StatefulSet.md",
+    "kubernetes/ConfigMap.md",
+    "kubernetes/存储.md",
+    "kubernetes/服务发现.md",
+    "kubernetes/Service.md",
+    "kubernetes/kubectl.md",
+    "kubernetes/overview.md",
+    "kubernetes/Pod.md",
     "kubernetes/master.md",
     "software-engineer/a-philosophy-of-software-design/第三章 工作代码是不够的.md",
     "algorithm/200/206.md",
@@ -209,12 +225,6 @@
     "front-end/authentication/_resources/cookies/cookie-path.webp.crdownload",
     "front-end/authentication/_resources/cookies/cookies.png",
     "front-end/authentication/_resources/SSO-2.png",
-    "front-end/reading/08-垃圾回收和闭包.md",
-    "daily-notes/2024/Q3/2024-09-09.md",
-    "daily-notes/2024/Q3/2024-09-05.md",
-    "daily-notes/2024/Q3/2024-09-04.md",
-    "summary/read-code.md",
-    "daily-notes/2024/Q3/2024-08-28.md",
     "未命名.canvas"
   ]
 }

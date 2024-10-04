@@ -23,6 +23,9 @@
 
 ## 声明式模型与期望状态
 
++ 声明式模型只关注最终结果——告诉 Kubernetes 我们想要的什么。
++ 命令式模型则包含达成最终结果所需的一系列命令——告诉 Kubernetes 如何来实现
+
 声明式模型的工作方式如下所述：
 
 1. 在 manifest 文件中声明一个应用（微服务）期望达到的状态
@@ -43,6 +46,9 @@ kubectl 会将 manifest 文件通过 HTTP POST 请求发送到 API Server，在�
 
 
 
+### 调谐循环
+
+期望状态能够实现的基础是底层调谐循环（reconciliation loop，也称作 control loop）的 概念。
 
 
 

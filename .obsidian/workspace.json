@@ -4,29 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "8075afe23085f73d",
+        "id": "10436f723e813cd8",
         "type": "tabs",
         "children": [
           {
-            "id": "63600ef4c3b4b33e",
+            "id": "2631944d98820f13",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "kubernetes/StatefulSet.md",
+                "file": "computer/network/本地回环接口.md",
                 "mode": "source",
                 "source": false
-              }
-            }
-          },
-          {
-            "id": "1458c0253a72f0b2",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "kubernetes/architecture.md"
-              }
+              },
+              "icon": "lucide-file",
+              "title": "本地回环接口"
             }
           }
         ]
@@ -49,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -64,7 +58,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -75,7 +71,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -83,14 +81,16 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 211.5110321044922
+    "width": 212.5110321044922
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -106,8 +106,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "kubernetes/StatefulSet.md"
-              }
+                "file": "computer/network/本地回环接口.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 本地回环接口"
             }
           },
           {
@@ -119,7 +121,9 @@
                 "sortOrder": "frequency",
                 "showSearch": true,
                 "searchQuery": ""
-              }
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
             }
           },
           {
@@ -128,7 +132,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "kubernetes/StatefulSet.md",
+                "file": "computer/network/本地回环接口.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -136,7 +140,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 本地回环接口"
             }
           },
           {
@@ -145,10 +151,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "kubernetes/StatefulSet.md",
+                "file": "computer/network/本地回环接口.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 本地回环接口"
             }
           }
         ],
@@ -175,11 +183,19 @@
       "remotely-save:Remotely Save": false
     }
   },
-  "active": "63600ef4c3b4b33e",
+  "active": "e52f80322eaad5fd",
   "lastOpenFiles": [
-    "kubernetes/Deployment.md",
+    "computer/network/本地回环接口.md",
+    "computer/network",
+    "TODO.md",
+    "daily-notes/2024/Q4/2024-10-23.md",
     "kubernetes/architecture.md",
+    "kubernetes/cluster.md",
+    "daily-notes/2024/Q4/2024-10-17.md",
+    "daily-notes/2024/Q4",
+    "kubernetes/ecosystem.md",
     "kubernetes/StatefulSet.md",
+    "kubernetes/Deployment.md",
     "kubernetes/ConfigMap.md",
     "kubernetes/存储.md",
     "kubernetes/服务发现.md",
@@ -190,7 +206,6 @@
     "kubernetes/master.md",
     "software-engineer/a-philosophy-of-software-design/第三章 工作代码是不够的.md",
     "algorithm/200/206.md",
-    "TODO.md",
     "front-end/reading/06-大型单页应用中的灵活网络数据预加载.md",
     "kubernetes/Untitled.canvas",
     "Untitled.canvas",
@@ -201,9 +216,6 @@
     "daily-notes/2024/Q3/2024-09-19.md",
     "front-end/reading/09-优化 JS代码的乐趣和收益.md",
     "front-end/reading/09-优化 JS 代码的乐趣和收益.md",
-    "rust/rust-bible/advanced/11-async await 异步编程.md",
-    "computer/cant/primitive.md",
-    "front-end/authentication/tokens.md",
     "front-end/authentication/_resources/tokens/entra-id.webp",
     "front-end/authentication/_resources/tokens/entra-id.webp.crdownload",
     "front-end/authentication/_resources/tokens/未确认 232308.crdownload",
@@ -215,14 +227,10 @@
     "front-end/authentication/_resources/未确认 952489.crdownload",
     "front-end/authentication/_resources/tokens",
     "front-end/authentication/_resources/新建文件夹",
-    "software-engineer/data-structure/binary-tree.md",
-    "front-end/authentication/cookies.md",
     "front-end/authentication/_resources/cookies/google-cookie.webp",
     "front-end/authentication/_resources/cookies/google-cookie.webp.crdownload",
     "front-end/authentication/_resources/cookies/cookie-manage.webp",
-    "front-end/authentication/_resources/cookies/cookie-manage.webp.crdownload",
     "front-end/authentication/_resources/cookies/cookie-path.webp",
-    "front-end/authentication/_resources/cookies/cookie-path.webp.crdownload",
     "front-end/authentication/_resources/cookies/cookies.png",
     "front-end/authentication/_resources/SSO-2.png",
     "未命名.canvas"

@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "10436f723e813cd8",
+        "id": "7c8ca1a3d1474cf2",
         "type": "tabs",
         "children": [
           {
-            "id": "2631944d98820f13",
+            "id": "b5bf1e121e6fd4fc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "computer/network/本地回环接口.md",
-                "mode": "source",
+                "file": "README.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "本地回环接口"
+              "title": "README"
             }
           }
         ]
@@ -90,7 +90,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 212.5110321044922
+    "width": 211.5110321044922
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -105,11 +105,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "computer/network/本地回环接口.md"
-              },
+              "state": {},
               "icon": "lucide-list",
-              "title": "Outline of 本地回环接口"
+              "title": "Outline"
             }
           },
           {
@@ -132,7 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "computer/network/本地回环接口.md",
+                "file": "summary/read-code.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -142,7 +140,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 本地回环接口"
+              "title": "Backlinks for read-code"
             }
           },
           {
@@ -151,12 +149,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "computer/network/本地回环接口.md",
+                "file": "summary/read-code.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 本地回环接口"
+              "title": "Outgoing links from read-code"
             }
           }
         ],
@@ -180,59 +178,60 @@
       "obsidian-memos:Thino": false,
       "canvas:Create new canvas": false,
       "random-note:Open random note": false,
-      "remotely-save:Remotely Save": false
+      "remotely-save:Remotely Save": false,
+      "homepage:Open homepage": false
     }
   },
-  "active": "e52f80322eaad5fd",
+  "active": "b5bf1e121e6fd4fc",
   "lastOpenFiles": [
-    "computer/network/本地回环接口.md",
-    "computer/network",
     "TODO.md",
-    "daily-notes/2024/Q4/2024-10-23.md",
-    "kubernetes/architecture.md",
-    "kubernetes/cluster.md",
-    "daily-notes/2024/Q4/2024-10-17.md",
-    "daily-notes/2024/Q4",
-    "kubernetes/ecosystem.md",
-    "kubernetes/StatefulSet.md",
-    "kubernetes/Deployment.md",
-    "kubernetes/ConfigMap.md",
-    "kubernetes/存储.md",
-    "kubernetes/服务发现.md",
-    "kubernetes/Service.md",
-    "kubernetes/kubectl.md",
-    "kubernetes/overview.md",
-    "kubernetes/Pod.md",
-    "kubernetes/master.md",
-    "software-engineer/a-philosophy-of-software-design/第三章 工作代码是不够的.md",
-    "algorithm/200/206.md",
-    "front-end/reading/06-大型单页应用中的灵活网络数据预加载.md",
+    "README.md",
+    "index.md",
+    "front-end/reading/05-使用 200 行 JS 代码实现虚拟 DOM.md",
+    "front-end/interview/authentication.md",
+    "daily-notes/2024/Q4/2024-10-30.md",
+    "daily-notes/2024/Q4/2024-10-28.md",
+    "daily-notes/2024/Q3/2024-09-26.md",
+    "computer/docker/docker compose.md",
+    "computer/docker",
+    "computer/linux/命令/source.md",
+    "computer/linux/命令",
+    "computer/kubernetes/服务发现.md",
+    "computer/kubernetes/存储.md",
+    "computer/kubernetes/StatefulSet.md",
+    "computer/kubernetes/Service.md",
+    "computer/kubernetes/Pod.md",
+    "computer/kubernetes/overview.md",
+    "computer/kubernetes/master.md",
+    "computer/kubernetes/kubectl.md",
+    "computer/kubernetes/ecosystem.md",
+    "computer/kubernetes/Deployment.md",
+    "computer/kubernetes/ConfigMap.md",
+    "computer/kubernetes/cluster.md",
+    "computer/kubernetes/architecture.md",
+    "computer/kubernetes",
+    "code-learing/ts-ast-viewer/LICENSE",
+    "code-learing/ts-ast-viewer/docs/images/developer-console.png",
+    "code-learing/ts-ast-viewer/docs/images",
+    "code-learing/ts-ast-viewer/docs/about.md",
+    "code-learing/ts-ast-viewer/docs",
+    "code-learing/ts-ast-viewer/dprint.json",
+    "code-learing/ts-ast-viewer/e2e/cypress/support/index.js",
+    "code-learing/ts-ast-viewer/e2e/cypress/support/commands.js",
+    "code-learing/ts-ast-viewer/e2e/cypress/integration/type.spec.ts",
+    "code-learing/ts-ast-viewer/readme.md",
+    "code-learing/ts-ast-viewer/shared/README.md",
     "kubernetes/Untitled.canvas",
     "Untitled.canvas",
-    "kubernetes",
-    "front-end/reading/10-如何使用 Vike 和 Vite 构建可扩展的微前端架构.md",
-    "daily-notes/2024/Q3/2024-09-23.md",
-    "front-end/authentication/authentication.md",
-    "daily-notes/2024/Q3/2024-09-19.md",
-    "front-end/reading/09-优化 JS代码的乐趣和收益.md",
-    "front-end/reading/09-优化 JS 代码的乐趣和收益.md",
     "front-end/authentication/_resources/tokens/entra-id.webp",
-    "front-end/authentication/_resources/tokens/entra-id.webp.crdownload",
-    "front-end/authentication/_resources/tokens/未确认 232308.crdownload",
     "front-end/authentication/_resources/tokens/640.svg",
     "front-end/authentication/_resources/tokens/openid-authed.png",
-    "front-end/authentication/_resources/tokens/未确认 697998.crdownload",
     "front-end/authentication/_resources/tokens/openid-connect.png",
     "front-end/authentication/_resources/openid-connect.svg",
-    "front-end/authentication/_resources/未确认 952489.crdownload",
-    "front-end/authentication/_resources/tokens",
-    "front-end/authentication/_resources/新建文件夹",
     "front-end/authentication/_resources/cookies/google-cookie.webp",
-    "front-end/authentication/_resources/cookies/google-cookie.webp.crdownload",
     "front-end/authentication/_resources/cookies/cookie-manage.webp",
     "front-end/authentication/_resources/cookies/cookie-path.webp",
     "front-end/authentication/_resources/cookies/cookies.png",
-    "front-end/authentication/_resources/SSO-2.png",
     "未命名.canvas"
   ]
 }

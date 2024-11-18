@@ -63,17 +63,17 @@ Pod2 ^LZLqo9ET
 :5000 ^xv9Zib99
 
 ## Element Links
-ErqawkvL: [[master#API Server]]
+ErqawkvL: [[computer/kubernetes/master#API Server]]
 
-LlQ6WbnG: [[master#Etcd]]
+LlQ6WbnG: [[computer/kubernetes/master#Etcd]]
 
-C3a8Vgu9: [[master#Scheduler]]
+C3a8Vgu9: [[computer/kubernetes/master#Scheduler]]
 
-y8vqZQdX: [[master#Kublet]]
+y8vqZQdX: [[computer/kubernetes/master#Kublet]]
 
-Cos9x74N: [[master#CRI]]
+Cos9x74N: [[computer/kubernetes/master#CRI]]
 
-zl8nDSB2: [[master#kube-proxy]]
+zl8nDSB2: [[computer/kubernetes/master#kube-proxy]]
 
 %%
 ## Drawing

@@ -93,6 +93,6 @@ kanban-plugin: board
 
 %% kanban:settings
 ```
-{"kanban-plugin":"board","show-checkboxes":true,"new-note-folder":"ToDo","tag-colors":[{"tagKey":"@tag4","color":"rgba(182, 173, 214, 1)","backgroundColor":"rgba(221, 103, 9, 0.1)"},{"tagKey":"","color":"rgba(228, 18, 64, 1)","backgroundColor":""}],"show-add-list":true,"show-relative-date":true,"list-collapse":[true,true,true,false,false]}
+{"kanban-plugin":"board","show-checkboxes":true,"new-note-folder":"ToDo","tag-colors":[{"tagKey":"@tag4","color":"rgba(182, 173, 214, 1)","backgroundColor":"rgba(221, 103, 9, 0.1)"},{"tagKey":"","color":"rgba(228, 18, 64, 1)","backgroundColor":""}],"show-add-list":true,"show-relative-date":true,"list-collapse":[false,true,true,false,false]}
 ```
 %%

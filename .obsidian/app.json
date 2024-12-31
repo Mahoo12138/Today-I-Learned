@@ -6,5 +6,6 @@
   "attachmentFolderPath": "./_resources",
   "alwaysUpdateLinks": true,
   "spellcheck": false,
-  "defaultViewMode": "preview"
+  "defaultViewMode": "preview",
+  "showInlineTitle": false
 }

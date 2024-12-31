@@ -17,7 +17,28 @@ Docker Compose 是 Docker 官方的开源项目，负责实现对 Docker 容器�
 + `name`：定义项目名称，可通过环境变量 `COMPOSE_PROJECT_NAME` 访问；
 + `services`：定义每个容器服务的名称及其相关设置，每个服务可以看作一个 Docker 容器实例。每个服务通常包括镜像、端口、环境变量、挂载等配置；
 	+ `image`：容器镜像，格式为 `[<registry>/][<project>/]<image>[:<tag>|@<digest>]`；
-	+ 
 
+### 扩展
+
+使用 `x-` 的顶层元素，可用于模块化重用配置，当然这些配置会被 Compose 忽略。
+
+扩展字段也能被用于锚点和别名（属于 yaml 的功能），例如：
+
+```yml
+x-env: &env
+  environment:
+    - CONFIG_KEY
+    - EXAMPLE_KEY
+ 
+services:
+  first:
+    <<: *env
+    image: my-image:latest
+  second:
+    <<: *env
+    image: another-image:latest
+```
+
+> `&` 用来建立锚点，`<<` 表示合并到当前数据，`*` 用来引用锚点。
 ## 常用命令
 

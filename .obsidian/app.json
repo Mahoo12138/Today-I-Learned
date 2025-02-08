@@ -3,7 +3,7 @@
     "/node_modules/"
   ],
   "showUnsupportedFiles": false,
-  "attachmentFolderPath": "./_resources",
+  "attachmentFolderPath": "attachments",
   "alwaysUpdateLinks": true,
   "spellcheck": false,
   "defaultViewMode": "preview",

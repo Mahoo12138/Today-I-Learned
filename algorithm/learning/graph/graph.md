@@ -231,7 +231,7 @@ C —— D
 
 typescript
 
-复制
+
 
 ```typescript
 const graph = new Graph<string>();
@@ -438,5 +438,264 @@ function canFinish(numCourses: number, prerequisites: number[][]): boolean {
   const graph = new Graph<number>();
   prerequisites.forEach(([to, from]) => graph.addDirectedEdge(from, to));
   return graph.topologicalSort() !== null;
+}
+```
+
+## 最短路径
+
+### **算法分类**
+
+| **算法**           | **适用场景**             | **时间复杂度** | **特点**               |
+| :----------------- | :----------------------- | :------------- | :--------------------- |
+| **Dijkstra**       | 非负权重的有向/无向图    | O((V+E) log V) | 贪心思想，优先队列优化 |
+| **Bellman-Ford**   | 含负权重的图，检测负权环 | O(VE)          | 松弛所有边，支持负权重 |
+| **Floyd-Warshall** | 所有节点对的最短路径     | O(V³)          | 动态规划，适合小规模图 |
+
+### Dijkstra 算法
+
+#### **核心思想**
+
+- 贪心策略：每次选择**当前距离起点最近**的节点，更新其邻居的最短距离。
+- **仅适用于非负权重边**（权重 ≥ 0）。
+
+#### 代码实现
+
+```typescript
+type WeightedAdjacencyList = Map<number, { node: number; weight: number }[]>;
+
+class Dijkstra {
+  // 获取从 start 到所有节点的最短距离
+  static shortestPath(
+    graph: WeightedAdjacencyList,
+    start: number
+  ): { distances: Map<number, number>; predecessors: Map<number, number> } {
+    const distances = new Map<number, number>();
+    const predecessors = new Map<number, number>();
+    const priorityQueue = new PriorityQueue<number>((a, b) => distances.get(a)! - distances.get(b)!);
+
+    // 初始化距离为无穷大，起点距离为0
+    graph.forEach((_, node) => distances.set(node, Infinity));
+    distances.set(start, 0);
+    priorityQueue.enqueue(start);
+
+    while (!priorityQueue.isEmpty()) {
+      const current = priorityQueue.dequeue()!;
+      const currentDist = distances.get(current)!;
+
+      graph.get(current)?.forEach(({ node: neighbor, weight }) => {
+        const newDist = currentDist + weight;
+        if (newDist < (distances.get(neighbor) ?? Infinity)) {
+          distances.set(neighbor, newDist);
+          predecessors.set(neighbor, current);
+          priorityQueue.enqueue(neighbor); // 可能需要重复入队，但优先队列会处理
+        }
+      });
+    }
+
+    return { distances, predecessors };
+  }
+
+  // 重构路径（从终点回溯到起点）
+  static getPath(predecessors: Map<number, number>, end: number): number[] {
+    const path: number[] = [];
+    let current: number | undefined = end;
+    while (current !== undefined) {
+      path.unshift(current);
+      current = predecessors.get(current);
+    }
+    return path;
+  }
+}
+
+// 优先队列实现（需自行实现或使用第三方库）
+class PriorityQueue<T> {
+  private elements: T[];
+  private compare: (a: T, b: T) => number;
+
+  constructor(compare: (a: T, b: T) => number) {
+    this.elements = [];
+    this.compare = compare;
+  }
+
+  enqueue(element: T): void {
+    this.elements.push(element);
+    this.elements.sort(this.compare);
+  }
+
+  dequeue(): T | undefined {
+    return this.elements.shift();
+  }
+
+  isEmpty(): boolean {
+    return this.elements.length === 0;
+  }
+}
+```
+
+#### 测试用例
+
+```typescript
+// 构建加权图
+const graph: WeightedAdjacencyList = new Map();
+graph.set(0, [{ node: 1, weight: 4 }, { node: 2, weight: 1 }]);
+graph.set(1, [{ node: 3, weight: 1 }]);
+graph.set(2, [{ node: 1, weight: 2 }, { node: 3, weight: 5 }]);
+graph.set(3, []);
+
+// 计算从节点0到其他节点的最短路径
+const { distances, predecessors } = Dijkstra.shortestPath(graph, 0);
+console.log(distances); // Map { 0 => 0, 1 => 3, 2 => 1, 3 => 4 }
+console.log(Dijkstra.getPath(predecessors, 3)); // [0, 2, 1, 3]
+```
+
+### Bellman-Ford 算法
+
+#### **1. 核心思想**
+
+- 通过 **V-1 次松弛操作**（遍历所有边）逐步逼近最短路径。
+- 可检测**负权环**（第 V 次松弛仍能更新则存在环）。
+
+#### **2. 代码实现**
+
+```typescript
+class BellmanFord {
+  static shortestPath(
+    graph: WeightedAdjacencyList,
+    start: number
+  ): { distances: Map<number, number>; hasNegativeCycle: boolean } {
+    const distances = new Map<number, number>();
+    let hasNegativeCycle = false;
+
+    // 初始化距离
+    graph.forEach((_, node) => distances.set(node, Infinity));
+    distances.set(start, 0);
+
+    // 松弛所有边 V-1 次
+    const size = graph.size;
+    for (let i = 0; i < size - 1; i++) {
+      graph.forEach((neighbors, u) => {
+        neighbors.forEach(({ node: v, weight }) => {
+          if (distances.get(u)! + weight < (distances.get(v) ?? Infinity)) {
+            distances.set(v, distances.get(u)! + weight);
+          }
+        });
+      });
+    }
+
+    // 检测负权环（第 V 次松弛）
+    graph.forEach((neighbors, u) => {
+      neighbors.forEach(({ node: v, weight }) => {
+        if (distances.get(u)! + weight < (distances.get(v) ?? Infinity)) {
+          hasNegativeCycle = true;
+        }
+      });
+    });
+
+    return { distances, hasNegativeCycle };
+  }
+}
+```
+
+#### **3. 测试用例**
+
+```typescript
+// 含负权重的图
+const graphWithNeg: WeightedAdjacencyList = new Map();
+graphWithNeg.set(0, [{ node: 1, weight: 4 }, { node: 2, weight: 1 }]);
+graphWithNeg.set(1, [{ node: 3, weight: -2 }]);
+graphWithNeg.set(2, [{ node: 1, weight: 2 }, { node: 3, weight: 5 }]);
+graphWithNeg.set(3, []);
+
+const result = BellmanFord.shortestPath(graphWithNeg, 0);
+console.log(result.distances); // Map { 0 => 0, 1 => 3, 2 => 1, 3 => 1 }
+console.log(result.hasNegativeCycle); // false
+```
+
+------
+
+### **四、Floyd-Warshall 算法**
+
+#### **1. 核心思想**
+
+- 动态规划：计算所有节点对之间的最短路径。
+- 通过中间节点逐步优化距离。
+
+#### **2. 代码实现**
+
+```typescript
+class FloydWarshall {
+  static shortestPaths(graph: WeightedAdjacencyList): number[][] {
+    const size = graph.size;
+    const dist: number[][] = Array.from({ length: size }, () => Array(size).fill(Infinity));
+
+    // 初始化距离矩阵
+    graph.forEach((neighbors, u) => {
+      dist[u][u] = 0;
+      neighbors.forEach(({ node: v, weight }) => {
+        dist[u][v] = weight;
+      });
+    });
+
+    // 三重循环更新距离
+    for (let k = 0; k < size; k++) {
+      for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+          if (dist[i][j] > dist[i][k] + dist[k][j]) {
+            dist[i][j] = dist[i][k] + dist[k][j];
+          }
+        }
+      }
+    }
+
+    return dist;
+  }
+}
+```
+
+#### **3. 测试用例**
+
+```typescript
+const dist = FloydWarshall.shortestPaths(graph);
+console.log(dist);
+// 输出示例（节点0到3的最短路径为4）：
+// [
+//   [0, 3, 1, 4],
+//   [Infinity, 0, Infinity, 1],
+//   [Infinity, 2, 0, 3],
+//   [Infinity, Infinity, Infinity, 0]
+// ]
+```
+
+------
+
+### 算法对比与选择
+
+| **场景**               | **推荐算法**   | **原因**                 |
+| :--------------------- | :------------- | :----------------------- |
+| 非负权重，单源最短路径 | Dijkstra       | 高效，时间复杂度低       |
+| 含负权重或检测负权环   | Bellman-Ford   | 能处理负权重，可检测环   |
+| 所有节点对的最短路径   | Floyd-Warshall | 直接计算所有对，适合小图 |
+
+------
+
+### LeetCode 实战
+
+**题目**：[743. 网络延迟时间](https://leetcode.com/problems/network-delay-time/)
+**题意**：计算信号从起点传播到所有节点的最短时间，若存在无法到达的节点返回 -1。
+**解法**：Dijkstra 算法直接应用。
+
+```typescript
+function networkDelayTime(times: number[][], n: number, k: number): number {
+  const graph: WeightedAdjacencyList = new Map();
+  for (let i = 1; i <= n; i++) graph.set(i, []);
+  times.forEach(([u, v, w]) => graph.get(u)!.push({ node: v, weight: w }));
+
+  const { distances } = Dijkstra.shortestPath(graph, k);
+  let maxTime = 0;
+  distances.forEach(time => {
+    if (time === Infinity) return -1;
+    maxTime = Math.max(maxTime, time);
+  });
+  return maxTime === Infinity ? -1 : maxTime;
 }
 ```

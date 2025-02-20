@@ -4,3 +4,5 @@ desktop.ini
 **/target/debug/*
 .rustc_info.json
 CACHEDIR.TAG
+
+.idea

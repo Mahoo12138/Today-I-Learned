@@ -699,3 +699,109 @@ function networkDelayTime(times: number[][], n: number, k: number): number {
   return maxTime === Infinity ? -1 : maxTime;
 }
 ```
+
+## 最小生成树
+
+### 基本概念
+
+假设你要在几个城市之间铺设光缆，要求：
+
+1. **所有城市都要连通**（任意两个城市之间可以间接连接）。
+2. **总成本最低**（光缆总长度最短）。
+
+这就是**最小生成树**问题——在连通的无向图中，找到一棵边权重和最小的树，连接所有节点。
+
+- **生成树（Spanning Tree）**：包含图中所有顶点的树（无环连通子图）。
+- **最小生成树**：所有生成树中，边的权重总和最小的那棵。
+
+### 性质特点
+
+1. **边数固定**：若图有 *V* 个节点，生成树一定有 *V−1* 条边。
+2. **不唯一性**：可能存在多个不同的最小生成树（当多条边权重相同时）。
+3. **无环**：生成树是树结构，不可能有环。
+
+### 两大核心算法
+
+#### Kruskal 算法
+
+- **核心思想**：贪心选择权重最小的边，并确保不形成环。
+- **步骤**：
+  1. 将所有边按权重从小到大排序。
+  2. 依次选择边，若加入后不形成环，则保留；否则丢弃。
+  3. 重复直到选中 *V−1* 条边。
+
+#### 代码实现
+
+```typescript
+class Kruskal {
+  static findMST(edges: { u: number; v: number; weight: number }[], numNodes: number): { mstEdges: { u: number; v: number; weight: number }[], totalWeight: number } {
+    const sortedEdges = [...edges].sort((a, b) => a.weight - b.weight);
+    const parent = Array(numNodes).fill(0).map((_, i) => i);
+    const mstEdges: { u: number; v: number; weight: number }[] = [];
+    let totalWeight = 0;
+
+    // 并查集查找根节点
+    const find = (x: number): number => {
+      if (parent[x] !== x) parent[x] = find(parent[x]); // 路径压缩
+      return parent[x];
+    };
+
+    for (const edge of sortedEdges) {
+      const rootU = find(edge.u);
+      const rootV = find(edge.v);
+      if (rootU !== rootV) { // 不形成环
+        mstEdges.push(edge);
+        totalWeight += edge.weight;
+        parent[rootU] = rootV; // 合并集合
+        if (mstEdges.length === numNodes - 1) break; // 已选够边
+      }
+    }
+
+    return { mstEdges, totalWeight };
+  }
+}
+```
+
+#### Prim 算法
+
+- **核心思想**：从任意节点出发，逐步扩展当前树的边，每次选择连接树与非树节点的最小边。
+- **步骤**：
+  1. 初始化一个节点作为起点。
+  2. 维护一个优先队列，存储连接树与非树节点的边。
+  3. 每次取出权重最小的边，将新节点加入树。
+  4. 重复直到所有节点加入。
+
+#### 代码实现
+
+```typescript
+class Prim {
+  static findMST(graph: Map<number, { node: number; weight: number }[]>, start: number): { mstEdges: { u: number; v: number; weight: number }[], totalWeight: number } {
+    const visited = new Set<number>();
+    const priorityQueue = new PriorityQueue<{ u: number; v: number; weight: number }>((a, b) => a.weight - b.weight);
+    const mstEdges: { u: number; v: number; weight: number }[] = [];
+    let totalWeight = 0;
+
+    visited.add(start);
+    graph.get(start)?.forEach(edge => priorityQueue.enqueue({ u: start, v: edge.node, weight: edge.weight }));
+
+    while (!priorityQueue.isEmpty() && visited.size < graph.size) {
+      const { u, v, weight } = priorityQueue.dequeue()!;
+      if (visited.has(v)) continue;
+
+      visited.add(v);
+      mstEdges.push({ u, v, weight });
+      totalWeight += weight;
+
+      // 将新节点的边加入队列
+      graph.get(v)?.forEach(edge => {
+        if (!visited.has(edge.node)) {
+          priorityQueue.enqueue({ u: v, v: edge.node, weight: edge.weight });
+        }
+      });
+    }
+
+    return { mstEdges, totalWeight };
+  }
+}
+```
+

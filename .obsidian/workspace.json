@@ -4,21 +4,29 @@
     "type": "split",
     "children": [
       {
-        "id": "85f38f9217db641f",
+        "id": "2f8b0c023a15f996",
         "type": "tabs",
         "children": [
           {
-            "id": "9ae87c069d72fef9",
+            "id": "f29345becc9828be",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "kanban",
               "state": {
-                "file": "computer/docker/docker compose.md",
-                "mode": "source",
-                "source": false
+                "file": "TODO.md",
+                "kanbanViewState": {
+                  "kanban-plugin": "board",
+                  "list-collapse": [
+                    false,
+                    true,
+                    true,
+                    false,
+                    false
+                  ]
+                }
               },
-              "icon": "lucide-file",
-              "title": "docker compose"
+              "icon": "lucide-trello",
+              "title": "TODO"
             }
           }
         ]
@@ -40,10 +48,11 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "文件列表"
+              "title": "Files"
             }
           },
           {
@@ -52,7 +61,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Peekable",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -90,7 +99,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 224.5
+    "width": 200
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -106,10 +115,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "computer/docker/docker compose.md"
+                "file": "algorithm/15.md"
               },
               "icon": "lucide-list",
-              "title": "docker compose 的大纲"
+              "title": "Outline of 15"
             }
           },
           {
@@ -132,7 +141,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "programming/rust/engineering/workspace.md",
+                "file": "algorithm/15.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -142,7 +151,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "workspace 的反向链接列表"
+              "title": "Backlinks for 15"
             }
           },
           {
@@ -151,12 +160,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "summary/read-code.md",
+                "file": "algorithm/15.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from read-code"
+              "title": "Outgoing links from 15"
             }
           },
           {
@@ -165,84 +174,96 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "programming/rust/engineering/workspace.md"
+                "file": "algorithm/15.md"
               },
               "icon": "lucide-info",
-              "title": "workspace的笔记属性"
+              "title": "File properties for 15"
+            }
+          },
+          {
+            "id": "540d0772145ed4c7",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
             }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
-    "width": 309.5
+    "width": 350.5
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:打开快速切换": false,
-      "graph:查看关系图谱": false,
-      "canvas:新建白板": false,
-      "daily-notes:打开/创建今天的日记": false,
-      "templates:插入模板": false,
-      "command-palette:打开命令面板": false,
-      "random-note:开始漫游笔记": false,
-      "workspaces:管理工作区布局": false,
-      "obsidian-kanban:创建新看板": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "random-note:Open random note": false,
+      "workspaces:Manage workspace layouts": false,
+      "obsidian-kanban:Create new board": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
       "obsidian-memos:Thino": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false,
-      "remotely-save:Remotely Save": false
+      "remotely-save:Remotely Save": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "9ae87c069d72fef9",
+  "active": "e52f80322eaad5fd",
   "lastOpenFiles": [
-    "programming/rust/engineering/workspace.md",
-    "().md",
-    "programming/rust/engineering/dependence.md",
-    "programming/rust/engineering",
-    "programming/rust/disabuse/解引用.md",
-    "programming/rust/disabuse/函数传参.md",
-    "programming/rust/rust-bible/disabuse.md",
-    "programming/flutter/FlutterError.md",
-    "programming/flutter/runZonedGuarded.md",
-    "programming/flutter/pattern/Singleton.md",
-    "programming/flutter/pattern",
-    "programming/flutter",
-    "programming/rust/misc/raw identifier.md",
-    "programming/rust/misc/Peekable.md",
-    "computer/linux/dev-urandom.md",
-    "README.md",
-    "index.md",
-    "programming/rust/disabuse",
-    "programming/rust/rust-bible/advanced/02-函数式编程-迭代器.md",
-    "programming/rust/misc",
-    "programming/rust/rust-bible/practice/basic.md",
-    "computer/network/子网掩码.md",
-    "computer/linux/设备文件.md",
-    "computer/network/无类别域间路由.md",
-    "computer/cant/ahead-of-time.md",
-    "functional-paradigm/ch7.md",
-    "functional-paradigm/ch6.md",
-    "TODO.md",
-    "functional-paradigm/ch3.md",
-    "functional-paradigm/ch4.md",
-    "computer/cant/pointfree.md",
+    "algorithm/200/207.md",
+    "algorithm/200/225.md",
+    "algorithm/200/215.md",
+    "algorithm/000/3.md",
+    "algorithm/000/2.md",
+    "algorithm/learning/graph/graph.md",
+    "algorithm/README.md",
+    "attachments/algorithm/000/11",
+    "attachments/algorithm/000/2",
+    "attachments/algorithm/000",
+    "algorithm/Untitled",
+    "algorithm/sort/quick.md",
+    "algorithm/other/fisher-yates-shuffle.md",
+    "algorithm/000/4.md",
+    "attachments/algorithm/050/11",
+    "attachments/algorithm/050/2",
+    "attachments/algorithm/050",
+    "algorithm/000",
+    "algorithm/learning/graph/topological.view.md",
+    "algorithm/learning/graph/traverse.view.md",
+    "front-end/type-challenges/yarn.lock",
+    "computer/code-learing/lz-string/DOC.md",
+    "front-end/type-challenges/package.json",
+    "computer/code-learing/lz-string/decode.png",
+    "computer/code-learing/lz-string/code.png",
+    "computer/code-learing/ts-ast-viewer/readme.md",
+    "computer/code-learing/ts-ast-viewer/docs/about.md",
+    "computer/code-learing/ts-ast-viewer/shared/README.md",
+    "computer/code-learing/ts-ast-viewer/docs/images/developer-console.png",
+    "front-end/interview/bytedance/4.md",
+    "algorithm/000/15.md",
+    "algorithm/000/11.md",
+    "algorithm/200/283.md",
+    "algorithm/learning/graph.md",
+    "algorithm/200/200.md",
+    "software-engineer/data-structure/binary-search-tree/README.md",
+    "attachments/algorithm/000/11/IMG-20250222164631484.png",
+    "algorithm/200/232.md",
+    "computer/docker/docker compose.md",
+    "programming/flutter/widgets/OverflowBox.md",
     "functional-paradigm/_resources/cats_ss.png",
-    "functional-paradigm/_resources/cats_ss.png.crdownload",
     "functional-paradigm/_resources/console_ss.png",
-    "functional-paradigm/_resources/console_ss.png.crdownload",
-    "programming",
-    "code-learing/lz-string/LICENSE",
     "code-learing/lz-string/code.png",
     "code-learing/lz-string/decode.png",
-    "code-learing/lz-string/src/main.ts",
     "code-learing/ts-ast-viewer/docs/images/developer-console.png",
     "kubernetes/Untitled.canvas",
     "Untitled.canvas",
     "front-end/authentication/_resources/tokens/entra-id.webp",
-    "front-end/authentication/_resources/tokens/640.svg",
-    "front-end/authentication/_resources/tokens/openid-authed.png",
-    "front-end/authentication/_resources/tokens/openid-connect.png",
-    "front-end/authentication/_resources/openid-connect.svg",
     "未命名.canvas"
   ]
 }

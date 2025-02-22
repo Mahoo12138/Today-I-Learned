@@ -229,10 +229,6 @@ C —— D
 
 #### **构建图并测试遍历**
 
-typescript
-
-
-
 ```typescript
 const graph = new Graph<string>();
 graph.addEdge('A', 'B');
@@ -247,7 +243,7 @@ console.log(graph.dfs('A'));      // 输出: ['A', 'B', 'D', 'C']
 console.log(graph.dfsStack('A')); // 输出: ['A', 'B', 'D', 'C']
 
 // BFS
-console.log(graph.bfs('A'));      // 输出: ['A', 'B', 'C', 'D']
+console.log(graph.bfs('A'));      // 输出: ['A', 'C', 'B', 'D']
 ```
 
 ### **关键差异总结**
@@ -270,7 +266,9 @@ console.log(graph.bfs('A'));      // 输出: ['A', 'B', 'C', 'D']
 
 ## 拓扑排序
 
-拓扑排序（Topological Sorting）是处理**有向无环图（DAG）** 的重要算法，核心思想是找到一种节点顺序，使得图中所有边的方向都保持一致（即若存在边 `A → B`，则排序中 `A` 必须出现在 `B` 前面）。它在任务调度、依赖关系处理中非常有用（如课程选修顺序、编译顺序）。
+拓扑排序（Topological Sorting）是处理**有向无环图（Directed acyclic graph, DAG）** 的重要算法，核心思想是找到一种节点顺序，使得图中所有边的方向都保持一致（即若存在边 `A → B`，则排序中 `A` 必须出现在 `B` 前面）。它在任务调度、依赖关系处理中非常有用（如课程选修顺序、编译顺序）。
+
+ #TODO
 
 ### **拓扑排序的前提条件**
 
@@ -377,9 +375,9 @@ class Graph<T> {
 
 假设课程依赖关系如下（LeetCode 207题）：
 
-- 课程1依赖课程0（边 `0 → 1`）
-- 课程2依赖课程1（边 `1 → 2`）
-- 课程3依赖课程1（边 `1 → 3`）
+- 课程 1 依赖课程 0（边 `0 → 1`）
+- 课程 2 依赖课程 1（边 `1 → 2`）
+- 课程 3 依赖课程 1（边 `1 → 3`）
 
 ```typescript
 const graph = new Graph<number>();
@@ -805,3 +803,572 @@ class Prim {
 }
 ```
 
+### 算法对比
+
+| **特性**           | **Kruskal算法**    | **Prim算法**               |
+| :----------------- | :----------------- | :------------------------- |
+| **数据结构**       | 并查集 + 排序边    | 优先队列 + 邻接表          |
+| **适用场景**       | 稀疏图（边较少）   | 稠密图（边较多）           |
+| **时间复杂度**     | O(E log E)         | O(E log V)（优先队列优化） |
+| **是否需要邻接表** | 不需要，直接操作边 | 需要邻接表                 |
+
+### **测试案例**
+
+假设有以下加权无向图：
+
+```
+A --2-- B
+| \     |
+3  4   1
+|   \  |
+C --5-- D
+```
+
+#### 转换为代码输入
+
+```typescript
+// Kruskal 输入：边列表
+const edges = [
+  { u: 0, v: 1, weight: 2 }, // A-B
+  { u: 0, v: 2, weight: 3 }, // A-C
+  { u: 0, v: 3, weight: 4 }, // A-D
+  { u: 1, v: 3, weight: 1 }, // B-D
+  { u: 2, v: 3, weight: 5 }, // C-D
+];
+const numNodes = 4;
+
+// Prim 输入：邻接表
+const graph = new Map<number, { node: number; weight: number }[]>();
+graph.set(0, [{ node: 1, weight: 2 }, { node: 2, weight: 3 }, { node: 3, weight: 4 }]); // A
+graph.set(1, [{ node: 0, weight: 2 }, { node: 3, weight: 1 }]); // B
+graph.set(2, [{ node: 0, weight: 3 }, { node: 3, weight: 5 }]); // C
+graph.set(3, [{ node: 0, weight: 4 }, { node: 1, weight: 1 }, { node: 2, weight: 5 }]); // D
+
+// 运行算法
+const kruskalResult = Kruskal.findMST(edges, 4);
+const primResult = Prim.findMST(graph, 0);
+
+console.log('Kruskal MST:', kruskalResult); // 总权重 2+1+3=6
+console.log('Prim MST:', primResult);       // 总权重 2+1+3=6
+```
+
+### LeetCode 实战
+
+**题目**：[1584. 连接所有点的最小费用](https://leetcode.com/problems/min-cost-to-connect-all-points/)
+**题意**：给定二维平面上的点，求连接所有点的最小成本（曼哈顿距离）。
+**解法**：Kruskal或Prim均可，需先构建所有边。
+
+```typescript
+// 以Kruskal解法为例
+function minCostConnectPoints(points: number[][]): number {
+  const edges: { u: number; v: number; weight: number }[] = [];
+  const n = points.length;
+  
+  // 构建所有边
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      const weight = Math.abs(points[i][0] - points[j][0]) + Math.abs(points[i][1] - points[j][1]);
+      edges.push({ u: i, v: j, weight });
+    }
+  }
+  
+  const { totalWeight } = Kruskal.findMST(edges, n);
+  return totalWeight;
+}
+```
+
+## 连通性问题
+
+### 问题分类
+
+1. **无向图连通性**
+   - 连通图：任意两节点间存在路径。
+   - 连通分量：极大连通子图（无法再扩大）。
+2. **有向图连通性**
+   - 强连通：任意两节点**互相可达**。
+   - 弱连通：忽略方向后是无向连通图。
+   - 强连通分量（SCC）：极大强连通子图。
+3. **关键节点与边**
+   - **割点（Articulation Point）**：移除后图不再连通的节点。
+   - **桥（Bridge）**：移除后图不再连通的边。
+
+
+
+### 无向图连通性判断
+
+#### **1. DFS/BFS遍历法**
+
+遍历图，若所有节点均被访问，则为连通图。
+
+```typescript
+function isConnected(graph: Map<number, number[]>): boolean {
+  const visited = new Set<number>();
+  const startNode = graph.keys().next().value;
+  if (startNode === undefined) return true; // 空图视为连通
+
+  // DFS遍历
+  const dfs = (node: number) => {
+    if (visited.has(node)) return;
+    visited.add(node);
+    graph.get(node)?.forEach(neighbor => dfs(neighbor));
+  };
+  dfs(startNode);
+
+  return visited.size === graph.size;
+}
+```
+
+#### **2. 并查集（Union-Find）**
+
+动态合并连通分量，高效判断连通性。
+
+```typescript
+class UnionFind {
+  private parent: number[];
+  constructor(size: number) {
+    this.parent = Array(size).fill(-1);
+  }
+  
+  find(x: number): number {
+    if (this.parent[x] === -1) return x;
+    return this.parent[x] = this.find(this.parent[x]); // 路径压缩
+  }
+  
+  union(x: number, y: number): void {
+    const rootX = this.find(x);
+    const rootY = this.find(y);
+    if (rootX !== rootY) this.parent[rootX] = rootY;
+  }
+  
+  isConnected(): boolean {
+    let roots = new Set<number>();
+    for (let i = 0; i < this.parent.length; i++) {
+      roots.add(this.find(i));
+    }
+    return roots.size === 1;
+  }
+}
+```
+
+------
+
+### 有向图的强连通分量（SCC）
+
+#### **1. Kosaraju算法**
+
+**步骤**：
+
+1. 对原图DFS，记录完成时间的逆序。
+2. 对逆图（边反向）按逆序DFS，每次DFS访问的节点构成一个SCC。
+
+```typescript
+function kosaraju(graph: Map<number, number[]>): number[][] {
+  const visited = new Set<number>();
+  const order: number[] = [];
+  const reverseGraph = new Map<number, number[]>();
+  const scc: number[][] = [];
+  
+  // 构建逆图
+  graph.forEach((neighbors, node) => {
+    neighbors.forEach(neighbor => {
+      if (!reverseGraph.has(neighbor)) reverseGraph.set(neighbor, []);
+      reverseGraph.get(neighbor)!.push(node);
+    });
+  });
+  
+  // 第一次DFS记录完成顺序
+  const dfs1 = (node: number) => {
+    if (visited.has(node)) return;
+    visited.add(node);
+    graph.get(node)?.forEach(dfs1);
+    order.push(node);
+  };
+  graph.forEach((_, node) => dfs1(node));
+  
+  // 第二次DFS在逆图上找SCC
+  visited.clear();
+  const dfs2 = (node: number, component: number[]) => {
+    if (visited.has(node)) return;
+    visited.add(node);
+    component.push(node);
+    reverseGraph.get(node)?.forEach(neighbor => dfs2(neighbor, component));
+  };
+  
+  for (let i = order.length - 1; i >= 0; i--) {
+    const node = order[i];
+    if (!visited.has(node)) {
+      const component: number[] = [];
+      dfs2(node, component);
+      scc.push(component);
+    }
+  }
+  
+  return scc;
+}
+```
+
+#### **2. Tarjan算法**
+
+**利用DFS栈和追溯值（low值）**，一次遍历找出所有SCC。
+
+```typescript
+function tarjan(graph: Map<number, number[]>): number[][] {
+  let index = 0;
+  const indices = new Map<number, number>();
+  const low = new Map<number, number>();
+  const stack: number[] = [];
+  const onStack = new Set<number>();
+  const scc: number[][] = [];
+  
+  const strongConnect = (node: number) => {
+    indices.set(node, index);
+    low.set(node, index);
+    index++;
+    stack.push(node);
+    onStack.add(node);
+    
+    graph.get(node)?.forEach(neighbor => {
+      if (!indices.has(neighbor)) {
+        strongConnect(neighbor);
+        low.set(node, Math.min(low.get(node)!, low.get(neighbor)!));
+      } else if (onStack.has(neighbor)) {
+        low.set(node, Math.min(low.get(node)!, indices.get(neighbor)!));
+      }
+    });
+    
+    if (low.get(node) === indices.get(node)) {
+      const component: number[] = [];
+      let top: number;
+      do {
+        top = stack.pop()!;
+        onStack.delete(top);
+        component.push(top);
+      } while (top !== node);
+      scc.push(component);
+    }
+  };
+  
+  graph.forEach((_, node) => {
+    if (!indices.has(node)) strongConnect(node);
+  });
+  
+  return scc;
+}
+```
+
+------
+
+### **桥与割点检测（Tarjan算法）**
+
+#### **1. 桥（割边）检测**
+
+- **条件**：对于边 `u→v`，若 `low[v] > disc[u]`，则该边为桥。
+
+```typescript
+function findBridges(graph: Map<number, number[]>): [number, number][] {
+  let time = 0;
+  const disc = new Map<number, number>();
+  const low = new Map<number, number>();
+  const bridges: [number, number][] = [];
+  
+  const dfs = (u: number, parent: number | null) => {
+    disc.set(u, time);
+    low.set(u, time);
+    time++;
+    
+    graph.get(u)?.forEach(v => {
+      if (!disc.has(v)) {
+        dfs(v, u);
+        low.set(u, Math.min(low.get(u)!, low.get(v)!));
+        if (low.get(v)! > disc.get(u)!) {
+          bridges.push([u, v]);
+        }
+      } else if (v !== parent) {
+        low.set(u, Math.min(low.get(u)!, disc.get(v)!));
+      }
+    });
+  };
+  
+  graph.forEach((_, node) => {
+    if (!disc.has(node)) dfs(node, null);
+  });
+  
+  return bridges;
+}
+```
+
+#### **2. 割点检测**
+
+- **条件**：根节点有至少两个子节点，或非根节点 `u` 存在子节点 `v` 满足 `low[v] >= disc[u]`。
+
+```typescript
+function findArticulationPoints(graph: Map<number, number[]>): number[] {
+  let time = 0;
+  const disc = new Map<number, number>();
+  const low = new Map<number, number>();
+  const ap = new Set<number>();
+  
+  const dfs = (u: number, parent: number | null) => {
+    let children = 0;
+    disc.set(u, time);
+    low.set(u, time);
+    time++;
+    
+    graph.get(u)?.forEach(v => {
+      if (!disc.has(v)) {
+        children++;
+        dfs(v, u);
+        low.set(u, Math.min(low.get(u)!, low.get(v)!));
+        // 根节点且有至少两个子节点
+        if (parent === null && children > 1) ap.add(u);
+        // 非根节点且满足 low[v] >= disc[u]
+        if (parent !== null && low.get(v)! >= disc.get(u)!) ap.add(u);
+      } else if (v !== parent) {
+        low.set(u, Math.min(low.get(u)!, disc.get(v)!));
+      }
+    });
+  };
+  
+  graph.forEach((_, node) => {
+    if (!disc.has(node)) dfs(node, null);
+  });
+  
+  return Array.from(ap);
+}
+```
+
+------
+
+### LeetCode 实战
+
+#### **1. 无向图连通分量数量**
+
+[LeetCode 323. 无向图中连通分量的数量](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/)
+
+```typescript
+function countComponents(n: number, edges: number[][]): number {
+  const uf = new UnionFind(n);
+  for (const [u, v] of edges) uf.union(u, v);
+  const roots = new Set<number>();
+  for (let i = 0; i < n; i++) roots.add(uf.find(i));
+  return roots.size;
+}
+```
+
+#### **2. 强连通分量**
+
+[LeetCode 1192. 查找集群内的关键连接](https://leetcode.com/problems/critical-connections-in-a-network/)（求桥）
+
+```typescript
+function criticalConnections(n: number, connections: number[][]): number[][] {
+  const graph = new Map<number, number[]>();
+  for (let i = 0; i < n; i++) graph.set(i, []);
+  connections.forEach(([u, v]) => {
+    graph.get(u)!.push(v);
+    graph.get(v)!.push(u);
+  });
+  return findBridges(graph);
+}
+```
+
+------
+
+### 总结
+
+| **问题类型**     | **算法**        | **时间复杂度** | **应用场景**               |
+| :--------------- | :-------------- | :------------- | :------------------------- |
+| 无向图连通分量   | DFS/BFS/并查集  | O(V + E)       | 社交网络好友分组           |
+| 有向图强连通分量 | Kosaraju/Tarjan | O(V + E)       | 网页链接分析、依赖循环检测 |
+| 桥与割点检测     | Tarjan算法      | O(V + E)       | 网络容错设计               |
+
+## 其他重要算法
+
+### **二分图检测（Bipartite Graph）**
+
+#### **1. 什么是二分图？**
+
+- **定义**：图的顶点可被分为两个互不相交的集合 U*U* 和 V*V*，使得每条边连接 U*U* 和 V*V* 中的节点。
+- **生活例子**：电影推荐系统中的用户和电影（用户与电影相连，但用户之间、电影之间不直接相连）。
+
+#### **2. 如何检测二分图？**
+
+核心方法：**染色法**（BFS/DFS），尝试用两种颜色标记节点，确保相邻节点颜色不同。
+
+**算法步骤**：
+
+1. 选择一个未染色的节点，标记为红色。
+2. 遍历其邻居，若未染色则标记为相反颜色；若已染色且颜色冲突，则不是二分图。
+3. 重复直到所有节点染色或发现冲突。
+
+#### **3. 代码实现（TypeScript）**
+
+typescript
+
+复制
+
+```typescript
+function isBipartite(graph: number[][]): boolean {
+  const n = graph.length;
+  const colors = new Array(n).fill(-1); // -1 表示未染色，0/1 表示两种颜色
+
+  for (let i = 0; i < n; i++) {
+    if (colors[i] === -1) {
+      if (!bfsCheck(i, graph, colors)) return false;
+    }
+  }
+  return true;
+}
+
+// BFS 实现染色
+function bfsCheck(start: number, graph: number[][], colors: number[]): boolean {
+  const queue: number[] = [start];
+  colors[start] = 0;
+
+  while (queue.length > 0) {
+    const node = queue.shift()!;
+    for (const neighbor of graph[node]) {
+      if (colors[neighbor] === -1) {
+        colors[neighbor] = 1 - colors[node];
+        queue.push(neighbor);
+      } else if (colors[neighbor] === colors[node]) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+```
+
+#### **4. LeetCode 例题**
+
+- **[785. 判断二分图](https://leetcode.com/problems/is-graph-bipartite/)**：直接应用上述代码。
+- **[886. 可能的二分法](https://leetcode.com/problems/possible-bipartition/)**：将不喜欢的两个人连边，检测是否为二分图。
+
+------
+
+### 欧拉路径（Eulerian Path）
+
+#### **1. 什么是欧拉路径？**
+
+- **定义**：一条路径，经过图中每条边**恰好一次**。
+- **欧拉回路**：起点和终点相同的欧拉路径。
+- **历史背景**：源自著名的“柯尼斯堡七桥问题”。
+
+#### **2. 欧拉路径存在的条件**
+
+| **类型**     | **条件**                                                     |
+| :----------- | :----------------------------------------------------------- |
+| **欧拉回路** | 所有节点的**入度等于出度**（有向图）或**度数均为偶数**（无向图）。 |
+| **欧拉路径** | 恰好两个节点的入度与出度差为 ±1（有向图）或度数为奇数（无向图），其余符合回路条件。 |
+
+#### **3. Hierholzer 算法**
+
+用于寻找欧拉回路/路径的高效算法，核心步骤：
+
+1. **选择起点**：根据度数确定起点（欧拉路径选奇数度节点，回路任意起点）。
+2. **DFS遍历**：沿边走并删除边，直到无法继续。
+3. **回溯拼接路径**：将死胡同节点逆序加入路径。
+
+#### **4. 代码实现（有向图欧拉路径）**
+
+
+
+```typescript
+function findEulerianPath(graph: Map<number, number[]>): number[] {
+  const inDegree = new Map<number, number>();
+  const outDegree = new Map<number, number>();
+  const path: number[] = [];
+
+  // 计算出入度
+  graph.forEach((neighbors, u) => {
+    outDegree.set(u, neighbors.length);
+    neighbors.forEach(v => {
+      inDegree.set(v, (inDegree.get(v) || 0) + 1);
+    });
+  });
+
+  // 寻找起点（出度比入度多1的节点，或任意节点）
+  let start = -1;
+  graph.forEach((_, u) => {
+    if (outDegree.get(u)! - (inDegree.get(u) || 0) === 1) {
+      start = u;
+    }
+  });
+  if (start === -1) start = graph.keys().next().value;
+
+  // Hierholzer 算法核心
+  const dfs = (u: number) => {
+    while (graph.get(u)?.length > 0) {
+      const v = graph.get(u)!.pop()!;
+      dfs(v);
+    }
+    path.push(u);
+  };
+
+  dfs(start);
+  return path.reverse();
+}
+```
+
+#### **5. 测试用例**
+
+**有向图欧拉路径**：
+
+```typescript
+const graph = new Map<number, number[]>();
+graph.set(0, [1]);
+graph.set(1, [2]);
+graph.set(2, [0, 3]);
+graph.set(3, [4]);
+graph.set(4, [2]);
+
+console.log(findEulerianPath(graph)); // 输出: [0, 1, 2, 3, 4, 2, 0]
+```
+
+#### **6. LeetCode 例题**
+
+**[332. 重新安排行程](https://leetcode.com/problems/reconstruct-itinerary/)**：寻找字典序最小的欧拉路径。
+
+```typescript
+function findItinerary(tickets: string[][]): string[] {
+  const graph = new Map<string, string[]>();
+  // 构建图并按字典序排序
+  tickets.forEach(([from, to]) => {
+    if (!graph.has(from)) graph.set(from, []);
+    graph.get(from)!.push(to);
+  });
+  graph.forEach((neighbors, from) => neighbors.sort().reverse());
+
+  const path: string[] = [];
+  const dfs = (node: string) => {
+    while (graph.get(node)?.length > 0) {
+      const next = graph.get(node)!.pop()!;
+      dfs(next);
+    }
+    path.push(node);
+  };
+
+  dfs("JFK");
+  return path.reverse();
+}
+```
+
+------
+
+### 总结与对比
+
+| **算法**       | **核心思想**               | **应用场景**                  |
+| :------------- | :------------------------- | :---------------------------- |
+| **二分图检测** | 染色法确保相邻节点颜色不同 | 任务分配、广告推荐系统        |
+| **欧拉路径**   | Hierholzer算法回溯拼接路径 | 路径规划、DNA测序、一笔画问题 |
+
+------
+
+### 常见问题
+
+1. **如何判断无向图是否有欧拉回路？**
+   所有节点的度数均为偶数。
+2. **二分图一定是树吗？**
+   不一定，二分图可以是任意结构，只要满足节点二分条件。
+3. **欧拉路径是否唯一？**
+   不唯一，但可以通过排序（如字典序）选择特定路径。

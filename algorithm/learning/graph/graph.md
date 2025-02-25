@@ -268,8 +268,6 @@ console.log(graph.bfs('A'));      // 输出: ['A', 'C', 'B', 'D']
 
 拓扑排序（Topological Sorting）是处理**有向无环图（Directed acyclic graph, DAG）** 的重要算法，核心思想是找到一种节点顺序，使得图中所有边的方向都保持一致（即若存在边 `A → B`，则排序中 `A` 必须出现在 `B` 前面）。它在任务调度、依赖关系处理中非常有用（如课程选修顺序、编译顺序）。
 
- #TODO
-
 ### **拓扑排序的前提条件**
 
 - **图必须是有向无环图（DAG）**，若图中有环，则无法进行拓扑排序。
@@ -441,46 +439,85 @@ function canFinish(numCourses: number, prerequisites: number[][]): boolean {
 
 ## 最短路径
 
+最短路径算法用于在**加权图**中找到两个节点之间的**路径权重和最小**的路径。不同算法适用于不同场景。
+
 ### **算法分类**
 
-| **算法**           | **适用场景**             | **时间复杂度** | **特点**               |
-| :----------------- | :----------------------- | :------------- | :--------------------- |
-| **Dijkstra**       | 非负权重的有向/无向图    | O((V+E) log V) | 贪心思想，优先队列优化 |
-| **Bellman-Ford**   | 含负权重的图，检测负权环 | O(VE)          | 松弛所有边，支持负权重 |
-| **Floyd-Warshall** | 所有节点对的最短路径     | O(V³)          | 动态规划，适合小规模图 |
+| **算法**           | **适用场景**                        | **时间复杂度** | **特点**               |
+| :----------------- | :---------------------------------- | :------------- | :--------------------- |
+| **Dijkstra**       | 非负权重的有向/无向图（如地图导航） | O((V+E) log V) | 贪心思想，优先队列优化 |
+| **Bellman-Ford**   | 含负权重的图，检测负权环            | O(VE)          | 松弛所有边，支持负权重 |
+| **Floyd-Warshall** | 所有节点对的最短路径                | O(V³)          | 动态规划，适合小规模图 |
 
 ### Dijkstra 算法
+
+#### **实际场景**
+
+假设你在北京，想坐高铁去上海，途经多个城市，每个城市间的高铁票价不同（均为正数）。Dijkstra 算法帮你找到**总票价最低**的路线。
 
 #### **核心思想**
 
 - 贪心策略：每次选择**当前距离起点最近**的节点，更新其邻居的最短距离。
 - **仅适用于非负权重边**（权重 ≥ 0）。
 
+#### **关键步骤**
+
+1. 初始化起点距离为 0，其他节点距离为无穷大。
+2. 使用优先队列选择当前距离最小的节点。
+3. 更新该节点所有邻居的距离。
+4. 重复直到所有节点处理完毕。
+
 #### 代码实现
 
-```typescript
-type WeightedAdjacencyList = Map<number, { node: number; weight: number }[]>;
+首先，需要实现权重图：
 
-class Dijkstra {
+```typescript
+export class WeightedGraph<T> {
+  protected adjacencyList: Map<T, { node: T; weight: number }[]>;
+
+  // 添加带权重的边（无向图）
+  addWeightedEdge(node1: T, node2: T, weight: number): void {
+    if (!this.adjacencyList.has(node1)) this.addNode(node1);
+    if (!this.adjacencyList.has(node2)) this.addNode(node2);
+
+    this.adjacencyList.get(node1)?.push({ node: node2, weight });
+    this.adjacencyList.get(node2)?.push({ node: node1, weight }); // 有向图则删除此行
+  }
+
+}
+```
+
+然后实现 Dijkstra 算法：
+
+```typescript
+export class Dijkstra<T> extends WeightedGraph<T> {
   // 获取从 start 到所有节点的最短距离
-  static shortestPath(
-    graph: WeightedAdjacencyList,
-    start: number
-  ): { distances: Map<number, number>; predecessors: Map<number, number> } {
-    const distances = new Map<number, number>();
-    const predecessors = new Map<number, number>();
-    const priorityQueue = new PriorityQueue<number>((a, b) => distances.get(a)! - distances.get(b)!);
+  shortestPath(start: T) {
+    const distances = new Map<T, number>();
+    const predecessors = new Map<T, T>();
+    const priorityQueue = new PriorityQueue<T>(
+      (a, b) => distances.get(a)! - distances.get(b)!
+    );
 
     // 初始化距离为无穷大，起点距离为0
-    graph.forEach((_, node) => distances.set(node, Infinity));
+    // graph.forEach((_, node) => distances.set(node, Infinity));
+    this.getNodes().forEach((node) => {
+      if (node !== start) {
+        distances.set(node, Infinity);
+      }
+    });
     distances.set(start, 0);
     priorityQueue.enqueue(start);
+    const processed = new Set<T>();
 
     while (!priorityQueue.isEmpty()) {
       const current = priorityQueue.dequeue()!;
+      if (processed.has(current)) continue;
+      processed.add(current);
+      
       const currentDist = distances.get(current)!;
 
-      graph.get(current)?.forEach(({ node: neighbor, weight }) => {
+      this.adjacencyList.get(current).forEach(({ node: neighbor, weight }) => {
         const newDist = currentDist + weight;
         if (newDist < (distances.get(neighbor) ?? Infinity)) {
           distances.set(neighbor, newDist);
@@ -494,9 +531,9 @@ class Dijkstra {
   }
 
   // 重构路径（从终点回溯到起点）
-  static getPath(predecessors: Map<number, number>, end: number): number[] {
-    const path: number[] = [];
-    let current: number | undefined = end;
+  static getPath<T>(predecessors: Map<T, T>, end: T): T[] {
+    const path: T[] = [];
+    let current: T | undefined = end;
     while (current !== undefined) {
       path.unshift(current);
       current = predecessors.get(current);
@@ -533,27 +570,58 @@ class PriorityQueue<T> {
 #### 测试用例
 
 ```typescript
-// 构建加权图
-const graph: WeightedAdjacencyList = new Map();
-graph.set(0, [{ node: 1, weight: 4 }, { node: 2, weight: 1 }]);
-graph.set(1, [{ node: 3, weight: 1 }]);
-graph.set(2, [{ node: 1, weight: 2 }, { node: 3, weight: 5 }]);
-graph.set(3, []);
+const graph = new Dijkstra<number>();
+// 构建测试图
+/*
+    0---4---1
+    |   | / 
+    2---3
+*/
+graph.addWeightedEdge(0, 2, 1);
+graph.addWeightedEdge(0, 4, 2);
+graph.addWeightedEdge(2, 3, 1);
+graph.addWeightedEdge(3, 1, 3);
+graph.addWeightedEdge(4, 1, 5);
+graph.addWeightedEdge(4, 3, 2);
 
-// 计算从节点0到其他节点的最短路径
-const { distances, predecessors } = Dijkstra.shortestPath(graph, 0);
-console.log(distances); // Map { 0 => 0, 1 => 3, 2 => 1, 3 => 4 }
-console.log(Dijkstra.getPath(predecessors, 3)); // [0, 2, 1, 3]
+const { distances, predecessors } = graph.shortestPath(0);
+expect(distances.get(1)).to.equal(5); // 0-2-3-1 (1+1+3)
+expect(Dijkstra.getPath(predecessors, 1)).to.deep.equal([0, 2, 3, 1]);
 ```
 
 ### Bellman-Ford 算法
 
-#### **1. 核心思想**
+#### **实际场景**
 
-- 通过 **V-1 次松弛操作**（遍历所有边）逐步逼近最短路径。
+假设你有一张信用卡，某些交易能返现（视为负权重）。Bellman-Ford 算法可以找到一条路径，使得经过某些返现交易后，总支出最少，同时检测是否存在无限返现的漏洞（负权环）
+
+#### **核心思想**
+
+- 通过 **V-1 次松弛操作**（V 为节点数，遍历所有边）逐步逼近最短路径。
 - 可检测**负权环**（第 V 次松弛仍能更新则存在环）。
 
-#### **2. 代码实现**
+> **松弛操作**是算法的核心机制，其数学定义为：
+>
+> ```
+> 对边(u, v)的松弛操作：
+> if d[v] > d[u] + w(u, v) then
+>    d[v] = d[u] + w(u, v)
+>    predecessor[v] = u
+> ```
+>
+> 假设图有 V 个节点，根据**最短路径子结构性质**，任意两点间的最短路径最多包含 **V-1 条边**（否则会出现环）。通过 V-1 次全局松弛可保证：
+>
+> 1. **正确性证明**：每次松弛至少能确定一个节点的最短距离
+> 2. **收敛保证**：对于无负权环的图，V-1 次松弛后所有节点距离收敛
+
+#### **关键步骤**
+
+1. 初始化起点距离为 0，其他节点为无穷大。
+2. 对每条边进行松弛：如果 `distance[u] + weight < distance[v]`，则更新 `distance[v]`。
+3. 重复 V-1 次。
+4. 第 V 次检查是否还能松弛，若能则存在负权环。
+
+#### **代码实现**
 
 ```typescript
 class BellmanFord {
@@ -594,7 +662,7 @@ class BellmanFord {
 }
 ```
 
-#### **3. 测试用例**
+#### **测试用例**
 
 ```typescript
 // 含负权重的图
@@ -609,28 +677,81 @@ console.log(result.distances); // Map { 0 => 0, 1 => 3, 2 => 1, 3 => 1 }
 console.log(result.hasNegativeCycle); // false
 ```
 
-------
+#### 深度解析
 
-### **四、Floyd-Warshall 算法**
+对于链状图 `0→1→2→3`，当**边按逆序添加**（即先添加后面的边）时，这会形成算法的最坏情况。让我们通过具体步骤分析：
 
-#### **1. 核心思想**
+##### 松弛过程详解（V=4 节点，需要 3 次外层循环）
+
+| 外层循环次 | 处理的边 | 更新情况                | 当前距离变化 |
+| :--------- | :------- | :---------------------- | :----------- |
+| **第1次**  | 2→3      | 无效（2的距离=∞）       | 无变化       |
+|            | 1→2      | 无效（1的距离=∞）       | 无变化       |
+|            | 0→1      | **有效**，1的距离=1     | 1: 0→1       |
+| **第2次**  | 2→3      | 无效（2的距离=∞）       | 无变化       |
+|            | 1→2      | **有效**，2的距离=1+1=2 | 2: 1→2       |
+|            | 0→1      | 无变化                  | 保持1        |
+| **第3次**  | 2→3      | **有效**，3的距离=2+1=3 | 3: 2→3       |
+|            | 1→2      | 无变化                  | 保持2        |
+|            | 0→1      | 无变化                  | 保持1        |
+
+##### 关键发现
+
+1. **路径传播特性**：每次外层循环只能将最短路径信息**向前推进一层**
+2. **边处理顺序影响**：逆序处理导致算法必须完整执行 V-1 次循环
+3. **算法正确性保障**：无论边顺序如何，V-1 次循环确保所有可能的最短路径都被探索
+
+##### 数学证明（归纳法）
+
+- **Base Case**：起点距离为0（正确）
+- Inductive Step：
+  - 假设经过 k 次外层循环，所有长度 ≤k 的最短路径已被正确计算
+  - 第 k+1 次循环将处理所有边，其中包含长度 k+1 的路径
+- **Conclusion**：经过 V-1 次循环，所有可能路径（最长 V-1 边）都被处理
+
+### **Floyd-Warshall 算法**
+
+#### 实际场景
+
+航空公司需要计算所有城市之间的最短飞行距离（无论是否有直飞航班），以便为乘客提供最优路线。Floyd-Warshall 算法一次性计算出所有城市对的最短距离。
+
+#### **核心思想**
 
 - 动态规划：计算所有节点对之间的最短路径。
 - 通过中间节点逐步优化距离。
 
-#### **2. 代码实现**
+#### **关键步骤**
+
+1. 初始化距离矩阵，直连边为权重，非直连边为无穷大。
+2. 三重循环遍历所有中间节点 k，更新所有节点对 (i, j) 的距离。
+3. 最终得到所有节点对的最短路径。
+
+#### **代码实现**
 
 ```typescript
-class FloydWarshall {
-  static shortestPaths(graph: WeightedAdjacencyList): number[][] {
-    const size = graph.size;
-    const dist: number[][] = Array.from({ length: size }, () => Array(size).fill(Infinity));
+export class FloydWarshall<T> extends WeightedGraph<T> {
+  shortestPaths() {
+    const nodes = this.getNodes();
+    const size = nodes.length;
+    const dist: number[][] = Array.from({ length: size }, () =>
+      Array(size).fill(Infinity)
+    );
+
+    // 建立节点到索引的映射
+    const nodeIndex = new Map<T, number>();
+    nodes.forEach((node, index) => nodeIndex.set(node, index));
 
     // 初始化距离矩阵
-    graph.forEach((neighbors, u) => {
-      dist[u][u] = 0;
-      neighbors.forEach(({ node: v, weight }) => {
-        dist[u][v] = weight;
+    nodes.forEach((node, i) => {
+      dist[i][i] = 0; // 节点到自身距离为0
+      const neighbors = this.getNeighbors(node);
+      neighbors.forEach((neighbor) => {
+        const j = nodeIndex.get(neighbor.node)!;
+        // 跳过自环边（节点自身到自身）
+        if (i !== j) {
+          // 直接邻居的初始权重
+          dist[i][j] = Math.min(dist[i][j], neighbor.weight); 
+        }
       });
     });
 
@@ -638,7 +759,7 @@ class FloydWarshall {
     for (let k = 0; k < size; k++) {
       for (let i = 0; i < size; i++) {
         for (let j = 0; j < size; j++) {
-          if (dist[i][j] > dist[i][k] + dist[k][j]) {
+          if (dist[i][k] + dist[k][j] < dist[i][j]) {
             dist[i][j] = dist[i][k] + dist[k][j];
           }
         }
@@ -650,31 +771,97 @@ class FloydWarshall {
 }
 ```
 
-#### **3. 测试用例**
+#### **测试用例**
 
 ```typescript
-const dist = FloydWarshall.shortestPaths(graph);
-console.log(dist);
-// 输出示例（节点0到3的最短路径为4）：
-// [
-//   [0, 3, 1, 4],
-//   [Infinity, 0, Infinity, 1],
-//   [Infinity, 2, 0, 3],
-//   [Infinity, Infinity, Infinity, 0]
-// ]
+const graph = new FloydWarshall<string>();
+
+// 构造测试图：
+/*
+      A-(1)->B
+  (5) |     / 
+      v    /  
+      C<-(2)
+*/
+graph.addDirectedWeightedEdge("A", "B", 1);
+graph.addDirectedWeightedEdge("B", "C", 2);
+graph.addDirectedWeightedEdge("A", "C", 5);
+
+const dist = graph.shortestPaths();
+// [0, 1, 3]
+// [Infinity, 0, 2]
+// [Infinity, Infinity, 0]
+const nodes = graph.getNodes().sort(); // ['A','B','C']
+
+expect(getDist(dist, nodes, "A", "C")).to.equal(3); // 通过B中转
+expect(getDist(dist, nodes, "B", "A")).to.equal(Infinity); // 不可达
+
+// 辅助函数：根据节点列表获取矩阵中的距离值
+function getDist(
+  dist: number[][],
+  nodes: string[],
+  from: string,
+  to: string
+): number {
+  const i = nodes.indexOf(from);
+  const j = nodes.indexOf(to);
+  return i >= 0 && j >= 0 ? dist[i][j] : Infinity;
+}
 ```
 
-------
+#### 深度解析
+
+Floyd-Warshall 算法的三重循环设计基于 #动态规划 思想，其核心理论依据可通过以下要点理解：
+
+##### 动态规划状态定义
+
+定义 `dist[k][i][j]` 表示：
+
+> **从节点i到节点j，且中间节点只能使用前k个节点（按某种顺序编号）的最短路径长度**
+
+通过状态压缩优化后简化为二维数组 `dist[i][j]`，即代码中的实现形式。
+
+##### 状态转移方程
+
+```
+dist[i][j] = min( dist[i][j], dist[i][k] + dist[k][j] )
+```
+
+该方程的物理含义：
+
+- **不经过k节点**：保持当前已知的最短路径 `dist[i][j]`
+- **经过k节点**：`i→k`的最短路径 + `k→j`的最短路径
+
+##### 三重循环的直观解释
+
+1. **最外层循环（k）**：逐步允许使用更多中间节点
+   - 当 k=0 时：只允许直接路径（无中间节点）
+   - 当 k=1 时：允许经过节点1作为中转
+   - 当 k=n 时：允许所有节点作为中转
+2. **中间层循环（i）**：起点节点
+3. **最内层循环（j）**：终点节点
+
+##### 数学归纳法证明
+
+1. **基础情况**：k=0 时，`dist[i][j]`即为边的权重
+2. **归纳假设**：当处理到第 k-1 个节点时，所有路径已是最优
+3. 归纳步骤：
+   - 处理第 k 个节点时，任何经过 k 的路径都可以分解为 `i→k` 和 `k→j` 两段
+   - 根据归纳假设，这两段路径已经是最优解
+
+##### 算法正确性关键
+
+- **路径构造完整性**：所有可能的路径组合都会被检查
+- **最优子结构**：最短路径的子路径也是最短的
+- **无后效性**：后续计算不会破坏已确定的最优解
 
 ### 算法对比与选择
 
-| **场景**               | **推荐算法**   | **原因**                 |
-| :--------------------- | :------------- | :----------------------- |
-| 非负权重，单源最短路径 | Dijkstra       | 高效，时间复杂度低       |
-| 含负权重或检测负权环   | Bellman-Ford   | 能处理负权重，可检测环   |
-| 所有节点对的最短路径   | Floyd-Warshall | 直接计算所有对，适合小图 |
-
-------
+| **场景**               | **推荐算法**   | **原因**                           |
+| :--------------------- | :------------- | :--------------------------------- |
+| 非负权重，单源最短路径 | Dijkstra       | 高效，时间复杂度低                 |
+| 含负权重或检测负权环   | Bellman-Ford   | 能处理负权重，可检测环             |
+| 所有节点对的最短路径   | Floyd-Warshall | 直接计算所有对，适合节点数较少的图 |
 
 ### LeetCode 实战
 

@@ -60,7 +60,7 @@ DOM 中的内联事件监听器，如 `location`、`onclick`、`onerror`、`onlo
 
 ### JSONP XSS
 
-JSONP 的 callback 参数非常危险，他有两种风险可能导致 XSS：
+JSONP 的 callback 参数非常危险，有两种风险可能导致 XSS：
 
 1. callback 参数**意外截断 js 代码**，特殊字符单引号双引号，换行符均存在风险。
 2. callback 参数**恶意添加标签**，造成 XSS 漏洞。

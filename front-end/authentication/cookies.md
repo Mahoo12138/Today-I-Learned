@@ -34,7 +34,7 @@ Cookies 具有一些非常重要的属性，因为它们定义了 cookie 的工�
 
 - `Path`：指定了该 Cookie 可用于访问的资源或路径
 
-- `HttpOnly`：启用时将防止客户端 API（如 JavaScript）访问 cookie。这有助于减轻跨站脚本（XSS）攻击的风险
+- `HttpOnly`：启用时将防止客户端 API（如 JavaScript）访问 cookie。这有助于减轻[[xss|跨站脚本（XSS）攻击]]的风险
 
 - `Secure`：启用时将只允许通过 HTTPS 发送 Cookie，而禁止使用 HTTP 等未加密连接，这使得 Cookie 更不容易受到 Cookie 窃取的攻击
 

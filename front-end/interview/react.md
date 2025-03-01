@@ -108,10 +108,62 @@ function getValue() {
 
 + **复杂的状态逻辑**：状态提升不能够满足开发需求，状态树并不总是以一种线性的，单向的方式流动时；
 
-## componentWillUpdate 可以直接修改 state 的值吗？
+componentWillUpdate 可以直接修改 state 的值吗？
 
 不建议在 `componentWillUpdate` 中直接修改 state 的值。
 
 `componentWillUpdate` 是 React 组件在更新发生前被调用的生命周期方法。它接收 `nextProps` 和 `nextState` 作为参数。你可以在这个方法中执行一些准备更新的操作，例如读取 DOM 元素的状态或执行动画。
 
 可以，直接修改 `this.state`，但是只是在 `componentWillUpdate` 的执行体以及后续的生命周期中有效。
+
+## 如何解决 react useState 的闭包问题
+
+### 问题的产生
+
+当在 `useEffect` 或 `setTimeout` 等异步操作中使用状态时，可能会遇到“陈旧闭包”（stale closure）问题：
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      alert(`Count is: ${count}`);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
+  );
+}
+```
+
+在这个例子中，`useEffect` 的依赖项数组为空 `[]`，这意味着 effect 只会在组件挂载时执行一次。`setTimeout` 中的回调函数形成了一个闭包，**它捕获了初始渲染时的 `count` 值（即 0）**。即使之后 `count` 的值发生了变化，定时器回调函数中 `count` 的值仍然是 0。这就是陈旧闭包问题。
+
+### 解决方案
+
+**使用函数式更新**
+
+当更新状态依赖于先前的状态时，可以使用 `setCount` 的函数式更新形式。这可以确保始终使用最新的状态值：
+
+```js
+setCount(prevCount => {
+    console.log(`Count is: ${prevCount}`);
+    return prevCount; // 返回prevCount以防止更改状态
+});
+```
+
+**准确将状态添加到依赖项数组**
+
+如果 effect 依赖于某个状态，则应将该状态添加到 `useEffect` 的依赖项数组中。这将确保 effect 在每次状态更改时重新运行，然后函数闭包将捕获最新的状态值。
+
+**使用 `useRef`**
+
+可以将状态的当前值存储在 ref 中，并在闭包中使用 ref 的 `current` 属性来访问最新的值。

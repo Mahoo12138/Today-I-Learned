@@ -82,7 +82,7 @@ console.log(newBoundResult, 'newBoundResult'); // original {name: 2}
 
 也就是说，在调用 `new` 构造新的对象时，无视了 `bind` 的原本的逻辑，然后保持以`bind`调用的函数作为构造函数执行 `new` 逻辑；
 
-这就需要了解 [[front-end/interview/bytedance/2#手写题：实现 new 方法|new]] 做了什么：
+这就需要了解 [[front-end/interview/company/bytedance/2#手写题：实现 new 方法|new]] 做了什么：
 
 > 1. 创建了一个全新的对象。
 > 2. 这个对象会被执行`[[Prototype]]`（也就是`__proto__`）链接。

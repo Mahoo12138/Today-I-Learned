@@ -3,7 +3,7 @@ title: JavaScript 类型
 ---
 # JavaScript 类型
 
-## [[front-end/interview/bytedance/1#js 数据类型有哪些，如何判断？|原始类型]]
+## [[front-end/interview/company/bytedance/1#js 数据类型有哪些，如何判断？|原始类型]]
 
 JavaScript 中原始类型有六种，原始类型既只保存原始值，**是没有函数可以调用的**。
 

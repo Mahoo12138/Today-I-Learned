@@ -4,29 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "2f8b0c023a15f996",
+        "id": "1f60baac300f9d3c",
         "type": "tabs",
         "children": [
           {
-            "id": "f29345becc9828be",
+            "id": "988255fc41369eaa",
             "type": "leaf",
             "state": {
-              "type": "kanban",
-              "state": {
-                "file": "TODO.md",
-                "kanbanViewState": {
-                  "kanban-plugin": "board",
-                  "list-collapse": [
-                    false,
-                    true,
-                    true,
-                    false,
-                    false
-                  ]
-                }
-              },
-              "icon": "lucide-trello",
-              "title": "TODO"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -115,10 +103,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "algorithm/15.md"
+                "file": "TODO.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 15"
+              "title": "Outline of TODO"
             }
           },
           {
@@ -190,8 +181,7 @@
               "title": "Source Control"
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "horizontal",
@@ -216,54 +206,6 @@
   },
   "active": "e52f80322eaad5fd",
   "lastOpenFiles": [
-    "algorithm/200/207.md",
-    "algorithm/200/225.md",
-    "algorithm/200/215.md",
-    "algorithm/000/3.md",
-    "algorithm/000/2.md",
-    "algorithm/learning/graph/graph.md",
-    "algorithm/README.md",
-    "attachments/algorithm/000/11",
-    "attachments/algorithm/000/2",
-    "attachments/algorithm/000",
-    "algorithm/Untitled",
-    "algorithm/sort/quick.md",
-    "algorithm/other/fisher-yates-shuffle.md",
-    "algorithm/000/4.md",
-    "attachments/algorithm/050/11",
-    "attachments/algorithm/050/2",
-    "attachments/algorithm/050",
-    "algorithm/000",
-    "algorithm/learning/graph/topological.view.md",
-    "algorithm/learning/graph/traverse.view.md",
-    "front-end/type-challenges/yarn.lock",
-    "computer/code-learing/lz-string/DOC.md",
-    "front-end/type-challenges/package.json",
-    "computer/code-learing/lz-string/decode.png",
-    "computer/code-learing/lz-string/code.png",
-    "computer/code-learing/ts-ast-viewer/readme.md",
-    "computer/code-learing/ts-ast-viewer/docs/about.md",
-    "computer/code-learing/ts-ast-viewer/shared/README.md",
-    "computer/code-learing/ts-ast-viewer/docs/images/developer-console.png",
-    "front-end/interview/bytedance/4.md",
-    "algorithm/000/15.md",
-    "algorithm/000/11.md",
-    "algorithm/200/283.md",
-    "algorithm/learning/graph.md",
-    "algorithm/200/200.md",
-    "software-engineer/data-structure/binary-search-tree/README.md",
-    "attachments/algorithm/000/11/IMG-20250222164631484.png",
-    "algorithm/200/232.md",
-    "computer/docker/docker compose.md",
-    "programming/flutter/widgets/OverflowBox.md",
-    "functional-paradigm/_resources/cats_ss.png",
-    "functional-paradigm/_resources/console_ss.png",
-    "code-learing/lz-string/code.png",
-    "code-learing/lz-string/decode.png",
-    "code-learing/ts-ast-viewer/docs/images/developer-console.png",
-    "kubernetes/Untitled.canvas",
-    "Untitled.canvas",
-    "front-end/authentication/_resources/tokens/entra-id.webp",
-    "未命名.canvas"
+    
   ]
 }

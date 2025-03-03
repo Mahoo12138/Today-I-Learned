@@ -1,6 +1,6 @@
-## context的使用方式(16.x)
+## context的使用方式 (16.x)
 
-```react
+```tsx
 const { Provider, Consumer } = React.createContext({ theme: "green" })
 
 class Parent extends React.Component {
@@ -35,7 +35,7 @@ function Button() {
 }
 ```
 
-## createContext()源码解析
+## createContext() 源码解析
 
 ```js
 export function createContext<T>(

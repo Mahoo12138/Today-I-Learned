@@ -51,24 +51,67 @@
 
 受控组件和非受控组件是针对表单的。
 
-**1. 受控组件**：(类似于Vue的双向绑定)
+**1. 受控组件**：(类似于 Vue 的双向绑定)
 
-+ React默认不是双向绑定的，也就是说当我们在输入框输入的时候，输入框绑定的值并不会自动变化。
++ React 默认不是双向绑定的，也就是说当我们在输入框输入的时候，输入框绑定的值并不会自动变化。
 
-+ 通过给input绑定onChange事件，让React实现类似于Vue的双向绑定，这就叫受控组件。
++ 通过给 input 绑定 onChange 事件，让 React 实现类似于 Vue 的双向绑定，这就叫受控组件。
 
 **2. 非受控组件**
 
-+ 非受控组件是让用户手动操作Dom来控制表单值。
++ 非受控组件是让用户手动操作 Dom 来控制表单值。
 + 非受控组件的好处是更自由，可以更方便地自行选择三方库来处理表单 。
 
-
-
-
-
-## JSX和模板引擎有什么区别？
+## JSX 和模板引擎有什么区别？
 
 1. JSX：更加灵活，既可以写标签，也可以使用原生 js 语法和表达式，在做复杂渲染时更得心应手。
 2. 模板引擎：更简单易上手，开发效率高，结合指令的可读性也比较好。
 3. JSX 太灵活就导致没法给编译器提供太多的优化线索，不好做静态优化，模板引擎可以在编译时做静态标记，性能更好。
 4. JSX只是个编译工具，Vue经过一定的配置也可以使用。
+
+
+## render 函数中return如果没有使用 () 会有什么问题？
+
+在使用 JSX 语法书写 react 代码时，为了便于阅读，我们会将 JSX 拆分为多行，babel 会将 JSX 语法编译成 js，同时会在每行自动添加**分号**`;`，如果`return`后换行了，那么就会变成 `return;` 
+
+这就是常说的[自动插入分号](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)（automatic semicolon insertion (ASI)）陷阱。
+
+> Automatic Semicolon Insertion (ASI) 是 JavaScript 中的一个特性，它会在某些情况下自动在代码中插入分号。
+
+```js
+function getValue() {
+  return
+  {
+    status: true
+  };
+}
+
+// ASI 后的结果：
+function getValue() {
+  return; // 函数会在这里返回 undefined
+  {
+    status: true
+  };
+}
+
+// 正确写法：
+function getValue() {
+  return {
+    status: true
+  };
+}
+```
+
+## React 开发时，什么时候使用状态管理器？
+
++ **离散的组件关系**：存在需要在多个不相关的组件之间共享状态
+
++ **复杂的状态逻辑**：状态提升不能够满足开发需求，状态树并不总是以一种线性的，单向的方式流动时；
+
+## componentWillUpdate 可以直接修改 state 的值吗？
+
+不建议在 `componentWillUpdate` 中直接修改 state 的值。
+
+`componentWillUpdate` 是 React 组件在更新发生前被调用的生命周期方法。它接收 `nextProps` 和 `nextState` 作为参数。你可以在这个方法中执行一些准备更新的操作，例如读取 DOM 元素的状态或执行动画。
+
+可以，直接修改 `this.state`，但是只是在 `componentWillUpdate` 的执行体以及后续的生命周期中有效。

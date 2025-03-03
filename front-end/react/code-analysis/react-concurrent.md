@@ -20,7 +20,7 @@ JS 线程是可以操作 DOM 的，如果在操作 DOM 的同时 UI 线程也在
 
 大多数的设备帧率是 60，即每帧 16.67 ms，其中浏览器每一帧的过程如图：
 
-![life-of-a-frame](D:\Workbench\每日学习\react\resource\life-of-a-frame.png)
+![[IMG-20250301171006056.png]]
 
 保证流畅，在一帧中，需要将 JS 执行时间控制在合理的范围内，不影响后续 Layout 与 Paint 的过程。
 
@@ -30,7 +30,7 @@ JS 线程是可以操作 DOM 的，如果在操作 DOM 的同时 UI 线程也在
 >
 > 这使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应。函数一般会按先进先调用的顺序执行，然而，如果回调函数指定了执行超时时间`timeout`，则有可能为了在超时前执行函数而打乱执行顺序。
 
-![Example-of-an-inter-frame-idle-period](D:\Workbench\每日学习\react\resource\Example-of-an-inter-frame-idle-period.png)
+![[IMG-20250303204545137.png]]
 
 上图可知， `requestIdleCallback` 是在 Layout 与 Paint 之后执行的，也就是说，`requestIdleCallback `中适合做 JS 计算，不建议进行 DOM 更新，因为会重新出发 Layout 和Paint，导致帧的时间不可控；
 

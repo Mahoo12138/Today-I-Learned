@@ -1,4 +1,4 @@
-## FiberRoot的含义与作用
+## FiberRoot 的含义与作用
 
 + `FiberRoot`是整个`React`应用的起点
 + `FiberRoot`包含应用挂载的目标节点（`<div id='root'></div>`）
@@ -107,7 +107,7 @@ type BaseFiberRootProperties = {|
 |};
 ```
 
-## Fiber的含义和作用
+## Fiber 的含义和作用
 
 + 每一个`ReactElement`对应一个`Fiber`对象；
 + 记录节点的各种状态，比如`ClassComponent`中的`state`和`props`的状态就是记录在`Fiber`对象上的；

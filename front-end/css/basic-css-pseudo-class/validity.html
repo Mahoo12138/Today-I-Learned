@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单验证示例</title>
+  <style>
+    input {
+      border: 2px solid gray;
+      padding: 8px;
+      font-size: 16px;
+      outline: none;
+    }
+    input:valid {
+      border-color: green;
+    }
+    input:invalid {
+      border-color: red;
+    }
+    input:user-valid {
+      background-color: #d4edda;
+    }
+    input:user-invalid {
+      background-color: #f8d7da;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <label>邮箱:
+      <input type="email" required placeholder="请输入正确的邮箱">
+    </label>
+  </form>
+</body>
+</html>

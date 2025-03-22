@@ -96,3 +96,83 @@ HTTPS 页面对跨域请求更严格：
 
 - `Access-Control-Allow-Origin` 不能使用 `*` 时包含 `credentials: true`。
 - 不能在 `file://` 协议下进行 HTTPS 请求（需本地服务器）。
+
+## https 是如何加密的？
+
+HTTPS 主要通过两种加密方式保证安全：
+
+1. **对称加密（Symmetric Encryption）**：用于加密数据，保证通信安全（如 AES）。
+2. **非对称加密（Asymmetric Encryption）**：用于安全地交换密钥，防止中间人攻击（如 RSA, ECDSA）。
+
+> **核心概念：HTTPS 采用** 非对称加密 + 对称加密 **相结合的方式，确保通信的** **安全性、完整性、身份认证**。
+
+**HTTPS 详细加密流程**
+
+当浏览器和服务器建立 HTTPS 连接时，会经历 **TLS/SSL 握手**（TLS 1.2 / TLS 1.3）。
+
+### TLS 1.2
+
+**TLS 1.2 采用 4 次消息交互（2 轮往返），导致握手时间较长**：
+
+```text
+1️⃣ Client Hello  →  
+2️⃣ ← Server Hello  
+3️⃣ ← Server Certificate + Server Key Exchange  
+4️⃣ Client Key Exchange + Finished →  
+5️⃣ ← Finished  
+```
+
+1. **Client Hello**
+   - 发送 **支持的 TLS 版本**（如 TLS 1.2）
+   - 发送 **支持的加密算法**
+   - 发送 **Client Random**
+2. **Server Hello**
+   - 服务器选择 **加密算法**
+   - 发送 **Server Random**
+   - 发送 **SSL 证书（包含 RSA 公钥或 ECDH 公钥）**
+   - 服务器 **等待客户端继续协商**
+3. **Client Key Exchange**
+   - 客户端生成 **Pre-Master Key** 并 **用服务器公钥（RSA）加密**
+   - 发送给服务器
+   - 服务器解密后，双方使用 **Client Random + Server Random + Pre-Master Key 计算 Session Key**
+4. **Finished**
+   - 交换 `Finished` 消息，握手结束
+   - 之后开始对称加密的安全通信
+
+**TLS 1.2 问题**
+
++ **需要 2-RTT（2 轮往返）才能建立连接**，较慢
++ **RSA 密钥交换不支持前向安全性**
++ **容易受到攻击（如 BEAST、ROBOT）**
+
+### TLS 1.3
+
+**TLS 1.3 通过合并多个消息，将握手减少到 1-RTT，提高了速度**：
+
+```plaintext
+1️⃣ Client Hello (包含密钥交换)  →  
+2️⃣ ← Server Hello + Finished  
+```
+
+### **📌 具体流程**
+
+1. **Client Hello（改进）**
+   - 发送 **支持的 TLS 版本（TLS 1.3）**
+   - 发送 **支持的加密算法**
+   - 发送 **Client Random**
+   - **直接发送 ECDHE 公钥，避免额外轮次**
+2. **Server Hello**
+   - 服务器选择 **加密算法**
+   - 发送 **Server Random**
+   - **直接返回 ECDHE 公钥，计算 Pre-Master Key**
+   - **服务器 `Finished` 消息合并发送**
+3. **双方计算 Session Key**
+   - 服务器和客户端 **各自计算 Pre-Master Key**
+   - 使用 **HKDF（HMAC-based Extract-and-Expand Key Derivation Function）** 生成最终 Session Key
+   - 之后开始 **对称加密通信**
+
+**TLS 1.3 优化点**
+
+- **握手减少到 1-RTT**，连接速度提高 50%
+- **默认使用 ECDHE**，每次握手生成新密钥，支持前向安全性
+- **精简消息结构**，提高性能和安全性

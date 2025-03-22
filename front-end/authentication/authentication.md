@@ -38,15 +38,13 @@ cookie 也是前端存储的一种，但相比于 localStorage 等其他方式�
 - 在提供标记的接口，通过 HTTP 返回头的 Set-Cookie 字段，直接「种」到浏览器上
 - 浏览器发起请求时，会自动把 cookie 通过 HTTP 请求头的 Cookie 字段，带给接口
 
-- 浏览器发起请求时，会自动把 cookie 通过 HTTP 请求头的 Cookie 字段，带给接口
-
 ### 配置：Domain / Path
 
 > 你不能拿清华的校园卡进北大。
 
-cookie 是要限制**「空间范围」**的，通过 Domain（域）/ Path（路径）两级。
+cookie 是要限制 **「空间范围」** 的，通过 Domain（域）/ Path（路径）两级。
 
-> Domain 属性指定浏览器发出 HTTP 请求时，哪些域名要附带这个 Cookie。如果没有指定该属性，浏览器会默认将其设为当前 URL 的一级域名，比如 _<http://www.example.com>_ 会设为 _<http://example.com_，而且以后如果访问> _<http://example.com>_ 的任何子域名，HTTP 请求也会带上这个 Cookie。如果服务器在 Set-Cookie 字段指定的域名，不属于当前域名，浏览器会拒绝这个 Cookie。  
+> Domain 属性指定浏览器发出 HTTP 请求时，哪些域名要附带这个 Cookie。如果没有指定该属性，浏览器会默认将其设为当前 URL 的一级域名，比如 _<http://www.example.com>_ 会设为 _http://example.com_，而且以后如果访问 _http://example.com_ 的任何子域名，HTTP 请求也会带上这个 Cookie。如果服务器在 Set-Cookie 字段指定的域名，不属于当前域名，浏览器会拒绝这个 Cookie。  
 > Path 属性指定浏览器发出 HTTP 请求时，哪些路径要附带这个 Cookie。只要浏览器发现，Path 属性是 HTTP 请求路径的开头一部分，就会在头信息里面带上这个 Cookie。比如，PATH 属性是/，那么请求 /docs 路径也会包含该 Cookie。当然，前提是域名必须一致。
 
 ### 配置：Expires / Max-Age
@@ -154,6 +152,7 @@ console.log(document.cookie);
 这个问题现在有几种解决方式：
 - 一是从「存储」角度，把 session 集中存储。如果我们用独立的 Redis 或普通数据库，就可以把 session 都存到一个库里。
 - 二是从「分布」角度，让相同 IP 的请求在负载均衡时都打到同一台机器上。以 nginx 为例，可以配置 ip_hash 来实现。
+
 但通常还是采用第一种方式，因为第二种相当于阉割了负载均衡，且仍没有解决「用户请求的机器宕机」的问题。
 
 ### node.js 下的 session 处理
@@ -281,7 +280,7 @@ session 和 token **都是边界很模糊的概念**，就像前面说的，refr
 - 在浏览器端，可以用 cookie（实际上 token 就常用 cookie），但出了浏览器端，没有 cookie 怎么办？
 - cookie 是浏览器在域下自动携带的，这就容易引发 CSRF 攻击。
 
-存别的地方，可以解决没有 cookie 的场景；通过参数等方式手动带，可以避免 CSRF 攻击。
+存别的地方，可以解决没有 cookie 的场景；通过参数等方式手动带，可以避免 [[CSRF|CSRF 攻击]]。
 
 #### 服务端存数据 / 不存数据
 

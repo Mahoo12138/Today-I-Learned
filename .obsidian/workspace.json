@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "1f60baac300f9d3c",
+        "id": "d284fcc493ab183b",
         "type": "tabs",
         "children": [
           {
-            "id": "988255fc41369eaa",
+            "id": "45507f8b9e3598a6",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -87,7 +87,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 299.5110321044922
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -103,13 +103,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "TODO.md",
+                "file": "programming/nodejs/Module/package.json.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of TODO"
+              "title": "Outline of package.json"
             }
           },
           {
@@ -185,7 +185,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 350.5
+    "width": 350.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -204,8 +205,42 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e52f80322eaad5fd",
+  "active": "45507f8b9e3598a6",
   "lastOpenFiles": [
-    
+    "software-engineer/database-design/auto-increment-id-and-uuid.md",
+    "software-engineer/database-design",
+    "programming/index.md",
+    "programming/golang/GORM/Preload.md",
+    "programming/golang/GORM",
+    "programming/concept/variance.md",
+    "programming/concept/index.md",
+    "programming/tools/Git/changing-commit-date.md",
+    "programming/tools/index.md",
+    "programming/tools/Git",
+    "programming/tools",
+    "methodology.md",
+    "front-end/react-router.md",
+    "front-end/index.md",
+    "algorithm/index.md",
+    "programming/comcept/variance.md",
+    "programming/comcept",
+    "programming/concept/REAMDE.md",
+    "programming/concept/cache-penetration.md",
+    "front-end/threejs/Texture/概述.md",
+    "front-end/threejs/Texture/MIP Mapping.md",
+    "README.md",
+    "front-end/threejs/Texture/UV Unwrapping.md",
+    "front-end/threejs/basic-concept.md",
+    "front-end/threejs/BufferGeometry.md",
+    "front-end/threejs/Texture",
+    "front-end/threejs/Camera.md",
+    "front-end/threejs/Untitled.md",
+    "front-end/threejs/Group.md",
+    "front-end/threejs/coordinate.md",
+    "front-end/threejs/position.md",
+    "front-end/threejs",
+    "front-end/css/basic-css-pseudo-class/validity.html",
+    "programming/concept",
+    "front-end/typescript"
   ]
 }

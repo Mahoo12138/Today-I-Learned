@@ -3,9 +3,10 @@
     "/node_modules/"
   ],
   "showUnsupportedFiles": false,
-  "attachmentFolderPath": "attachments",
+  "attachmentFolderPath": "./assets",
   "alwaysUpdateLinks": true,
   "spellcheck": false,
   "defaultViewMode": "preview",
-  "showInlineTitle": false
+  "showInlineTitle": false,
+  "newFileLocation": "root"
 }

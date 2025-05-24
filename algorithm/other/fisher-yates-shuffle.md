@@ -1,3 +1,6 @@
+---
+title: 洗牌算法
+---
 # 洗牌算法 | Fisher–Yates shuffle
 
 费雪耶茨算法（Fisher-Yates shuffle），用来将一个集合随机排列，常用在扑克洗牌，打乱抽奖奖池等场景中。

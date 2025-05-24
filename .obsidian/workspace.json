@@ -4,20 +4,47 @@
     "type": "split",
     "children": [
       {
-        "id": "d284fcc493ab183b",
+        "id": "2f4a78d08d69d928",
         "type": "tabs",
         "children": [
           {
-            "id": "45507f8b9e3598a6",
+            "id": "91a7a477f1318fbd",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "file-properties",
+              "state": {
+                "file": "algorithm/200/238.md"
+              },
+              "icon": "lucide-info",
+              "title": "File properties for 238"
+            }
+          },
+          {
+            "id": "99739db76cc5a93c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "algorithm/200/238.md",
+                "mode": "preview",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "238"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -49,7 +76,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#leetcode/medium",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -87,7 +114,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 299.5110321044922
+    "width": 242.5110321044922
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -103,13 +130,58 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "programming/nodejs/Module/package.json.md",
-                "followCursor": false,
+                "file": "algorithm/200/238.md",
+                "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of package.json"
+              "title": "Outline of 238"
+            }
+          },
+          {
+            "id": "a1c8709b9fd86087",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "algorithm/200/238.md"
+              },
+              "icon": "lucide-info",
+              "title": "File properties for 238"
+            }
+          },
+          {
+            "id": "9bdefaa01ca7bf80",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "algorithm/200/238.md",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 238"
+            }
+          },
+          {
+            "id": "dfa339444f379f55",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "algorithm/200/238.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 238"
             }
           },
           {
@@ -125,68 +197,13 @@
               "icon": "lucide-archive",
               "title": "All properties"
             }
-          },
-          {
-            "id": "9bdefaa01ca7bf80",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "algorithm/15.md",
-                "collapseAll": true,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "Backlinks for 15"
-            }
-          },
-          {
-            "id": "dfa339444f379f55",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "algorithm/15.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-going-out",
-              "title": "Outgoing links from 15"
-            }
-          },
-          {
-            "id": "a1c8709b9fd86087",
-            "type": "leaf",
-            "state": {
-              "type": "file-properties",
-              "state": {
-                "file": "algorithm/15.md"
-              },
-              "icon": "lucide-info",
-              "title": "File properties for 15"
-            }
-          },
-          {
-            "id": "540d0772145ed4c7",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {},
-              "icon": "git-pull-request",
-              "title": "Source Control"
-            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 350.5,
-    "collapsed": true
+    "width": 350.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -201,46 +218,56 @@
       "obsidian-kanban:Create new board": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
       "obsidian-memos:Thino": false,
-      "remotely-save:Remotely Save": false,
-      "obsidian-git:Open Git source control": false
+      "remotely-save:Remotely Save": false
     }
   },
-  "active": "45507f8b9e3598a6",
+  "active": "99739db76cc5a93c",
   "lastOpenFiles": [
-    "software-engineer/database-design/auto-increment-id-and-uuid.md",
-    "software-engineer/database-design",
-    "programming/index.md",
-    "programming/golang/GORM/Preload.md",
-    "programming/golang/GORM",
-    "programming/concept/variance.md",
-    "programming/concept/index.md",
-    "programming/tools/Git/changing-commit-date.md",
-    "programming/tools/index.md",
-    "programming/tools/Git",
-    "programming/tools",
-    "methodology.md",
-    "front-end/react-router.md",
-    "front-end/index.md",
-    "algorithm/index.md",
-    "programming/comcept/variance.md",
-    "programming/comcept",
-    "programming/concept/REAMDE.md",
-    "programming/concept/cache-penetration.md",
-    "front-end/threejs/Texture/概述.md",
-    "front-end/threejs/Texture/MIP Mapping.md",
-    "README.md",
-    "front-end/threejs/Texture/UV Unwrapping.md",
-    "front-end/threejs/basic-concept.md",
-    "front-end/threejs/BufferGeometry.md",
-    "front-end/threejs/Texture",
-    "front-end/threejs/Camera.md",
-    "front-end/threejs/Untitled.md",
-    "front-end/threejs/Group.md",
-    "front-end/threejs/coordinate.md",
-    "front-end/threejs/position.md",
-    "front-end/threejs",
-    "front-end/css/basic-css-pseudo-class/validity.html",
-    "programming/concept",
-    "front-end/typescript"
+    "algorithm/200/283.md",
+    "algorithm/200/200.md",
+    "algorithm/learning/graph/dijkstra.view.md",
+    "algorithm/learning/graph/graph.md",
+    "algorithm/100/104.md",
+    "algorithm/000/20.md",
+    "algorithm/200/215.md",
+    "algorithm/other/fisher-yates-shuffle.md",
+    "algorithm/000/11.md",
+    "algorithm/000/15.md",
+    "algorithm/learning/union-find.md",
+    "algorithm/000/24.md",
+    "algorithm/400/438.md",
+    "algorithm/200/225.md",
+    "algorithm/200/207.md",
+    "algorithm/000/4.md",
+    "algorithm/200/232.md",
+    "algorithm/550/560-subarray-sum-equals-k.md",
+    "algorithm/sort/quick.md",
+    "algorithm/000/3.md",
+    "algorithm/learning/index.md",
+    "algorithm/learning/graph/topological.view.md",
+    "programming/nodejs/Module/package.json.md",
+    "algorithm/learning/graph/traverse.view.md",
+    "algorithm/200/238.md",
+    "algorithm/700/743.md",
+    "algorithm/700/assets",
+    "algorithm/700/assets/network-delay-time.png",
+    "algorithm/100/assets/linked-list-cycle-ii.png",
+    "algorithm/200/assets/reverse-linked-list-1.png",
+    "algorithm/200/assets",
+    "algorithm/200/assets/reverse-linked-list-2.png",
+    "algorithm/100/assets/linked-list-cycle-2.png",
+    "algorithm/100/assets/linked-list-cycle-3.png",
+    "algorithm/100/assets/maximum-depth-of-binary-tree.png",
+    "algorithm/100/assets",
+    "algorithm/000/assets/swap-nodes-in-pairs.jpg",
+    "algorithm/000/assets/container-with-most-water.png",
+    "algorithm/000/assets",
+    "front-end/threejs/Fonts",
+    "front-end/threejs/Material/assets/matcap.png",
+    "front-end/threejs/Material/assets",
+    "back-end/Nginx",
+    "back-end",
+    "attachments/functional-paradigm/ch6",
+    "attachments/functional-paradigm/ch5"
   ]
 }

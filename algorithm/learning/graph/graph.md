@@ -1,3 +1,6 @@
+---
+title: 图
+---
 ## 基础概念
 
 ### 什么是图
@@ -227,6 +230,7 @@ A —— B
 C —— D
 ```
 
+[[traverse.view|图的遍历]]
 #### **构建图并测试遍历**
 
 ```typescript
@@ -370,6 +374,8 @@ class Graph<T> {
 ### **测试拓扑排序**
 
 #### **测试用例1：课程表（无环）**
+
+[[topological.view|图的拓扑排序]]
 
 假设课程依赖关系如下（LeetCode 207题）：
 
@@ -568,6 +574,8 @@ class PriorityQueue<T> {
 ```
 
 #### 测试用例
+
+[[dijkstra.view]]
 
 ```typescript
 const graph = new Dijkstra<number>();
@@ -1043,7 +1051,7 @@ console.log('Prim MST:', primResult);       // 总权重 2+1+3=6
 
 **题目**：[1584. 连接所有点的最小费用](https://leetcode.com/problems/min-cost-to-connect-all-points/)
 **题意**：给定二维平面上的点，求连接所有点的最小成本（曼哈顿距离）。
-**解法**：Kruskal或Prim均可，需先构建所有边。
+**解法**：Kruskal 或 Prim 均可，需先构建所有边。
 
 ```typescript
 // 以Kruskal解法为例
@@ -1388,10 +1396,6 @@ function criticalConnections(n: number, connections: number[][]): number[][] {
 3. 重复直到所有节点染色或发现冲突。
 
 #### **3. 代码实现（TypeScript）**
-
-typescript
-
-复制
 
 ```typescript
 function isBipartite(graph: number[][]): boolean {

@@ -1,3 +1,6 @@
+---
+title: 快速排序
+---
 # 快速排序
 
 **快速排序**（英语：Quicksort），又称**分区交换排序**（partition-exchange sort），最早由图灵奖获得者[东尼·霍尔](https://zh.wikipedia.org/wiki/東尼·霍爾)于1960 年提出。在平均状况下，排序 $n$ 个项目要 $O(n\log n)$ 次比较，在最坏状况下则需要 $O(n^2)$ 次比较。

@@ -1,6 +1,6 @@
 {
-  "collapse-filter": false,
-  "search": "path:algorithm ",
+  "collapse-filter": true,
+  "search": "path:front-end",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
@@ -8,10 +8,10 @@
   "collapse-color-groups": true,
   "colorGroups": [
     {
-      "query": "path:algorithm  ",
+      "query": "path:front-end  ",
       "color": {
         "a": 1,
-        "rgb": 3567346
+        "rgb": 16619814
       }
     }
   ],

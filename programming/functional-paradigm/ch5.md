@@ -196,7 +196,7 @@ dasherize('The world is a vampire');
 
 范畴学（category theory）是数学中的一个抽象分支，能够形式化诸如集合论（set theory）、类型论（type theory）、群论（group theory）以及逻辑学（logic）等数学分支中的一些概念。范畴学主要处理对象（object）、态射（morphism）和变化式（transformation），而这些概念跟编程的联系非常紧密。下图是一些相同的概念分别在不同理论下的形式：
 
-![](cat_theory.png)
+![](./assets/cat_theory.png)
 
 抱歉，我没有任何要吓唬你的意思。我并不假设你对这些概念都了如指掌，我只是想让你明白这里面有多少重复的内容，让你知道为何范畴学要统一这些概念。
 
@@ -223,9 +223,9 @@ dasherize('The world is a vampire');
 
 这张图展示了什么是组合：
 
-![](cat_comp1.png)
+![](./assets/cat_comp1.png)
 
-![](cat_comp2.png)
+![](./assets/cat_comp2.png)
 
 这里有一个具体的例子：
 

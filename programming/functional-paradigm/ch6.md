@@ -128,7 +128,7 @@ app("cats");
 
 这会调用 `url` 函数，然后把字符串传给 `getJSON` 函数。`getJSON` 已经局部应用了 `trace`，加载这个应用将会把请求的响应显示在 console 里。
 
-![](console_ss.png)
+![](./assets/console_ss.png)
 
 我们想要从这个 json 里构造图片，看起来 src 都在 `items` 数组中的每个 `media` 对象的 `m` 属性上。
 
@@ -173,7 +173,7 @@ var renderImages = _.compose(Impure.setHtml("body"), images);
 var app = _.compose(Impure.getJSON(renderImages), url);
 ```
 
-![](cats_ss.png)
+![](./assets/cats_ss.png)
 
 下面是完整代码：
 

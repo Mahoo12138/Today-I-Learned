@@ -185,7 +185,7 @@ console.log(window.performance);
 
 它统计了从浏览器从网址开始导航到 `window.onload`事件触发的一系列关键的时间点，具体看下图
 
-![timing](D:\Workbench\每日学习\others_resources\timing.webp)
+![timing](assets/timing.webp)
 
 - `navigationStart`：表示在同一浏览上下文中上一个文档终止时的时间戳。如果没有以前的文档，这个值将与`fetchStart`相同；
 

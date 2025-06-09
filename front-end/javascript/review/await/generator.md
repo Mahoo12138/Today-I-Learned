@@ -113,7 +113,7 @@ function define(obj, key, value) {
 
 这段代码构建了一堆看起来很复杂的关系链，其实这是参照着 [ES6 规范 ](https://www.ecma-international.org/ecma-262/6.0/#sec-generatorfunction-constructor)构建的关系链：
 
-![regenerator](generator.png)
+![regenerator](assets/generator.png)
 
 图中 `+@@toStringTag:s = 'Generator'` 的就是 Gp，`+@@toStringTag:s = 'GeneratorFunction'` 的就是 GeneratorFunctionPrototype。
 

@@ -14,7 +14,7 @@ $ git commit -m "C2"
 
 上面的命令会创建三个`commit`节点，此时`main`分支如下图所示：
 
-![git-branch-1](D:\Workbench\每日学习\others\git\res\git-branch-1.png)
+![git-branch-1](assets/git-branch-1.png)
 
 主分支上应该只包合并提交，所有的迭代应该都在分支上进行，如果是简单的改动，直接在主分支修改也是可以的；
 
@@ -37,7 +37,7 @@ $ git commit -m "C4"
 
 此时提交树如下图所示：
 
-<img src="D:\Workbench\每日学习\others\git\res\git-branch-2.png" alt="git-branch-2" style="zoom:80%;" />
+<img src="assets/git-branch-2.png" alt="git-branch-2" style="zoom:80%;" />
 
 当功能分支开发完成后，需要合并回主分支，合并回主分支有两种选择，快速合并和非快速合并，二者的区别在于是否创建提交节点，命令如下：
 
@@ -50,13 +50,13 @@ $ git merge --no-ff feature/a 	# 非快速合并
 
 快速合并的结果，会直接将 `master` 指向了 `feature/a`，如下图所示：
 
-![git-branch-3](D:\Workbench\每日学习\others\git\res\git-branch-3.png)
+![git-branch-3](assets/git-branch-3.png)
 
 非快速合并的结果，会在 `main` 分支**创建合并提交节点**，如下图所示：
 
 > 此时我们需要撤销上一次快速合并，可以使用命令：`git reset --hard C2`
 
-![git-branch-4](D:\Workbench\每日学习\others\git\res\git-branch-4.png)
+![git-branch-4](assets/git-branch-4.png)
 
 两种合并方式都可以，如果选择快速合并，需要保证每个提交都是独立且完整的，如果不满足要求，Git 支持修改提交历史，需要修改后再次合并。
 
@@ -80,7 +80,7 @@ $ git rebase -i HEAD~3
 
 在创建当前分支之后，主分支可能又有新的提交，如下图所示：
 
-![git-branch-5](D:\Workbench\每日学习\others\git\res\git-branch-5.png)
+![git-branch-5](assets/git-branch-5.png)
 
 在合并之前，建议先将主分支新的提交合并到当前分支，有两种策略可以选择，合并和变基，合并操作更简单，变基操作提交树更清晰，建议使用变基的方式。
 
@@ -95,7 +95,7 @@ $ git merge feature/a		# 右图
 
 合并操作过程的提交树如下图所示：
 
-![git-branch-6](D:\Workbench\每日学习\others\git\res\git-branch-6.png)
+![git-branch-6](assets/git-branch-6.png)
 
 变基会修改`feature/a`分支的历史，就像 `feature/a` 是在 `master` 之后开发的一样，变基命令如下：
 
@@ -107,7 +107,7 @@ $ git merge feature/a	# 右图
 
 变基操作后的提交树如下图所示，暗色的提交是`feature/a`变基之前的状态，在变基后，暗色的提交不再有分支指向，但并不会删除，而是变成 Git 中的游离节点，在 Git 执行 GC（垃圾清理）操作后，节点才会彻底删除。
 
-![git-branch-7](D:\Workbench\每日学习\others\git\res\git-branch-7.png)
+![git-branch-7](assets/git-branch-7.png)
 
 ## 故障分支
 
@@ -133,7 +133,7 @@ $ git rebase main
 
 故障分支模型如下图所示，`bugfix/b` 分支合并到 `main` 后，`feature/a` 分支进行了变基操作。
 
-![git-branch-8](D:\Workbench\每日学习\others\git\res\git-branch-8.png)
+![git-branch-8](assets/git-branch-8.png)
 
 ## 标签与历史
 

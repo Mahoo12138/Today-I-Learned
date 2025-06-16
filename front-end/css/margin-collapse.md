@@ -90,3 +90,27 @@ title: Margin 塌陷
 | `float`               | `left`, `right`                      |
 | `position`            | `absolute`, `fixed`                  |
 | `contain`（现代方案） | `layout`, `strict`                   |
+
+## 典型例子
+
+```HTML
+<style>
+  .container {
+    background: #eee;
+  }
+  .child {
+    margin-top: 20px;
+    background: #ccc;
+  }
+</style>
+
+<div class="container">
+  <p class="child">Hello</p>
+</div>
+```
+
+会看到 `.container` 内紧紧包含 `.child` 元素，不包含 `.child` 的 margin，只显示 `#ccc` 的色块，也就是 `.container` 和 `.child` 是一样大的，margin 都在 `.container `外面；
+
+当 `.container` 出发 BFC 后，`.child` 的 margin 回到  `.container` ， 此时间隔显示  `#eee` 和  `#ccc` 。
+
+ 

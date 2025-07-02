@@ -4,9 +4,10 @@
   ],
   "showUnsupportedFiles": false,
   "attachmentFolderPath": "./assets",
-  "alwaysUpdateLinks": true,
+  "alwaysUpdateLinks": false,
   "spellcheck": false,
   "defaultViewMode": "preview",
   "showInlineTitle": false,
-  "newFileLocation": "root"
+  "newFileLocation": "root",
+  "showIndentGuide": false
 }

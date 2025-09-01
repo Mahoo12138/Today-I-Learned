@@ -4,47 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "2f4a78d08d69d928",
+        "id": "f56f642b09676352",
         "type": "tabs",
         "children": [
           {
-            "id": "91a7a477f1318fbd",
+            "id": "fd481b8ab9a7ac15",
             "type": "leaf",
             "state": {
-              "type": "file-properties",
-              "state": {
-                "file": "algorithm/200/238.md"
-              },
-              "icon": "lucide-info",
-              "title": "File properties for 238"
-            }
-          },
-          {
-            "id": "99739db76cc5a93c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "algorithm/200/238.md",
-                "mode": "preview",
-                "source": false,
-                "backlinks": true,
-                "backlinkOpts": {
-                  "collapseAll": false,
-                  "extraContext": false,
-                  "sortOrder": "alphabetical",
-                  "showSearch": false,
-                  "searchQuery": "",
-                  "backlinkCollapsed": false,
-                  "unlinkedCollapsed": true
-                }
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "238"
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -76,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#leetcode/medium",
+                "query": "v8",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -114,7 +87,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 242.5110321044922
+    "width": 241.5
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -130,58 +103,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "algorithm/200/238.md",
-                "followCursor": true,
+                "file": "front-end/css/animation/basic/index.md",
+                "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 238"
-            }
-          },
-          {
-            "id": "a1c8709b9fd86087",
-            "type": "leaf",
-            "state": {
-              "type": "file-properties",
-              "state": {
-                "file": "algorithm/200/238.md"
-              },
-              "icon": "lucide-info",
-              "title": "File properties for 238"
-            }
-          },
-          {
-            "id": "9bdefaa01ca7bf80",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "algorithm/200/238.md",
-                "collapseAll": true,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "Backlinks for 238"
-            }
-          },
-          {
-            "id": "dfa339444f379f55",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "algorithm/200/238.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-going-out",
-              "title": "Outgoing links from 238"
+              "title": "Outline of index"
             }
           },
           {
@@ -197,16 +125,71 @@
               "icon": "lucide-archive",
               "title": "All properties"
             }
+          },
+          {
+            "id": "9bdefaa01ca7bf80",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "front-end/reading/04-关于 V8 中 Map 数据结构的实现.md",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 04-关于 V8 中 Map 数据结构的实现"
+            }
+          },
+          {
+            "id": "dfa339444f379f55",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "algorithm/15.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 15"
+            }
+          },
+          {
+            "id": "a1c8709b9fd86087",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "front-end/reading/04-关于 V8 中 Map 数据结构的实现.md"
+              },
+              "icon": "lucide-info",
+              "title": "File properties for 04-关于 V8 中 Map 数据结构的实现"
+            }
+          },
+          {
+            "id": "540d0772145ed4c7",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "git-view"
+            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 350.5
+    "width": 251.5
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -217,57 +200,56 @@
       "workspaces:Manage workspace layouts": false,
       "obsidian-kanban:Create new board": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
-      "obsidian-memos:Thino": false,
       "remotely-save:Remotely Save": false
     }
   },
-  "active": "99739db76cc5a93c",
+  "active": "e52f80322eaad5fd",
   "lastOpenFiles": [
-    "algorithm/200/283.md",
-    "algorithm/200/200.md",
-    "algorithm/learning/graph/dijkstra.view.md",
-    "algorithm/learning/graph/graph.md",
-    "algorithm/100/104.md",
-    "algorithm/000/20.md",
-    "algorithm/200/215.md",
-    "algorithm/other/fisher-yates-shuffle.md",
-    "algorithm/000/11.md",
-    "algorithm/000/15.md",
-    "algorithm/learning/union-find.md",
-    "algorithm/000/24.md",
-    "algorithm/400/438.md",
-    "algorithm/200/225.md",
-    "algorithm/200/207.md",
-    "algorithm/000/4.md",
-    "algorithm/200/232.md",
-    "algorithm/550/560-subarray-sum-equals-k.md",
+    "front-end/css/animation/typing-effect/tying.html",
+    "front-end/css/animation/typing-effect/index.md",
+    "front-end/css/animation/typing-effect/display-inline.html",
+    "front-end/css/animation/typing-effect/background.html",
+    "front-end/css/animation/typing-effect/assets/7.gif",
+    "front-end/css/animation/typing-effect/assets/6.gif",
+    "front-end/css/animation/typing-effect/assets/5.png",
+    "front-end/css/animation/typing-effect/assets/4.png",
+    "front-end/css/animation/typing-effect/assets/3.gif",
+    "front-end/css/animation/typing-effect/assets/2.gif",
+    "front-end/css/animation/typing-effect/assets/1.gif",
+    "front-end/css/animation/typing-effect/assets",
+    "front-end/css/animation/basic/running.html",
+    "front-end/css/animation/basic/loading.html",
+    "front-end/css/animation/basic/index.md",
+    "front-end/css/animation/basic/fill-mode.html",
+    "front-end/css/animation/basic/direction.html",
+    "front-end/css/animation/basic/delay.html",
+    "front-end/css/animation/basic/charging.html",
+    "front-end/css/animation/basic",
+    "algorithm/sort/insertion.md",
+    "programming/nodejs/hidden-classes.md",
+    "front-end/interview/javascript/arrow-funcion-can-not-new.md",
+    "front-end/interview/css/assets/ie-css-box-model.png",
+    "front-end/interview/css/assets/css-box-model.png",
+    "front-end/interview/css/assets/css-box-model-hierarchy.png",
+    "front-end/interview/css/flex-item.md",
+    "front-end/interview/css/box-model.md",
+    "algorithm/learning/binary-search.md",
+    "algorithm/000/35.md",
+    "front-end/css/basic-css-animation/README.md",
     "algorithm/sort/quick.md",
-    "algorithm/000/3.md",
-    "algorithm/learning/index.md",
-    "algorithm/learning/graph/topological.view.md",
-    "programming/nodejs/Module/package.json.md",
-    "algorithm/learning/graph/traverse.view.md",
-    "algorithm/200/238.md",
-    "algorithm/700/743.md",
-    "algorithm/700/assets",
-    "algorithm/700/assets/network-delay-time.png",
-    "algorithm/100/assets/linked-list-cycle-ii.png",
-    "algorithm/200/assets/reverse-linked-list-1.png",
-    "algorithm/200/assets",
-    "algorithm/200/assets/reverse-linked-list-2.png",
-    "algorithm/100/assets/linked-list-cycle-2.png",
-    "algorithm/100/assets/linked-list-cycle-3.png",
-    "algorithm/100/assets/maximum-depth-of-binary-tree.png",
-    "algorithm/100/assets",
-    "algorithm/000/assets/swap-nodes-in-pairs.jpg",
-    "algorithm/000/assets/container-with-most-water.png",
-    "algorithm/000/assets",
-    "front-end/threejs/Fonts",
-    "front-end/threejs/Material/assets/matcap.png",
-    "front-end/threejs/Material/assets",
-    "back-end/Nginx",
-    "back-end",
-    "attachments/functional-paradigm/ch6",
-    "attachments/functional-paradigm/ch5"
+    "algorithm/sort/selection.md",
+    "algorithm/sort/index.md",
+    "front-end/interview/react/use-memo-not-free.md",
+    "front-end/interview/react/react-keep-alive.md",
+    "front-end/interview/browser/service-worker-web-worker.md",
+    "algorithm/sort/stability.md",
+    "algorithm/sort/selection~.md",
+    "algorithm/sort/quick~.md",
+    "algorithm/sort/bubble.md",
+    "algorithm/000/46.md",
+    "algorithm/000/75~.md",
+    "algorithm/000/41.md",
+    "algorithm/000/39.md",
+    "algorithm/000/24.md"
   ]
 }

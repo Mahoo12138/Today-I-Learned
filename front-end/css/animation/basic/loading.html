@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading</title>
+  <style>
+    #container {
+      margin-top: 200px;
+      margin-left: 200px;
+    }
+
+    .item {
+      background-color: #000;
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      border-radius: 50%;
+      transform-origin: 80px 80px;
+    }
+
+    .item:nth-child(1) {
+      animation: rotate 3s infinite linear;
+    }
+
+    .item:nth-child(2) {
+      animation: rotate 3s infinite -1s linear;
+    }
+
+    .item:nth-child(3) {
+      animation: rotate 3s infinite -2s linear;
+    }
+
+    @keyframes rotate{
+      0% {
+        transform: rotate(0);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+</body>
+
+</html>

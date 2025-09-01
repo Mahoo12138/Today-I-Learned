@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hauwei Charging</title>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .number {
+      position: absolute;
+      width: 300px;
+      top: 27%;
+      text-align: center;
+      font-size: 32px;
+      z-index: 10;
+      color: #fff;
+    }
+
+    .container {
+      position: relative;
+      width: 300px;
+      height: 400px;
+      margin: auto;
+    }
+
+    .contrast {
+      filter: contrast(10) hue-rotate(0);
+      width: 300px;
+      height: 400px;
+      background-color: #000;
+      overflow: hidden;
+      -webkit-animation: hueRotate 10s infinite linear;
+      animation: hueRotate 10s infinite linear;
+    }
+
+    .circle {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      box-sizing: border-box;
+      filter: blur(8px);
+    }
+
+    .circle::after {
+      content: "";
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(0);
+      width: 200px;
+      height: 200px;
+      background-color: #00ff6f;
+      border-radius: 42% 38% 62% 49%/45%;
+      -webkit-animation: rotate 10s infinite linear;
+      animation: rotate 10s infinite linear;
+    }
+
+    .circle::before {
+      content: "";
+      position: absolute;
+      width: 176px;
+      height: 176px;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background-color: #000;
+      z-index: 10;
+    }
+
+    .bubbles {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 100px;
+      height: 40px;
+      transform: translate(-50%, 0);
+      border-radius: 100px 100px 0 0;
+      background-color: #00ff6f;
+      filter: blur(5px);
+    }
+
+    li {
+      position: absolute;
+      border-radius: 50%;
+      background: #00ff6f;
+    }
+
+    li:nth-child(0) {
+      left: 25px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      -webkit-animation: moveToTop 9s ease-in-out -4.277s infinite;
+      animation: moveToTop 9s ease-in-out -4.277s infinite;
+    }
+
+    li:nth-child(1) {
+      left: 70px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 22px;
+      height: 22px;
+      -webkit-animation: moveToTop 4s ease-in-out -4.137s infinite;
+      animation: moveToTop 4s ease-in-out -4.137s infinite;
+    }
+
+    li:nth-child(2) {
+      left: 75px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 21px;
+      height: 21px;
+      -webkit-animation: moveToTop 6s ease-in-out -2.998s infinite;
+      animation: moveToTop 6s ease-in-out -2.998s infinite;
+    }
+
+    li:nth-child(3) {
+      left: 37px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 28px;
+      height: 28px;
+      -webkit-animation: moveToTop 5s ease-in-out -0.713s infinite;
+      animation: moveToTop 5s ease-in-out -0.713s infinite;
+    }
+
+    li:nth-child(4) {
+      left: 19px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 19px;
+      height: 19px;
+      -webkit-animation: moveToTop 8s ease-in-out -3.112s infinite;
+      animation: moveToTop 8s ease-in-out -3.112s infinite;
+    }
+
+    li:nth-child(5) {
+      left: 51px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      -webkit-animation: moveToTop 6s ease-in-out -4.121s infinite;
+      animation: moveToTop 6s ease-in-out -4.121s infinite;
+    }
+
+    li:nth-child(6) {
+      left: 55px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 28px;
+      height: 28px;
+      -webkit-animation: moveToTop 4s ease-in-out -1.313s infinite;
+      animation: moveToTop 4s ease-in-out -1.313s infinite;
+    }
+
+    li:nth-child(7) {
+      left: 79px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 26px;
+      height: 26px;
+      -webkit-animation: moveToTop 6s ease-in-out -1.662s infinite;
+      animation: moveToTop 6s ease-in-out -1.662s infinite;
+    }
+
+    li:nth-child(8) {
+      left: 79px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 17px;
+      height: 17px;
+      -webkit-animation: moveToTop 7s ease-in-out -2.706s infinite;
+      animation: moveToTop 7s ease-in-out -2.706s infinite;
+    }
+
+    li:nth-child(9) {
+      left: 74px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      -webkit-animation: moveToTop 4s ease-in-out -3.305s infinite;
+      animation: moveToTop 4s ease-in-out -3.305s infinite;
+    }
+
+    li:nth-child(10) {
+      left: 36px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 26px;
+      height: 26px;
+      -webkit-animation: moveToTop 7s ease-in-out -3.348s infinite;
+      animation: moveToTop 7s ease-in-out -3.348s infinite;
+    }
+
+    li:nth-child(11) {
+      left: 60px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 22px;
+      height: 22px;
+      -webkit-animation: moveToTop 8s ease-in-out -3.14s infinite;
+      animation: moveToTop 8s ease-in-out -3.14s infinite;
+    }
+
+    li:nth-child(12) {
+      left: 35px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      -webkit-animation: moveToTop 9s ease-in-out -2.971s infinite;
+      animation: moveToTop 9s ease-in-out -2.971s infinite;
+    }
+
+    li:nth-child(13) {
+      left: 57px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 23px;
+      height: 23px;
+      -webkit-animation: moveToTop 9s ease-in-out -3.308s infinite;
+      animation: moveToTop 9s ease-in-out -3.308s infinite;
+    }
+
+    li:nth-child(14) {
+      left: 38px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 29px;
+      height: 29px;
+      -webkit-animation: moveToTop 4s ease-in-out -4.692s infinite;
+      animation: moveToTop 4s ease-in-out -4.692s infinite;
+    }
+
+    li:nth-child(15) {
+      left: 44px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 29px;
+      height: 29px;
+      -webkit-animation: moveToTop 6s ease-in-out -4.952s infinite;
+      animation: moveToTop 6s ease-in-out -4.952s infinite;
+    }
+
+    @-webkit-keyframes rotate {
+      50% {
+        border-radius: 45%/42% 38% 58% 49%;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(720deg);
+      }
+    }
+
+    @keyframes rotate {
+      50% {
+        border-radius: 45%/42% 38% 58% 49%;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(720deg);
+      }
+    }
+
+    @-webkit-keyframes moveToTop {
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.1;
+        transform: translate(-50%, -180px);
+      }
+    }
+
+    @keyframes moveToTop {
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.1;
+        transform: translate(-50%, -180px);
+      }
+    }
+
+    @-webkit-keyframes hueRotate {
+      100% {
+        filter: contrast(15) hue-rotate(360deg);
+      }
+    }
+
+    @keyframes hueRotate {
+      100% {
+        filter: contrast(15) hue-rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="number">98.7%</div>
+    <div class="contrast">
+      <div class="circle"></div>
+      <ul class="bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <!-- <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li> -->
+        <!-- <li></li>
+        <li></li>
+        <li></li> -->
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html>

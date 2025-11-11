@@ -4,17 +4,31 @@
     "type": "split",
     "children": [
       {
-        "id": "f56f642b09676352",
+        "id": "30efe9efb7b219e7",
         "type": "tabs",
         "children": [
           {
-            "id": "fd481b8ab9a7ac15",
+            "id": "cb94592befe342ab",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "front-end/reading/dynamic-configuration-nodejs.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "dynamic-configuration-nodejs"
             }
           }
         ]
@@ -40,7 +54,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "文件列表"
             }
           },
           {
@@ -49,7 +63,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "v8",
+                "query": "Reflow",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -57,7 +71,7 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-              "title": "Search"
+              "title": "搜索"
             }
           },
           {
@@ -87,7 +101,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 241.5
+    "width": 305.01103591918945
   },
   "right": {
     "id": "8b4e9b5c2bc3e45c",
@@ -103,13 +117,25 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "front-end/css/animation/basic/index.md",
+                "file": "front-end/reading/dynamic-configuration-nodejs.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of index"
+              "title": "dynamic-configuration-nodejs 的大纲"
+            }
+          },
+          {
+            "id": "a1c8709b9fd86087",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "front-end/browser/FOUC.md"
+              },
+              "icon": "lucide-info",
+              "title": "FOUC的笔记属性"
             }
           },
           {
@@ -123,7 +149,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-archive",
-              "title": "All properties"
+              "title": "添加笔记属性"
             }
           },
           {
@@ -151,105 +177,81 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "algorithm/15.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 15"
-            }
-          },
-          {
-            "id": "a1c8709b9fd86087",
-            "type": "leaf",
-            "state": {
-              "type": "file-properties",
-              "state": {
-                "file": "front-end/reading/04-关于 V8 中 Map 数据结构的实现.md"
-              },
-              "icon": "lucide-info",
-              "title": "File properties for 04-关于 V8 中 Map 数据结构的实现"
-            }
-          },
-          {
-            "id": "540d0772145ed4c7",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {},
-              "icon": "lucide-ghost",
-              "title": "git-view"
+              "title": "出链"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 251.5
+    "width": 284.5
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:Create new base": false,
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "random-note:Open random note": false,
-      "workspaces:Manage workspace layouts": false,
-      "obsidian-kanban:Create new board": false,
-      "obsidian-excalidraw-plugin:Create new drawing": false,
+      "bases:新建数据库": true,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "random-note:开始漫游笔记": false,
+      "workspaces:管理工作区布局": false,
+      "obsidian-kanban:创建新看板": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
       "remotely-save:Remotely Save": false
     }
   },
-  "active": "e52f80322eaad5fd",
+  "active": "cb94592befe342ab",
   "lastOpenFiles": [
-    "front-end/css/animation/typing-effect/tying.html",
-    "front-end/css/animation/typing-effect/index.md",
-    "front-end/css/animation/typing-effect/display-inline.html",
-    "front-end/css/animation/typing-effect/background.html",
-    "front-end/css/animation/typing-effect/assets/7.gif",
-    "front-end/css/animation/typing-effect/assets/6.gif",
-    "front-end/css/animation/typing-effect/assets/5.png",
-    "front-end/css/animation/typing-effect/assets/4.png",
-    "front-end/css/animation/typing-effect/assets/3.gif",
-    "front-end/css/animation/typing-effect/assets/2.gif",
-    "front-end/css/animation/typing-effect/assets/1.gif",
-    "front-end/css/animation/typing-effect/assets",
-    "front-end/css/animation/basic/running.html",
-    "front-end/css/animation/basic/loading.html",
-    "front-end/css/animation/basic/index.md",
-    "front-end/css/animation/basic/fill-mode.html",
-    "front-end/css/animation/basic/direction.html",
-    "front-end/css/animation/basic/delay.html",
-    "front-end/css/animation/basic/charging.html",
-    "front-end/css/animation/basic",
-    "algorithm/sort/insertion.md",
-    "programming/nodejs/hidden-classes.md",
-    "front-end/interview/javascript/arrow-funcion-can-not-new.md",
-    "front-end/interview/css/assets/ie-css-box-model.png",
-    "front-end/interview/css/assets/css-box-model.png",
-    "front-end/interview/css/assets/css-box-model-hierarchy.png",
-    "front-end/interview/css/flex-item.md",
-    "front-end/interview/css/box-model.md",
-    "algorithm/learning/binary-search.md",
-    "algorithm/000/35.md",
-    "front-end/css/basic-css-animation/README.md",
-    "algorithm/sort/quick.md",
-    "algorithm/sort/selection.md",
-    "algorithm/sort/index.md",
-    "front-end/interview/react/use-memo-not-free.md",
-    "front-end/interview/react/react-keep-alive.md",
-    "front-end/interview/browser/service-worker-web-worker.md",
-    "algorithm/sort/stability.md",
-    "algorithm/sort/selection~.md",
-    "algorithm/sort/quick~.md",
-    "algorithm/sort/bubble.md",
-    "algorithm/000/46.md",
-    "algorithm/000/75~.md",
-    "algorithm/000/41.md",
-    "algorithm/000/39.md",
-    "algorithm/000/24.md"
+    "assets/image-1769670012885.jpeg",
+    "front-end/reading/dynamic-configuration-nodejs.md",
+    "assets",
+    "front-end/reading/js.ts",
+    "front-end/reading/js.js",
+    "front-end/browser/FOUC.md",
+    "front-end/interview/browser/render.md",
+    "front-end/browser/assets/timing.webp",
+    "front-end/css/summary/at-rule.md",
+    "algorithm/index.md",
+    "algorithm/learning/graph/topological.view.md",
+    "algorithm/learning/graph/traverse.view.md",
+    "algorithm/learning/graph/graph.md",
+    "daily-notes/2023/Q1/2023-03-09.md",
+    "algorithm/learning/greed/3.md",
+    "computer/reading/01-what-is-huffman-coding.md",
+    "front-end/javascript/number.md",
+    "algorithm/learning/greed/2.md",
+    "algorithm/000/1.md",
+    "未命名看板.md",
+    "algorithm/learning/greed/1.md",
+    "algorithm/learning/greed/4.md",
+    "front-end/browser/ducoment/currentScript.md",
+    "algorithm/concept/P&NP.md",
+    "未命名.canvas",
+    "front-end/css/Demo/css-frosted-glass/README.md",
+    "未命名.base",
+    "algorithm/learning/greed/1.1~.md",
+    "algorithm/learning/greed/Untitled.md",
+    "algorithm/learning/greed/greedy.md",
+    "algorithm/learning/greed",
+    "algorithm/learning/Untitled Folder",
+    "front-end/browser/ducoment",
+    "algorithm/learning/greedy.md",
+    "algorithm/concept",
+    "TODO.md",
+    "back-end/reading/assets/fairness-algo.png",
+    "back-end/reading/assets/fair-queue.png",
+    "back-end/reading/assets/fair-queue.png.crdownload",
+    "back-end/reading/assets/fifo-queue.png",
+    "back-end/reading/assets/broccoli-queue-blog-hero.png",
+    "back-end/reading/assets",
+    "programming/rust/disabuse/assets/combined-trait-object-layout.png",
+    "programming/rust/disabuse/assets/trait-object-layout.png",
+    "front-end/css/random/assets/1.png",
+    "front-end/css/random/assets/4.png"
   ]
 }

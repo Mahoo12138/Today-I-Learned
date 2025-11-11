@@ -5,5 +5,7 @@
   "obsidian-vault-statistics-plugin",
   "image-captions",
   "obsidian-excalidraw-plugin",
-  "remotely-save"
+  "remotely-save",
+  "obsidian-style-settings",
+  "sample-plugin"
 ]

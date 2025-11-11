@@ -1,6 +1,7 @@
 {
   "accentColor": "",
-  "cssTheme": "Typora-Vue",
+  "cssTheme": "Border",
   "monospaceFontFamily": "MesloLGS Nerd Font",
-  "theme": "system"
+  "theme": "system",
+  "baseFontSizeAction": true
 }
